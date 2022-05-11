@@ -15,3 +15,18 @@ a {
 * {
   box-sizing: border-box;
 }
+
+/* light and dark mode settings */
+:root {
+  --background: #f9fafb;
+  --text-primary: #111;
+  --text-secondary: #1f2937;
+  --button-fill: #2563eb;
+}
+
+[data-theme="dark"] {
+  --background: #111;
+  --text-primary: #f9fafb;
+  --text-secondary: #e5e7eb;
+  --button-fill: #1d4ed8;
+}

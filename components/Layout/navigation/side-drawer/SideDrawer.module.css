@@ -3,8 +3,8 @@
   top: 0;
   left: 0;
   font-size: 1rem;
-  background-color: #fff;
-  color: #111;
+  background-color: var(--background);
+  color: var(--text-secondary);
   width: 100%;
   height: 100%;
   padding: 2rem, 3rem;
@@ -15,7 +15,6 @@
 
 .titleContainer {
   width: 90%;
-  border-bottom: 1px solid #111;
   margin: 0.618rem auto 1.618rem;
   padding: 1rem 0;
   display: flex;
@@ -37,4 +36,13 @@
 .linkContainer {
   margin: 0 auto;
   width: 80%;
+}
+
+.buttonContainer {
+  margin: 3rem 0;
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
