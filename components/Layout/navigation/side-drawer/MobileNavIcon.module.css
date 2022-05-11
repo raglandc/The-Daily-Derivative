@@ -1,5 +1,4 @@
 .menu {
-  /* width: 6rem; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,7 +8,7 @@
 .menuSlash {
   width: 2.5rem;
   height: 2px;
-  background-color: #111;
+  background-color: var(--text-primary);
   margin: 1.5px auto;
   transition: width 0.1618s ease-out;
 }
@@ -18,7 +17,7 @@
 .menuSlashActive_middle {
   width: 2rem;
   height: 2px;
-  background-color: #111;
+  background-color: var(--text-primary);
   margin: 1.5px auto;
   transition: width 0.1618s ease-out;
 }

@@ -3,7 +3,7 @@ import type { AppProps } from "next/app";
 ////////////////////////////////////////////////
 import { store } from "../app/store";
 import { Provider } from "react-redux";
-import Layout from "../components/Layout/Layout";
+import Layout from "../components/layout/Layout";
 //font awesome icons//
 import "@fortawesome/fontawesome-svg-core/styles.css"; // import Font Awesome CSS
 import { config } from "@fortawesome/fontawesome-svg-core";

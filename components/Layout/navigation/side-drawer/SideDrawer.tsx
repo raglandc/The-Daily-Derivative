@@ -7,7 +7,7 @@ import Link from "next/link";
 import styles from "./SideDrawer.module.css";
 
 //components
-import Button from "../../../UI/Button";
+import Button from "../../../ui/Button";
 
 const SideDrawer = () => {
   const dispatch = useAppDispatch();

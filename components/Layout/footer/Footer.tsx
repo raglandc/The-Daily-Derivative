@@ -3,7 +3,7 @@ import styles from "./Footer.module.css";
 const Footer = () => {
   return (
     <div className={styles.container}>
-      <div>The footer goes here</div>
+      <div>&copy; 2022</div>
     </div>
   );
 };
