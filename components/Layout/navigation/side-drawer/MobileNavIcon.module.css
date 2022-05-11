@@ -1,0 +1,30 @@
+.menu {
+  /* width: 6rem; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*menu icon*/
+.menuSlash {
+  width: 2.5rem;
+  height: 2px;
+  background-color: #111;
+  margin: 1.5px auto;
+  transition: width 0.1618s ease-out;
+}
+
+/* menu icon animation */
+.menuSlashActive_middle {
+  width: 2rem;
+  height: 2px;
+  background-color: #111;
+  margin: 1.5px auto;
+  transition: width 0.1618s ease-out;
+}
+
+@media only screen and (min-width: 800px) {
+  .menu {
+    display: none;
+  }
+}
