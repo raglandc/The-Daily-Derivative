@@ -3,6 +3,10 @@ import Head from "next/head";
 import Image from "next/image";
 
 import MathProblem from "../components/math-problem/MathProblem";
+import MathAnswer from "../components/math-problem/MathAnswer";
+
+//practice
+import { problem1 } from "../public/practiceProblem";
 
 const Home: NextPage = () => {
   return (
@@ -11,11 +15,12 @@ const Home: NextPage = () => {
         <title>The Daily Derivative</title>
       </Head>
       <MathProblem
-        date="4.20.2022"
-        problemNumber={324}
-        problem="2x+5"
-        description="Find the derivative of the given function."
+        date={problem1.date}
+        problemNumber={problem1.problemNumber}
+        problem={problem1.problem}
+        description={problem1.description}
       />
+      <MathAnswer />
     </>
   );
 };

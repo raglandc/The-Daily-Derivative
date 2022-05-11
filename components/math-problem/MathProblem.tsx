@@ -15,8 +15,8 @@ const MathProblem = (props: MathProblemProps) => {
         <span>#{props.problemNumber}</span>
       </div>
       <div className={styles.problem}>
-        <p>{props.description}</p>
-        <span>{props.problem}</span>
+        <p className={styles.description}>{props.description}</p>
+        <span className={styles.math}>{props.problem}</span>
       </div>
     </div>
   );

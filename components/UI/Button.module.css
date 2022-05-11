@@ -1,6 +1,7 @@
 /* Filled button styles */
 
 .filled {
+  margin: 1rem auto;
   text-align: center;
   width: 13rem;
   padding: 1rem;
@@ -12,6 +13,7 @@
 
 /* hollow button styles */
 .hollow {
+  margin: 1rem auto;
   text-align: center;
   width: 13rem;
   padding: 1rem;

@@ -1,6 +1,6 @@
 .container {
+  margin: 3rem auto;
   width: 100%;
-  height: 34vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -9,15 +9,22 @@
 
 .problemInfo {
   width: 100%;
+  height: 5vh;
   display: flex;
   justify-content: space-evenly;
 }
 
 .problem {
   width: 100%;
-  height: 60%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
+}
+
+.description {
+  margin: 1rem auto 2rem;
+}
+
+.math {
+  margin: 3rem auto;
 }
