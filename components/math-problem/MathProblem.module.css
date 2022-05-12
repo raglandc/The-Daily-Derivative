@@ -8,10 +8,10 @@
 }
 
 .problemInfo {
-  width: 100%;
+  width: 90%;
   height: 5vh;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .problem {

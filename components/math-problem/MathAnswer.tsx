@@ -9,7 +9,7 @@ const MathAnswer = () => {
         <input type="text" />
       </div>
       <div className={styles.buttons}>
-        <Button style="filled" title="submit" link="/" />
+        <Button style="hollow" title="submit" link="/" />
       </div>
     </div>
   );

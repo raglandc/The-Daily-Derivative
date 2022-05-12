@@ -11,6 +11,11 @@
   color: var(--button-filled-text);
 }
 
+.filled:hover {
+  background-color: var(--button-hover);
+  cursor: pointer;
+}
+
 /* hollow button styles */
 .hollow {
   margin: 1rem auto;
@@ -20,4 +25,10 @@
   border-radius: 13rem;
   border: 1px solid var(--text-primary);
   color: var(--text-primary);
+}
+
+.hollow:hover {
+  background-color: var(--button-hover);
+  color: var(--text-primary);
+  cursor: pointer;
 }

@@ -47,8 +47,12 @@ const SideDrawer = () => {
 
         <div className={styles.buttonContainer}>
           {/* need to close mobile menu when these buttons are clicked */}
-          <Button title="Login" style="filled" link="/" />
-          <Button title="Sign Up" style="hollow" link="/" />
+          <span onClick={toggleStatus}>
+            <Button title="Login" style="filled" link="/" />
+          </span>
+          <span onClick={toggleStatus}>
+            <Button title="Sign Up" style="hollow" link="/" />
+          </span>
         </div>
       </div>
     );
