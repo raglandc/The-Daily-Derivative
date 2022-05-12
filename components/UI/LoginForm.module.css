@@ -1,0 +1,86 @@
+.container {
+  margin: 2rem auto;
+  width: 90%;
+  height: max-content;
+}
+
+.label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input {
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border: 1px solid var(--text-primary);
+  border-radius: 1rem;
+  background-color: var(--background);
+  color: var(--text-primary);
+  width: 100%;
+}
+
+/* form button styling */
+.buttonContainer {
+  text-align: center;
+  margin: 2rem auto;
+}
+.button {
+  font-size: 1.2rem;
+  margin: 1rem;
+  text-align: center;
+  width: 9rem;
+  padding: 0.5rem;
+  border-radius: 13rem;
+  border: 1px solid var(--text-primary);
+}
+
+.reset {
+  background-color: var(--button-hollow);
+  color: var(--button-primary-text);
+}
+
+.reset:hover {
+  cursor: pointer;
+  background-color: var(--button-hover);
+}
+
+.submit {
+  background-color: var(--button-filled);
+  color: var(--button-filled-text);
+}
+
+.submit:hover {
+  cursor: pointer;
+  background-color: var(--button-hover);
+}
+
+/* login link */
+.loginLink {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* status styles */
+.errorMessage {
+  width: 100%;
+  height: max-content;
+  background-color: var(--error);
+  border-radius: 3px;
+  color: var(--text-primary);
+  padding: 0.5rem;
+  margin: 0.5rem auto;
+  text-align: right;
+}
+
+.formSuccess {
+  background-color: var(--success);
+  color: var(--text-primary);
+
+  width: 100%;
+  margin: 0 auto;
+
+  border-radius: 3px;
+  padding: 1rem 1rem;
+}

@@ -5,7 +5,6 @@ import {
 } from "../../../../app/features/menuStatusSlice";
 import Link from "next/link";
 import styles from "./SideDrawer.module.css";
-import buttonStyles from "../../../ui/Button.module.css";
 
 //components
 import Button from "../../../ui/Button";
@@ -55,9 +54,9 @@ const SideDrawer = () => {
             action={toggleStatus}
           />
           <Button
-            title="Sign Up"
+            title="Register"
             style="hollow"
-            link="/"
+            link="/register"
             action={toggleStatus}
           />
         </div>

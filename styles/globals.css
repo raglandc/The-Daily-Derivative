@@ -21,6 +21,9 @@ body.light-mode {
   --background: #f9fafb;
   --text-primary: #111;
   --text-secondary: #1f2937;
+  --error: #f87171;
+  --success: #4ade80;
+
   /* button */
   --button-filled: #2563eb;
   --button-filled-text: #f9fafb;
@@ -32,6 +35,8 @@ body.dark-mode {
   --background: #18181b;
   --text-primary: #f9fafb;
   --text-secondary: #e5e7eb;
+  --error: #f87171;
+  --success: #4ade80;
   /* button */
   --button-filled: #2563eb;
   --button-filled-text: #f9fafb;
