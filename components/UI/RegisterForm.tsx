@@ -17,6 +17,8 @@ const RegisterForm = () => {
   const [formStatus, setFormStatus] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const passwordToggle = () => setPasswordVisible(!passwordVisible);
+  //password match confirmation
+  const [passwordMatch, setPasswordMatch] = useState(true);
 
   const formik = useFormik({
     initialValues: {
@@ -32,26 +34,27 @@ const RegisterForm = () => {
       password: Yup.string()
         .min(8, "Your password must have at least 8 characters")
         .required("required"),
-      confirmPassword: Yup.string()
-        .test(
-          "is-match",
-          "passwords do not match, try again.",
-          (value, context) => value === context.parent
-        )
-        .required(),
+      confirmPassword: Yup.string().required("required"),
     }),
     onSubmit: (values, actions) => {
       //after form is submitted the following function will execute
       apiFetcher(values);
       //clear the form after submission
-      actions.resetForm();
     },
   });
 
   //handle form submission
   const apiFetcher = async (values: RegisterValues) => {
     const { email, password, confirmPassword } = values;
-    setFormStatus(() => !formStatus);
+
+    //on submit does the password match the confirm password
+    if (confirmPassword !== password) {
+      setFormStatus(false);
+      setPasswordMatch(false);
+      return;
+    }
+
+    setPasswordMatch(true);
     console.log(email);
   };
 
@@ -118,12 +121,18 @@ const RegisterForm = () => {
           {formik.errors.confirmPassword}
         </div>
       ) : null}
+      {/* message to display if passwords do not match */}
+      {!passwordMatch ? (
+        <div className={styles.errorMessage}>Your passwords do not match.</div>
+      ) : null}
 
       <div className={styles.buttonContainer}>
         <button
           className={`${styles.button} ${styles.reset}`}
           type="reset"
           onClick={() => {
+            setPasswordVisible(false);
+            setPasswordMatch(true);
             formik.resetForm();
           }}
         >
