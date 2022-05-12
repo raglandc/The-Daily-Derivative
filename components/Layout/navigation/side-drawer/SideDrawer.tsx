@@ -5,6 +5,7 @@ import {
 } from "../../../../app/features/menuStatusSlice";
 import Link from "next/link";
 import styles from "./SideDrawer.module.css";
+import buttonStyles from "../../../ui/Button.module.css";
 
 //components
 import Button from "../../../ui/Button";
@@ -47,8 +48,18 @@ const SideDrawer = () => {
 
         <div className={styles.buttonContainer}>
           {/* need to close mobile menu when these buttons are clicked */}
-          <Button title="Login" style="filled" link="/login" />
-          <Button title="Sign Up" style="hollow" link="/" />
+          <Button
+            title="Login"
+            style="filled"
+            link="/login"
+            action={toggleStatus}
+          />
+          <Button
+            title="Sign Up"
+            style="hollow"
+            link="/"
+            action={toggleStatus}
+          />
         </div>
       </div>
     );
