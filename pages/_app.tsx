@@ -1,6 +1,8 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 ////////////////////////////////////////////////
+import { SessionProvider } from "next-auth/react";
+////////////////////////////////////////////////
 import { store } from "../app/store";
 import { Provider } from "react-redux";
 import Layout from "../components/layout/Layout";
@@ -13,11 +15,13 @@ config.autoAddCss = false;
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Provider store={store}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </Provider>
+    <SessionProvider session={pageProps.session}>
+      <Provider store={store}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Provider>
+    </SessionProvider>
   );
 }
 

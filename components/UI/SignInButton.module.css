@@ -1,0 +1,19 @@
+.icon {
+  padding-right: 1rem;
+}
+/* signin  button styles */
+.button {
+  margin: 0.5rem auto;
+  padding: 1rem 0;
+  text-align: center;
+  width: 90%;
+  border-radius: 5px;
+  border: 1px solid var(--text-primary);
+  color: var(--text-primary);
+}
+
+.button:hover {
+  background-color: var(--button-hollow-hover);
+  color: var(--text-primary);
+  cursor: pointer;
+}
