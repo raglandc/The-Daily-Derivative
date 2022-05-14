@@ -6,9 +6,10 @@ import {
 import Link from "next/link";
 //styles
 import styles from "./SideDrawer.module.css";
-import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { faGoogle, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 ////////////////////////////////////////////////////////////////
 
 //components
@@ -71,8 +72,9 @@ const SideDrawer = () => {
           </div>
         ) : (
           <div className={styles.buttonContainer}>
+            <p>sign in with</p>
             <SignInButton
-              title="Use a Google account"
+              title="Google"
               link="/"
               action={() => {
                 toggleStatus;
@@ -81,16 +83,22 @@ const SideDrawer = () => {
               icon={faGoogle}
             />
             <SignInButton
-              title="Use a Twitter account"
+              title="Twitter"
               link="/"
               action={toggleStatus}
               icon={faTwitter}
             />
             <SignInButton
-              title="Use a LinkedIn account"
+              title="LinkedIn"
               link="/"
               action={toggleStatus}
               icon={faLinkedin}
+            />
+            <SignInButton
+              title="Facebook"
+              link="/"
+              action={toggleStatus}
+              icon={faFacebook}
             />
           </div>
         )}

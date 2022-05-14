@@ -7,7 +7,6 @@
   color: var(--text-secondary);
   width: 100%;
   height: 100%;
-  padding: 2rem, 3rem;
   display: flex;
   flex-direction: column;
   transition: width 200ms ease-out;
@@ -16,7 +15,7 @@
 .titleContainer {
   width: 90%;
   margin: 0.618rem auto 1.618rem;
-  padding: 1rem 0;
+  padding: 1.5rem 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,11 +33,14 @@
 }
 
 .linkContainer {
-  margin: 0 auto;
+  margin: 2rem auto;
   width: 80%;
 }
 
 .buttonContainer {
+  font-size: small;
+  margin: 1rem 0;
+  padding: 1rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
