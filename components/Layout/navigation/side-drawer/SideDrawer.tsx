@@ -46,7 +46,6 @@ const SideDrawer = () => {
         </div>
 
         <div className={styles.buttonContainer}>
-          {/* need to close mobile menu when these buttons are clicked */}
           <Button
             title="Login"
             style="filled"

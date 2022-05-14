@@ -42,7 +42,7 @@
 
 .reset:hover {
   cursor: pointer;
-  background-color: var(--button-hover);
+  background-color: var(--button-hollow-hover);
 }
 
 .submit {
@@ -52,7 +52,7 @@
 
 .submit:hover {
   cursor: pointer;
-  background-color: var(--button-hover);
+  background-color: var(--button-filled-hover);
 }
 
 /* login link */

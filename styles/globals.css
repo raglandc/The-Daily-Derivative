@@ -27,7 +27,8 @@ body.light-mode {
   /* button */
   --button-filled: #2563eb;
   --button-filled-text: #f9fafb;
-  --button-hover: #3b82f6;
+  --button-filled-hover: #3b82f6;
+  --button-hollow-hover: #a1a1aa86;
   --box-shadow: rgba(17, 17, 17, 0.5);
 }
 
@@ -40,5 +41,6 @@ body.dark-mode {
   /* button */
   --button-filled: #2563eb;
   --button-filled-text: #f9fafb;
-  --button-hover: #3b83f6;
+  --button-filled-hover: #3b83f6;
+  --button-hollow-hover: #f9fafb48;
 }
