@@ -22,13 +22,20 @@ const MathKeyboard = () => {
       return setUserInput(userInput.splice(0, userInput.length - 1));
     }
 
-    const regex = /\^\{[0-9]*[a-z]*\}/;
+    const regex = /\^\{[0-9a-zA-Z\+-]*\}/;
     //handling superscripts
-    if (regex.test(lastElement) && value !== "0") {
-      const temp = userInput.filter((value) => value !== "^{}");
-      value = `^{${value}}`;
+    if (regex.test(lastElement) && value !== "\\hspace{.05cm}") {
+      const temp = userInput.filter((arrString) => !regex.test(arrString));
+      const currentExp = lastElement.split("").slice(2, -1).join("");
+      value = `^{${currentExp}${value}}`;
       setUserInput([...temp, value]);
-    } else {
+    }
+    //handle breaking from superscripts
+    else if (value === "\\hspace{.05cm}") {
+      setUserInput([...userInput, value]);
+    }
+    //handle every other input that is not a super / sub script
+    else {
       setUserInput([...userInput, value]);
     }
   };
@@ -148,7 +155,10 @@ const MathKeyboard = () => {
         <button onClick={() => updateInput("^{}")} className={styles.key}>
           ^
         </button>
-        <button onClick={() => updateInput("break")} className={styles.key}>
+        <button
+          onClick={() => updateInput("\\hspace{.05cm}")}
+          className={styles.key}
+        >
           esc
         </button>
         <button onClick={() => updateInput("x")} className={styles.key}>
