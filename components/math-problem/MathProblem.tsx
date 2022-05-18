@@ -25,6 +25,7 @@ const MathProblem = (props: MathProblemProps) => {
       <div className={styles.problem}>
         <p className={styles.description}>{props.description}</p>
         <span className={styles.math}>
+          {/* have to hide math when side drawer is active other wise math bleeds through */}
           {status ? null : <InlineMath math={props.problem} />}
         </span>
       </div>

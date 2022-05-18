@@ -8,7 +8,7 @@ interface ButtonProps {
   //incase you need the button to perform a function
   //while it accesses link, optional
   //pass a arrow function through '{variable}'
-  action?: () => { payload: undefined; type: string };
+  action?: any;
 }
 
 const Button = (props: ButtonProps) => {

@@ -18,7 +18,7 @@ a {
 
 /* light and dark mode settings */
 body.light-mode {
-  --background: #f9fafb;
+  --background: #fff;
   --text-primary: #111;
   --text-secondary: #1f2937;
   --error: #f87171;
@@ -33,7 +33,7 @@ body.light-mode {
 }
 
 body.dark-mode {
-  --background: #18181b;
+  --background: #171717;
   --text-primary: #f9fafb;
   --text-secondary: #e5e7eb;
   --error: #f87171;

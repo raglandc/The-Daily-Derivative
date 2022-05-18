@@ -1,5 +1,4 @@
 import styles from "./SignInButton.module.css";
-import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 interface ButtonProps {
   title: string;
@@ -21,7 +20,7 @@ const SignInButton = (props: ButtonProps) => {
           <FontAwesomeIcon icon={iconString} className={styles.icon} />
         </span>
       ) : null}
-      <Link href={props.link}>{props.title}</Link>
+      <span>{props.title}</span>
     </div>
   );
 };

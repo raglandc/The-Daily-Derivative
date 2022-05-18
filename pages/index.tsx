@@ -1,9 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 
 import MathProblem from "../components/math-problem/MathProblem";
-import MathAnswer from "../components/math-problem/MathAnswer";
+import MathKeyboard from "../components/ui/calculator/MathKeyboard";
 
 //practice
 import { problem1 } from "../public/practiceProblem";
@@ -20,7 +19,7 @@ const Home: NextPage = () => {
         problem={problem1.problem}
         description={problem1.description}
       />
-      <MathAnswer />
+      <MathKeyboard />
     </>
   );
 };

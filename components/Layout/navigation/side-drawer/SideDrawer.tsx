@@ -85,19 +85,28 @@ const SideDrawer = () => {
             <SignInButton
               title="Twitter"
               link="/"
-              action={toggleStatus}
+              action={() => {
+                toggleStatus;
+                signIn("twitter", { callbackUrl: "/" });
+              }}
               icon={faTwitter}
             />
             <SignInButton
               title="LinkedIn"
               link="/"
-              action={toggleStatus}
+              action={() => {
+                toggleStatus;
+                signIn("linkedin", { callbackUrl: "/" });
+              }}
               icon={faLinkedin}
             />
             <SignInButton
               title="Facebook"
               link="/"
-              action={toggleStatus}
+              action={() => {
+                toggleStatus;
+                signIn("linkedin", { callbackUrl: "/" });
+              }}
               icon={faFacebook}
             />
           </div>

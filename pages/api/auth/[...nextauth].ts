@@ -22,12 +22,11 @@ export default NextAuth({
     TwitterProvider({
       clientId: process.env.TWITTER_ID as string,
       clientSecret: process.env.TWITTER_SECRET as string,
+      version: "2.0",
     }),
     LinkedInProvider({
       clientId: process.env.LINKEDIN_CLIENT_ID as string,
       clientSecret: process.env.LINKEDIN_CLIENT_SECRET as string,
     }),
   ],
-  secret: "trDlbliJVAXTRRqqMmD1GMuyk/nh7WWIkUSCrKHT8As=",
-  debug: true,
 });
