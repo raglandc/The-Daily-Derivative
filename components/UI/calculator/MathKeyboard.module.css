@@ -12,7 +12,9 @@
   width: 100%;
   height: min-content;
   margin: 2rem auto;
+
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -32,17 +34,40 @@
 }
 
 .submitButton {
-  border: none;
+  margin: 1rem;
+  padding: 1rem;
+  border: 0.5px solid var(--text-primary);
+  border-radius: 5px;
   background-color: var(--background-primary);
+  color: var(--text-primary);
+}
+
+.submitButton:hover {
+  cursor: pointer;
+  background-color: var(--button-filled-hover);
 }
 
 .row {
   display: flex;
 }
 
+.lastRow {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .key {
   font-size: 1.3rem;
   margin: 0.5rem 0.1rem;
+
+  color: var(--text-primary);
+
   border: 1px solid var(--text-primary);
+  background-color: var(--background-primary);
   border-radius: 3px;
+}
+
+.key:hover {
+  cursor: pointer;
 }

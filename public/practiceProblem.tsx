@@ -13,4 +13,5 @@ export const problem1 = {
   problemNumber: 1,
   description: "Find the derivative of the givin function",
   problem: "f(x) = 2x+\\sqrt{3}",
+  solution: ["2"],
 };
