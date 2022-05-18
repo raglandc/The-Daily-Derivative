@@ -15,25 +15,27 @@ const MathKeyboard = () => {
   //logic for tracking keypress
   const [userInput, setUserInput] = useState<string[]>([]);
 
-  useEffect(() => {
-    console.log(userInput);
-  }, [userInput]);
-
   const updateInput = (value: string) => {
     let lastElement = userInput[userInput.length - 1];
     //handle deleting elements from array
     if (value === "del") {
-      setUserInput(userInput.splice(0, userInput.length - 1));
+      return setUserInput(userInput.splice(0, userInput.length - 1));
     }
 
+    const regex = /\^\{[0-9]*[a-z]*\}/;
     //handling superscripts
-    if (lastElement === `^{}` && value !== "0") {
-      lastElement = `^{${value}}`;
-      value = lastElement;
+    if (regex.test(lastElement) && value !== "0") {
+      const temp = userInput.filter((value) => value !== "^{}");
+      value = `^{${value}}`;
+      setUserInput([...temp, value]);
+    } else {
+      setUserInput([...userInput, value]);
     }
-
-    setUserInput([...userInput, value]);
   };
+
+  useEffect(() => {
+    console.log(userInput);
+  }, [userInput]);
 
   return status ? null : (
     <div className={styles.container}>
