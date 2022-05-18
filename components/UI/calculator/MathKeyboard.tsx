@@ -13,12 +13,17 @@ const MathKeyboard = () => {
   //logic for tracking keypress
   const [userInput, setUserInput] = useState<string[]>([]);
   const [showSecondKeyboard, setShowSecondKeyBoard] = useState(false);
+  const [expressionBuilder, setExpressionBuilder] = useState<string[]>([]);
 
-  const submitMath = (submittedArr: string[]) => {
+  const expressionBuilderHandler = (type: string, elementArray: string[]) => {
+    let returnString: string;
     //get rid of any spaces
+    if (type === "fraction") {
+    }
     //compare the submitted array to the array answer
     //while looping set included, wrong css classes to keys
-    console.log(submittedArr);
+    //the array lengths need to be the same
+    //and contain the same values, not necessary for order
   };
 
   const updateInput = (value: string) => {
@@ -72,6 +77,12 @@ const MathKeyboard = () => {
                 <InlineMath key={index} math={value} />
               ))}
         </div>
+        {/* A window to build things like fractions */}
+        {expressionBuilder === [] ? null : (
+          <div>
+            <InlineMath math={} />
+          </div>
+        )}
         <button
           onClick={() => submitMath(userInput)}
           className={styles.submitButton}
