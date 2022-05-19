@@ -1,6 +1,11 @@
 .container {
-  margin: 3rem auto;
+  margin: 1rem auto;
   width: 100%;
+  padding: 2rem 1rem;
+
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -28,4 +33,10 @@
 .math {
   font-size: 1.3rem;
   margin: 3rem auto;
+}
+
+@media only screen and (min-width: 1000px) {
+  .container {
+    max-width: 60%;
+  }
 }

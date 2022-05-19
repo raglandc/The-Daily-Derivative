@@ -7,7 +7,7 @@ const DesktopNavigation = () => {
   if (!session) {
     return (
       <div className={styles.container}>
-        <Button style="hollow" title="Sign in" link="/sign-in" />
+        <Button style="filled" title="Sign in" link="/sign-in" />
         {/* <div>drop down menu</div> */}
       </div>
     );
@@ -15,7 +15,7 @@ const DesktopNavigation = () => {
     return (
       <div className={styles.container}>
         <Button
-          style="hollow"
+          style="filled"
           title="Sign out"
           link="/"
           action={() => signOut()}

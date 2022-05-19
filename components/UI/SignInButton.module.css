@@ -13,7 +13,7 @@
 }
 
 .button:hover {
-  background-color: var(--button-hollow-hover);
-  color: var(--text-primary);
+  background-color: var(--button-filled);
+  color: #fff;
   cursor: pointer;
 }

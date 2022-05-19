@@ -4,15 +4,15 @@
   margin: 1rem auto;
   text-align: center;
   width: 9rem;
-  padding: 0.5rem 1rem;
-  border-radius: 3px;
-  border: 1px solid var(--text-primary);
+  padding: 0.62rem;
+  border-radius: var(--border-radius);
   background-color: var(--button-filled);
   color: var(--button-filled-text);
 }
 
 .filled:hover {
   background-color: var(--button-filled-hover);
+  box-shadow: var(--box-shadow);
   cursor: pointer;
 }
 
@@ -22,7 +22,7 @@
   text-align: center;
   width: 9rem;
   padding: 0.5rem 1rem;
-  border-radius: 3rem;
+  border-radius: var(--border-radius);
   border: 1px solid var(--text-primary);
   color: var(--text-primary);
 }

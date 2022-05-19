@@ -24,12 +24,18 @@ body.light-mode {
   --error: #f87171;
   --success: #4ade80;
 
+  /* answer */
+  --answer-background: #d4d4d456;
+
   /* button */
   --button-filled: #2563eb;
   --button-filled-text: #f9fafb;
   --button-filled-hover: #3b82f6;
   --button-hollow-hover: #a1a1aa86;
-  --box-shadow: rgba(17, 17, 17, 0.5);
+  --box-shadow: 0px 0px 10px 1px rgba(17, 17, 17, 0.219);
+
+  /* border */
+  --border-radius: 8px;
 }
 
 body.dark-mode {
@@ -38,9 +44,19 @@ body.dark-mode {
   --text-secondary: #e5e7eb;
   --error: #f87171;
   --success: #4ade80;
+
+  /* answer */
+  --answer-background: #d4d4d456;
+
   /* button */
   --button-filled: #2563eb;
   --button-filled-text: #f9fafb;
   --button-filled-hover: #3b83f6;
   --button-hollow-hover: #f9fafb48;
+
+  /* box-shadow */
+  --box-shadow: 0px 0px 10px 1px rgba(224, 224, 224, 0.13);
+
+  /* border */
+  --border-radius: 8px;
 }

@@ -25,13 +25,14 @@ export function expressionBuilderHandler(
     //create katex string
     const fractionString = `\\frac{${numerator}}{${denominator}}`;
 
-    //clear old values from string
-    returnArray = clearOldArrayHandler(inputArray);
+    //start at special symbol
+    const startIndex = inputArray.lastIndexOf("(");
 
-    //create new userInput string to display
+    //filter out the values from special start to end of array
+    returnArray = inputArray.filter((value, index) => index < startIndex);
+
     returnArray = [...returnArray, fractionString];
 
-    //return new userInput string to display fraction
     return returnArray;
   }
 
@@ -52,11 +53,8 @@ export function expressionBuilderHandler(
 
     const returnString = `^{${exponentString}}`;
 
-    //start at special symbol
-    const startIndex = inputArray.lastIndexOf("\\wedge");
-
     //filter out the values from special start to end of array
-    returnArray = inputArray.filter((value, index) => index < startIndex);
+    returnArray = clearOldArrayHandler(inputArray);
 
     returnArray = [...returnArray, returnString];
 
@@ -89,14 +87,39 @@ export function expressionBuilderHandler(
     return returnArray;
   }
 
-  //integral with bounds builder
-  if (type === "int-bounds") {
+  //subscript builder
+  if (type === "subscript") {
+    //find the opening "("
+    const subScriptIndexStart = inputArray.lastIndexOf("(");
+
+    //store subscript values in string array
+    let subScript: string[] = [];
+
+    //loop through inputArray at subscript start and create array of values
+    for (let i = subScriptIndexStart + 1; i < inputArray.length; i++) {
+      subScript.push(inputArray[i]);
+    }
+
+    //turn array into string
+    const subscriptString = subScript.join("");
+
+    //turn string into katex subscript string
+    const returnString = `_{${subscriptString}}`;
+
+    //clear old input array
+    returnArray = clearOldArrayHandler(inputArray);
+
+    //set new array to display
+    returnArray = [...returnArray, returnString];
+
+    return returnArray;
   }
 
-  //if nothing is triggered return error message
+  //if nothing is triggered return last array
   return inputArray;
 }
 
+//determines type of expression to be built
 export function determineTypeHandler(currentArray: string[]): string {
   let returnString: string = "error";
 
@@ -117,12 +140,19 @@ export function determineTypeHandler(currentArray: string[]): string {
     if (currentArray[i] === "\\sqrt{}") {
       return (returnString = "square-root");
     }
+
+    //subscript
+    if (currentArray[i] === "\\lor") {
+      return (returnString = "subscript");
+    }
   }
 
   return returnString;
 }
 
 //helper functions
+
+//clear old input array
 function clearOldArrayHandler(array: string[]) {
   //start at special symbol
   const startIndex = array.lastIndexOf("(");
