@@ -2,6 +2,12 @@
 import { useAppSelector } from "../../../app/hooks";
 import { selectStatus } from "../../../app/features/menuStatusSlice";
 
+//handlers
+import {
+  expressionBuilderHandler,
+  determineTypeHandler,
+} from "../../../lib/CalculatorFunctions";
+
 import styles from "./MathKeyboard.module.css";
 import { useEffect, useState } from "react";
 //@ts-ignore
@@ -18,37 +24,22 @@ const MathKeyboard = () => {
     //last element entered in our array
     let lastElement = userInput[userInput.length - 1];
 
-    //handle deleting elements from array
+    //handles deleting elements from array
     if (value === "del") {
       return setUserInput(userInput.splice(0, userInput.length - 1));
     }
 
-    //will use the following pattern to determine if we are still creating
-    //a super script
-    const regexSuper = /\^\{[0-9a-zA-Z\+-]*\}/;
-    const regexSub = /\_\{[0-9a-zA-Z\+-]*\}/;
-    //handling superscripts
-    if (regexSuper.test(lastElement) && value !== "\\hspace{.01cm}") {
-      const temp = userInput.filter((arrString) => !regexSuper.test(arrString));
-      const currentExp = lastElement.split("").slice(2, -1).join("");
-      value = `^{${currentExp}${value}}`;
-      setUserInput([...temp, value]);
+    //handle special expressions
+    if (value === ")") {
+      const type = determineTypeHandler(userInput);
+      const newExpression = expressionBuilderHandler(type, userInput);
+
+      console.log(type, newExpression);
+
+      return setUserInput([...newExpression]);
     }
-    //handle subscripts
-    else if (regexSub.test(lastElement) && value !== "\\hspace{.01cm}") {
-      const temp = userInput.filter((arrString) => !regexSub.test(arrString));
-      const currentExp = lastElement.split("").slice(2, -1).join("");
-      value = `_{${currentExp}${value}}`;
-      setUserInput([...temp, value]);
-    }
-    //handle breaking from superscripts
-    else if (value === "\\hspace{.01cm}") {
-      setUserInput([...userInput, value]);
-    }
-    //handle every other input that is not a super / sub script
-    else {
-      setUserInput([...userInput, value]);
-    }
+
+    setUserInput([...userInput, value]);
   };
 
   useEffect(() => {
@@ -177,8 +168,11 @@ const MathKeyboard = () => {
             </button>
           </div>
           <div className={styles.row}>
-            <button onClick={() => updateInput("^{}")} className={styles.key}>
-              ^
+            <button
+              onClick={() => updateInput("\\wedge")}
+              className={styles.key}
+            >
+              <InlineMath math="\wedge" />
             </button>
             <button
               onClick={() => updateInput("\\hspace{.01cm}")}
