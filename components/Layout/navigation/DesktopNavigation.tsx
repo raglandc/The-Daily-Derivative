@@ -15,7 +15,7 @@ const DesktopNavigation = () => {
     return (
       <div className={styles.container}>
         <Button
-          style="filled"
+          style="hollow"
           title="Sign out"
           link="/"
           action={() => signOut()}

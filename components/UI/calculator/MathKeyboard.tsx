@@ -53,6 +53,7 @@ const MathKeyboard = () => {
   return status ? null : (
     <div className={styles.container}>
       <div className={styles.answer}>
+        <div className={styles.instruction}>-------LIFE BAR-------</div>
         <div className={styles.mathDisplay}>
           {userInput === []
             ? null

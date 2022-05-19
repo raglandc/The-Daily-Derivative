@@ -23,6 +23,9 @@
   align-items: center;
 }
 
+.lifeBar {
+}
+
 .mathDisplay {
   font-size: larger;
 
@@ -42,16 +45,17 @@
 
 .submitButton {
   padding: 1rem;
-  border: 1px solid;
+  border: none;
   border-radius: var(--border-radius);
-  background-color: var(--background-);
-  color: var(--text-primary);
+  background-color: var(--button-filled);
+  color: #fff;
 }
 
 .submitButton:hover {
   cursor: pointer;
   color: #fff;
-  background-color: var(--button-filled-hover);
+  border: none;
+  background-color: #22c55e;
   box-shadow: var(--box-shadow);
 }
 

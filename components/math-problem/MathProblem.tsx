@@ -20,7 +20,7 @@ const MathProblem = (props: MathProblemProps) => {
     <div className={styles.container}>
       <div className={styles.problemInfo}>
         <span>{props.date}</span>
-        <span>#{props.problemNumber}</span>
+        <span>Problem #{props.problemNumber}</span>
       </div>
       <div className={styles.problem}>
         <p className={styles.description}>{props.description}</p>
