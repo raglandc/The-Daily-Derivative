@@ -21,11 +21,8 @@ const MathKeyboard = () => {
   const [showSecondKeyboard, setShowSecondKeyBoard] = useState(false);
 
   const updateInput = (value: string) => {
-    //last element entered in our array
-    let lastElement = userInput[userInput.length - 1];
-
     //handles deleting elements from array
-    if (value === "del") {
+    if (value === "\\leftarrow") {
       return setUserInput(userInput.splice(0, userInput.length - 1));
     }
 
@@ -43,6 +40,8 @@ const MathKeyboard = () => {
       return setUserInput([...newExpression]);
     }
 
+    //if no special functions are called, just add the pressed value to the
+    //answer array
     setUserInput([...userInput, value]);
   };
 
@@ -70,9 +69,6 @@ const MathKeyboard = () => {
       </div>
       <div className={styles.keyboardContainer}>
         <div className={styles.row}>
-          <button onClick={() => updateInput("0")} className={styles.key}>
-            <InlineMath math="0" />
-          </button>
           <button onClick={() => updateInput("1")} className={styles.key}>
             <InlineMath math="1" />
           </button>
@@ -100,6 +96,9 @@ const MathKeyboard = () => {
           <button onClick={() => updateInput("9")} className={styles.key}>
             <InlineMath math="9" />
           </button>
+          <button onClick={() => updateInput("0")} className={styles.key}>
+            <InlineMath math="0" />
+          </button>
         </div>
         {!showSecondKeyboard ? (
           <>
@@ -122,8 +121,14 @@ const MathKeyboard = () => {
               >
                 <InlineMath math="\div" />
               </button>
-              <button onClick={() => updateInput("=")} className={styles.key}>
-                <InlineMath math="=" />
+              <button
+                onClick={() => updateInput("\\sqrt{}")}
+                className={styles.key}
+              >
+                <InlineMath math="\sqrt{}" />
+              </button>
+              <button onClick={() => updateInput(",")} className={styles.key}>
+                <InlineMath math="," />
               </button>
               <button
                 onClick={() => updateInput("\\pm")}
@@ -136,12 +141,6 @@ const MathKeyboard = () => {
                 className={styles.key}
               >
                 <InlineMath math="\mp" />
-              </button>
-              <button
-                onClick={() => updateInput("\\cdot")}
-                className={styles.key}
-              >
-                <InlineMath math="\cdot" />
               </button>
               <button
                 onClick={() => updateInput("\\le")}
@@ -205,10 +204,10 @@ const MathKeyboard = () => {
                 <InlineMath math="\wedge" />
               </button>
               <button
-                onClick={() => updateInput("\\hspace{.01cm}")}
+                onClick={() => updateInput("\\ln")}
                 className={styles.key}
               >
-                esc
+                <InlineMath math="\ln" />
               </button>
               <button onClick={() => updateInput("x")} className={styles.key}>
                 <InlineMath math="x" />
@@ -228,8 +227,11 @@ const MathKeyboard = () => {
               <button onClick={() => updateInput("d")} className={styles.key}>
                 <InlineMath math="d" />
               </button>
-              <button onClick={() => updateInput("del")} className={styles.key}>
-                del
+              <button
+                onClick={() => updateInput("\\leftarrow")}
+                className={styles.key}
+              >
+                <InlineMath math="\leftarrow" />
               </button>
             </div>
           </>
@@ -237,17 +239,11 @@ const MathKeyboard = () => {
           <>
             {/* second keyboard begins here */}
             <div className={styles.row}>
-              <button
-                onClick={() => updateInput("\\int")}
-                className={styles.key}
-              >
-                <InlineMath math="\int" />
+              <button onClick={() => updateInput("+")} className={styles.key}>
+                <InlineMath math="+" />
               </button>
-              <button
-                onClick={() => updateInput("\\sqrt{}")}
-                className={styles.key}
-              >
-                <InlineMath math="\sqrt{}" />
+              <button onClick={() => updateInput("-")} className={styles.key}>
+                <InlineMath math="-" />
               </button>
               <button
                 onClick={() => updateInput("\\times")}
@@ -261,38 +257,39 @@ const MathKeyboard = () => {
               >
                 <InlineMath math="\div" />
               </button>
-              <button onClick={() => updateInput("=")} className={styles.key}>
-                <InlineMath math="=" />
-              </button>
               <button
-                onClick={() => updateInput("\\pm")}
+                onClick={() => updateInput("\\sqrt{}")}
                 className={styles.key}
               >
-                <InlineMath math="\pm" />
+                <InlineMath math="\sqrt{}" />
+              </button>
+              <button onClick={() => updateInput(",")} className={styles.key}>
+                <InlineMath math="," />
               </button>
               <button
-                onClick={() => updateInput("\\mp")}
+                onClick={() => updateInput("\\int")}
                 className={styles.key}
               >
-                <InlineMath math="\mp" />
+                <InlineMath math="\int" />
               </button>
               <button
-                onClick={() => updateInput("\\cdot")}
+                onClick={() => updateInput("\\oint")}
                 className={styles.key}
               >
-                <InlineMath math="\cdot" />
+                <InlineMath math="\oint" />
+              </button>
+
+              <button
+                onClick={() => updateInput("\\nabla")}
+                className={styles.key}
+              >
+                <InlineMath math="\nabla" />
               </button>
               <button
-                onClick={() => updateInput("\\le")}
+                onClick={() => updateInput("\\leftthreetimes")}
                 className={styles.key}
               >
-                <InlineMath math="\le" />
-              </button>
-              <button
-                onClick={() => updateInput("\\ge")}
-                className={styles.key}
-              >
-                <InlineMath math="\ge" />
+                <InlineMath math="\leftthreetimes" />
               </button>
             </div>
             <div className={styles.row}>
@@ -341,10 +338,10 @@ const MathKeyboard = () => {
                 <InlineMath math="\lor" />
               </button>
               <button
-                onClick={() => updateInput("\\hspace{.05cm}")}
+                onClick={() => updateInput("\\log")}
                 className={styles.key}
               >
-                esc
+                <InlineMath math="\log" />
               </button>
               <button
                 onClick={() => updateInput("\\cos")}
@@ -370,8 +367,11 @@ const MathKeyboard = () => {
               <button onClick={() => updateInput("z")} className={styles.key}>
                 <InlineMath math="z" />
               </button>
-              <button onClick={() => updateInput("del")} className={styles.key}>
-                del
+              <button
+                onClick={() => updateInput("\\leftarrow")}
+                className={styles.key}
+              >
+                <InlineMath math="\leftarrow" />
               </button>
             </div>
           </>
@@ -383,10 +383,10 @@ const MathKeyboard = () => {
             }
             className={styles.key}
           >
-            {!showSecondKeyboard ? "More" : "Less"}
+            {!showSecondKeyboard ? "2nd" : "1st"}
           </button>
           <button onClick={() => setUserInput([])} className={styles.key}>
-            clear
+            <InlineMath math="\circlearrowright" />
           </button>
         </div>
       </div>

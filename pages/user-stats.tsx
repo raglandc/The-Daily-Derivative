@@ -1,6 +1,7 @@
+import { NextPage } from "next";
 import { useSession } from "next-auth/react";
 
-const UserStatsPage = () => {
+const UserStatsPage: NextPage = () => {
   const { data: session } = useSession();
 
   if (session) {

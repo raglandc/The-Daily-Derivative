@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  height: max-content;
+  height: 8rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
