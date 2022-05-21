@@ -7,6 +7,7 @@ import { useState } from "react";
 import "katex/dist/katex.min.css";
 // @ts-ignore
 import { InlineMath } from "react-katex";
+import Modal from "../ui/Modal";
 
 interface MathProblemProps {
   date: string;
@@ -35,7 +36,9 @@ const MathProblem = (props: MathProblemProps) => {
         </span>
       </div>
       <button onClick={() => setShowSolution(true)}>Show Solution</button>
-      {!showSolution ? null : <p>solution</p>}
+      <Modal show={showSolution} onClose={() => setShowSolution(false)}>
+        modal
+      </Modal>
     </div>
   );
 };

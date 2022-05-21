@@ -21,6 +21,7 @@ body.light-mode {
   --background: #fff;
   --text-primary: #111;
   --text-secondary: #1f2937;
+  --modal: #0000005d;
   --error: #f87171;
   --success: #4ade80;
 
@@ -45,6 +46,7 @@ body.dark-mode {
   --background: #171717;
   --text-primary: #f9fafb;
   --text-secondary: #e5e7eb;
+  --modal: #fafafa3a;
   --error: #f87171;
   --success: #4ade80;
 

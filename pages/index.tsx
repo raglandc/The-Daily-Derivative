@@ -33,8 +33,6 @@ export async function getStaticProps() {
   //returns the first element in the problems (math) collection
   const problem = problems[0];
 
-  console.log(problems, problem);
-
   return {
     props: { problem },
   };

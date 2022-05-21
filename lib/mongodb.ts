@@ -1,6 +1,7 @@
 import { MongoClient } from "mongodb";
 
-const { MONGODB_URI, DB_NAME } = process.env;
+const MONGODB_URI = process.env.MONGODB_URI as string;
+const DB_NAME = process.env.DB_NAME as string;
 
 if (!MONGODB_URI) throw new Error("Please add your Mongo uri to .env.local");
 
@@ -19,7 +20,7 @@ export async function connectToDatabase() {
   if (cached.conn) return cached.conn;
   if (!cached.promise) {
     const conn: any = {};
-    cached.promise = MongoClient.connect(MONGODB_URI as string)
+    cached.promise = await MongoClient.connect(MONGODB_URI as string)
       .then((client) => {
         conn.client = client;
         return client.db(DB_NAME);
