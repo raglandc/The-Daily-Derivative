@@ -8,11 +8,12 @@
   border-radius: var(--border-radius);
   background-color: var(--button-filled);
   color: var(--button-filled-text);
+  box-shadow: var(--box-shadow);
 }
 
 .filled:hover {
   background-color: var(--button-filled-hover);
-  box-shadow: var(--box-shadow);
+  box-shadow: none;
   cursor: pointer;
 }
 
@@ -20,8 +21,8 @@
 .hollow {
   margin: 1rem auto;
   text-align: center;
-  width: 9rem;
-  padding: 0.5rem 1rem;
+  width: max-content;
+  padding: 1rem;
   border-radius: var(--border-radius);
   border: 1px solid var(--text-primary);
   color: var(--text-primary);
@@ -29,6 +30,7 @@
 
 .hollow:hover {
   background-color: var(--button-hollow-hover);
-  color: var(--text-primary);
+  box-shadow: var(--box-shadow);
+  color: var(--button-hollow-hover-text);
   cursor: pointer;
 }

@@ -21,7 +21,7 @@ body.light-mode {
   --background: #fff;
   --text-primary: #111;
   --text-secondary: #1f2937;
-  --modal: #0000005d;
+  --modal-overlay: #0000005d;
   --error: #f87171;
   --success: #4ade80;
 
@@ -32,7 +32,10 @@ body.light-mode {
   --button-filled: #2563eb;
   --button-filled-text: #f9fafb;
   --button-filled-hover: #3b82f6;
-  --button-hollow-hover: #a1a1aa86;
+  --button-hollow-hover: #111111;
+  --button-hollow-hover-text: #fff;
+
+  /* box shadow */
   --box-shadow: 0px 0px 10px 1px rgba(17, 17, 17, 0.219);
 
   /* svg button */
@@ -46,7 +49,7 @@ body.dark-mode {
   --background: #171717;
   --text-primary: #f9fafb;
   --text-secondary: #e5e7eb;
-  --modal: #fafafa3a;
+  --modal-overlay: #fafafa75;
   --error: #f87171;
   --success: #4ade80;
 
@@ -57,13 +60,14 @@ body.dark-mode {
   --button-filled: #2563eb;
   --button-filled-text: #f9fafb;
   --button-filled-hover: #3b83f6;
-  --button-hollow-hover: #f9fafb48;
+  --button-hollow-hover: #fff;
+  --button-hollow-hover-text: #111111;
 
   /* box-shadow */
   --box-shadow: 0px 0px 10px 1px rgba(224, 224, 224, 0.13);
 
   /* svg button */
-  --svg-button-hover: #d4d4d456;
+  --svg-button-hover: #d4d4d479;
 
   /* border */
   --border-radius: 8px;

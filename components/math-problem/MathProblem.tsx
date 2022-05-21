@@ -8,6 +8,8 @@ import "katex/dist/katex.min.css";
 // @ts-ignore
 import { InlineMath } from "react-katex";
 import Modal from "../ui/Modal";
+import Button from "../ui/Button";
+import SolutionModal from "../math-problem/SolutionModal";
 
 interface MathProblemProps {
   date: string;
@@ -15,6 +17,7 @@ interface MathProblemProps {
   description: string;
   problem: string;
   difficulty: string;
+  solution: string[];
 }
 
 const MathProblem = (props: MathProblemProps) => {
@@ -24,9 +27,9 @@ const MathProblem = (props: MathProblemProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.problemInfo}>
-        <span>{props.date}</span>
-        <span>{props.difficulty}</span>
-        <span>#{props.problemNumber}</span>
+        <div>{props.date}</div>
+        <div>{props.difficulty}</div>
+        <div>#{props.problemNumber}</div>
       </div>
       <div className={styles.problem}>
         <p className={styles.description}>{props.description}</p>
@@ -35,9 +38,14 @@ const MathProblem = (props: MathProblemProps) => {
           {status ? null : <InlineMath math={props.problem} />}
         </span>
       </div>
-      <button onClick={() => setShowSolution(true)}>Show Solution</button>
+      <Button
+        title="Show Solution"
+        style="hollow"
+        link=""
+        action={() => setShowSolution(true)}
+      />
       <Modal show={showSolution} onClose={() => setShowSolution(false)}>
-        modal
+        <SolutionModal solution={props.solution} />
       </Modal>
     </div>
   );

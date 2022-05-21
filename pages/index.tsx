@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { InferGetStaticPropsType } from "next";
 import MathProblem from "../components/math-problem/MathProblem";
-import MathKeyboard from "../components/ui/calculator/MathKeyboard";
+import MathKeyboard from "../components/math-problem/calculator/MathKeyboard";
 
 import { connectToDatabase } from "../lib/mongodb";
 
@@ -12,6 +12,7 @@ interface ProblemProps {
   description: string;
   problem: string;
   difficulty: string;
+  solution: string[];
 }
 
 //fetching data from database of math problems to display
@@ -27,6 +28,7 @@ export async function getStaticProps() {
       description: problem.description,
       problem: problem.problem,
       difficulty: problem.difficulty,
+      solution: problem.solution,
     };
   });
 
@@ -50,6 +52,7 @@ const Home = ({ problem }: InferGetStaticPropsType<typeof getStaticProps>) => {
         problem={problem.problem}
         description={problem.description}
         difficulty={problem.difficulty}
+        solution={problem.solution}
       />
       <MathKeyboard />
     </>

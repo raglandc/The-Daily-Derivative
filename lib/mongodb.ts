@@ -28,6 +28,9 @@ export async function connectToDatabase() {
       .then((db) => {
         conn.db = db;
         cached.conn = conn;
+      })
+      .catch((error) => {
+        throw new Error(error);
       });
   }
   await cached.promise;

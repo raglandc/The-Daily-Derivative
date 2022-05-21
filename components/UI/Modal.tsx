@@ -26,8 +26,8 @@ const Modal = ({ show, onClose, children }: ModalProps) => {
           <a href="#" onClick={closeHandler}>
             <button>Close</button>
           </a>
+          <div className={styles.body}>{children}</div>
         </div>
-        <div className={styles.body}>{children}</div>
       </div>
     </div>
   ) : null;
