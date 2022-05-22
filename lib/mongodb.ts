@@ -1,38 +1,34 @@
 import { MongoClient } from "mongodb";
 
-const MONGODB_URI = process.env.MONGODB_URI as string;
-const DB_NAME = process.env.DB_NAME as string;
+let uri = process.env.MONGODB_URI as string;
+let dbName = process.env.DB_NAME as string;
 
-if (!MONGODB_URI) throw new Error("Please add your Mongo uri to .env.local");
+let cachedClient: any = null;
+let cachedDb: any = null;
 
-if (!DB_NAME)
+if (!uri) {
   throw new Error(
-    "Please define the DB_NAME environment variable inside .env.local"
+    "Please define the MONGODB_URI environment variable inside .env.local"
   );
+}
 
-//using global variables for dev
-//@ts-ignore
-let cached = global.mongo;
-//@ts-ignore
-if (!cached) cached = global.mongo = {};
+if (!dbName) {
+  throw new Error(
+    "Please define the MONGODB_DB environment variable inside .env.local"
+  );
+}
 
 export async function connectToDatabase() {
-  if (cached.conn) return cached.conn;
-  if (!cached.promise) {
-    const conn: any = {};
-    cached.promise = await MongoClient.connect(MONGODB_URI as string)
-      .then((client) => {
-        conn.client = client;
-        return client.db(DB_NAME);
-      })
-      .then((db) => {
-        conn.db = db;
-        cached.conn = conn;
-      })
-      .catch((error) => {
-        throw new Error(error);
-      });
+  if (cachedClient && cachedDb) {
+    return { client: cachedClient, db: cachedDb };
   }
-  await cached.promise;
-  return cached.conn;
+
+  const client = await MongoClient.connect(uri);
+
+  const db = await client.db(dbName);
+
+  cachedClient = client;
+  cachedDb = db;
+
+  return { client, db };
 }

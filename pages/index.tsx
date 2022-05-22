@@ -12,7 +12,7 @@ interface ProblemProps {
   description: string;
   problem: string;
   difficulty: string;
-  solution: string[];
+  solution: string;
 }
 
 //fetching data from database of math problems to display

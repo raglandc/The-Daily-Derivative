@@ -1,18 +1,27 @@
-import styles from "SolutionModal.module.css";
+import styles from "./SolutionModal.module.css";
 //Katex (math styling)
 import "katex/dist/katex.min.css";
 //@ts-ignore
 import { InlineMath } from "react-katex";
 
 interface SolutionModalProps {
-  solution: string[];
+  solution: string;
 }
 
+const stringToArrayHandler = (solution: string) => {
+  const solutionLinesArray = solution.split("!.!");
+  return solutionLinesArray;
+};
+
 const SolutionModal = ({ solution }: SolutionModalProps) => {
+  const arrayOfInlineStrings = stringToArrayHandler(solution);
+
   return (
-    <div>
-      {solution.map((value, index) => (
-        <InlineMath key={index} math={`${value}`} />
+    <div className={styles.container}>
+      {arrayOfInlineStrings.map((value, index) => (
+        <div key={index}>
+          <InlineMath key={index} math={`${value}`} />
+        </div>
       ))}
     </div>
   );

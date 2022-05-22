@@ -17,7 +17,7 @@ interface MathProblemProps {
   description: string;
   problem: string;
   difficulty: string;
-  solution: string[];
+  solution: string;
 }
 
 const MathProblem = (props: MathProblemProps) => {

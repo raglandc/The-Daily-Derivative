@@ -24,7 +24,7 @@ const Modal = ({ show, onClose, children }: ModalProps) => {
       <div className={styles.container}>
         <div className={styles.header}>
           <a href="#" onClick={closeHandler}>
-            <button>Close</button>
+            <button className={styles.button}>Close</button>
           </a>
           <div className={styles.body}>{children}</div>
         </div>
