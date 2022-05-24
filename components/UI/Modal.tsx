@@ -6,9 +6,10 @@ interface ModalProps {
   show: any;
   onClose: any;
   children: ReactNode;
+  title: string;
 }
 
-const Modal = ({ show, onClose, children }: ModalProps) => {
+const Modal = ({ show, onClose, children, title }: ModalProps) => {
   const [isBrowser, setIsBrowser] = useState(false);
 
   useEffect(() => {
@@ -20,14 +21,15 @@ const Modal = ({ show, onClose, children }: ModalProps) => {
   };
 
   const modalContent = show ? (
-    <div className={styles.overlay}>
+    <div onClick={closeHandler} className={styles.overlay}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <a href="#" onClick={closeHandler}>
-            <button className={styles.button}>Close</button>
-          </a>
-          <div className={styles.body}>{children}</div>
+          <h3>{title}</h3>
+          <button onClick={closeHandler} className={styles.button}>
+            X
+          </button>
         </div>
+        <div className={styles.body}>{children}</div>
       </div>
     </div>
   ) : null;

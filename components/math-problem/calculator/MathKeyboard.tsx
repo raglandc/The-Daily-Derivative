@@ -12,8 +12,15 @@ import styles from "./MathKeyboard.module.css";
 import { useEffect, useState } from "react";
 //@ts-ignore
 import { InlineMath } from "react-katex";
+import LifeBar from "../../ui/LifeBar";
 
-const MathKeyboard = () => {
+interface MathKeyboardProps {
+  summary: boolean;
+  lifeBar: number;
+  action: (userInputArray: string[]) => void;
+}
+
+const MathKeyboard = ({ action, lifeBar, summary }: MathKeyboardProps) => {
   //mobile menu status
   const status = useAppSelector(selectStatus);
   //logic for tracking keypress
@@ -45,6 +52,7 @@ const MathKeyboard = () => {
     setUserInput([...userInput, value]);
   };
 
+  //remove before deployment
   useEffect(() => {
     console.log(userInput);
   }, [userInput]);
@@ -52,7 +60,9 @@ const MathKeyboard = () => {
   return status ? null : (
     <div className={styles.container}>
       <div className={styles.answer}>
-        <div className={styles.instruction}>-------LIFE BAR-------</div>
+        <div>
+          <LifeBar lifeBarCount={lifeBar} />
+        </div>
         <div className={styles.mathDisplay}>
           {userInput === []
             ? null
@@ -60,12 +70,14 @@ const MathKeyboard = () => {
                 <InlineMath key={index} math={value} />
               ))}
         </div>
-        <button
-          // onClick={() => submitMath(userInput)}
-          className={styles.submitButton}
-        >
-          Submit Answer
-        </button>
+        {summary || lifeBar === 0 ? null : (
+          <button
+            onClick={() => action(userInput)}
+            className={styles.submitButton}
+          >
+            Submit Answer
+          </button>
+        )}
       </div>
       <div className={styles.keyboardContainer}>
         <div className={styles.row}>

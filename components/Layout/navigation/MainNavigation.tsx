@@ -4,6 +4,8 @@ import SVGIcon from "../../ui/SVGIcon";
 import DesktopNavigation from "./DesktopNavigation";
 import useDarkMode from "use-dark-mode";
 import styles from "./MainNavigation.module.css";
+//@ts-ignore
+import { InlineMath } from "react-katex";
 
 //svg for dark/light mode
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
@@ -20,7 +22,11 @@ const MainNavigation = () => {
       >
         <SVGIcon icon={faMoon} />
       </span>
-      <Link href="/">LOGO</Link>
+      <Link href="/">
+        <div className={styles.logo}>
+          <InlineMath math="\frac{daily}{dx}" />
+        </div>
+      </Link>
       <DesktopNavigation />
       <MobileNavIcon />
     </nav>

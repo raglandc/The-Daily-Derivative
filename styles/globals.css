@@ -24,6 +24,7 @@ body.light-mode {
   --modal-overlay: #0000005d;
   --error: #f87171;
   --success: #4ade80;
+  --warning: #fde047;
 
   /* answer */
   --answer-background: #d4d4d456;
@@ -52,6 +53,7 @@ body.dark-mode {
   --modal-overlay: #fafafa75;
   --error: #f87171;
   --success: #4ade80;
+  --warning: #fde047;
 
   /* answer */
   --answer-background: #d4d4d456;

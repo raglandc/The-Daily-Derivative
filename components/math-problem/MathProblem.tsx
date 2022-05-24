@@ -18,10 +18,16 @@ interface MathProblemProps {
   problem: string;
   difficulty: string;
   solution: string;
+  hint: string;
+  summary: boolean;
 }
 
 const MathProblem = (props: MathProblemProps) => {
+  //show hint
+  const [showHint, setShowHint] = useState(false);
+  //show solution
   const [showSolution, setShowSolution] = useState(false);
+
   //mobile navigation status
   const status = useAppSelector(selectStatus);
   return (
@@ -29,7 +35,7 @@ const MathProblem = (props: MathProblemProps) => {
       <div className={styles.problemInfo}>
         <div>{props.date}</div>
         <div>{props.difficulty}</div>
-        <div>#{props.problemNumber}</div>
+        <div>Problem #{props.problemNumber}</div>
       </div>
       <div className={styles.problem}>
         <p className={styles.description}>{props.description}</p>
@@ -38,15 +44,34 @@ const MathProblem = (props: MathProblemProps) => {
           {status ? null : <InlineMath math={props.problem} />}
         </span>
       </div>
-      <Button
-        title="Show Solution"
-        style="hollow"
-        link=""
-        action={() => setShowSolution(true)}
-      />
-      <Modal show={showSolution} onClose={() => setShowSolution(false)}>
-        <SolutionModal solution={props.solution} />
-      </Modal>
+      <div className={styles.buttonContainer}>
+        <Button
+          title="Hint"
+          style="hollow"
+          link=""
+          action={() => setShowHint(true)}
+        />
+        <Modal title="Hint" show={showHint} onClose={() => setShowHint(false)}>
+          <SolutionModal solution={props.hint} />
+        </Modal>
+        {!props.summary ? null : (
+          <>
+            <Button
+              title="Solution"
+              style="hollow"
+              link=""
+              action={() => setShowSolution(true)}
+            />
+            <Modal
+              title="Solution"
+              show={showSolution}
+              onClose={() => setShowSolution(false)}
+            >
+              <SolutionModal solution={props.solution} />
+            </Modal>
+          </>
+        )}
+      </div>
     </div>
   );
 };

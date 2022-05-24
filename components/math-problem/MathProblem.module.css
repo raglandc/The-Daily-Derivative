@@ -13,10 +13,12 @@
 }
 
 .problemInfo {
-  width: 90%;
+  width: 100%;
   height: 5vh;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
 }
 
 .problem {
@@ -33,6 +35,12 @@
 .math {
   font-size: 1.3rem;
   margin: 3rem auto;
+}
+
+.buttonContainer {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
 }
 
 @media only screen and (min-width: 1000px) {

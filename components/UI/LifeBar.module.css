@@ -1,0 +1,36 @@
+.container {
+  width: 13rem;
+  height: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+
+  display: flex;
+
+  overflow: hidden;
+}
+
+.barGoodStandingBorder {
+  border: 2px solid var(--success);
+}
+
+.barWarningBorder {
+  border: 2px solid var(--warning);
+}
+
+.barDeadBorder {
+  border: 2px solid var(--error);
+}
+
+.bar {
+  width: 33.33333333%;
+  height: 100%;
+  background-color: var(--success);
+  border: 1px solid var(--success);
+}
+
+.barDead {
+  width: 33.33333333%;
+  height: 100%;
+  background-color: var(--error);
+  border: 1px solid var(--error);
+}

@@ -19,8 +19,12 @@ const SolutionModal = ({ solution }: SolutionModalProps) => {
   return (
     <div className={styles.container}>
       {arrayOfInlineStrings.map((value, index) => (
-        <div key={index}>
-          <InlineMath key={index} math={`${value}`} />
+        <div className={styles.mathLineDiv} key={index}>
+          <InlineMath
+            className={styles.mathLine}
+            key={index}
+            math={`${value}`}
+          />
         </div>
       ))}
     </div>
