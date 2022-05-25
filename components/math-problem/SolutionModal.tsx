@@ -9,7 +9,7 @@ interface SolutionModalProps {
 }
 
 const stringToArrayHandler = (solution: string) => {
-  const solutionLinesArray = solution.split("!.!");
+  const solutionLinesArray = solution.replaceAll(" ", " \\space ").split("!.!");
   return solutionLinesArray;
 };
 

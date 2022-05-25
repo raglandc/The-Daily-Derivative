@@ -3,8 +3,8 @@ import { MongoClient, Db } from "mongodb";
 let uri = process.env.MONGODB_URI as string;
 let dbName = process.env.DB_NAME as string;
 
-let cachedClient: any = null;
-let cachedDb: any = null;
+let cachedClient: MongoClient;
+let cachedDb: Db;
 
 if (!uri) {
   throw new Error(
@@ -26,9 +26,11 @@ export async function connectToDatabase(): Promise<{
     return { client: cachedClient, db: cachedDb };
   }
 
-  const client = await MongoClient.connect(uri);
+  const client: MongoClient = new MongoClient(uri);
 
-  const db = await client.db(dbName);
+  await client.connect();
+
+  const db: Db = client.db(dbName);
 
   cachedClient = client;
   cachedDb = db;

@@ -19,7 +19,7 @@ interface MathProblemProps {
   difficulty: string;
   solution: string;
   hint: string;
-  summary: boolean;
+  showSolution: boolean;
 }
 
 const MathProblem = (props: MathProblemProps) => {
@@ -54,7 +54,7 @@ const MathProblem = (props: MathProblemProps) => {
         <Modal title="Hint" show={showHint} onClose={() => setShowHint(false)}>
           <SolutionModal solution={props.hint} />
         </Modal>
-        {!props.summary ? null : (
+        {!props.showSolution ? null : (
           <>
             <Button
               title="Solution"

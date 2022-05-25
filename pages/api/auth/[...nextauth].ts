@@ -4,10 +4,16 @@ import FacebookProvider from "next-auth/providers/facebook";
 import LinkedInProvider from "next-auth/providers/linkedin";
 import TwitterProvider from "next-auth/providers/twitter";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
-import clientPromise from "../../../lib/mongodb";
+import { connectToDatabase } from "../../../lib/mongodb";
+
+async function databaseCaller() {
+  const { client } = await connectToDatabase();
+
+  return client;
+}
 
 export default NextAuth({
-  adapter: MongoDBAdapter(clientPromise),
+  adapter: MongoDBAdapter(databaseCaller()),
   //Configure one or more authentication providers
   //add providers at the end of app
   providers: [

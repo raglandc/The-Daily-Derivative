@@ -15,12 +15,12 @@ import { InlineMath } from "react-katex";
 import LifeBar from "../../ui/LifeBar";
 
 interface MathKeyboardProps {
-  summary: boolean;
+  showSolution: boolean;
   lifeBar: number;
   action: (userInputArray: string[]) => void;
 }
 
-const MathKeyboard = ({ action, lifeBar, summary }: MathKeyboardProps) => {
+const MathKeyboard = ({ action, lifeBar, showSolution }: MathKeyboardProps) => {
   //mobile menu status
   const status = useAppSelector(selectStatus);
   //logic for tracking keypress
@@ -60,7 +60,10 @@ const MathKeyboard = ({ action, lifeBar, summary }: MathKeyboardProps) => {
   return status ? null : (
     <div className={styles.container}>
       <div className={styles.answer}>
-        <div>
+        <div className={styles.lifeBarContainer}>
+          <p>
+            You have {lifeBar} {lifeBar > 1 ? "tries" : "try"} left
+          </p>
           <LifeBar lifeBarCount={lifeBar} />
         </div>
         <div className={styles.mathDisplay}>
@@ -70,7 +73,7 @@ const MathKeyboard = ({ action, lifeBar, summary }: MathKeyboardProps) => {
                 <InlineMath key={index} math={value} />
               ))}
         </div>
-        {summary || lifeBar === 0 ? null : (
+        {showSolution || lifeBar === 0 ? null : (
           <button
             onClick={() => action(userInput)}
             className={styles.submitButton}
