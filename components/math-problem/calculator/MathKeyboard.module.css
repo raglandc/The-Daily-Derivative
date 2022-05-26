@@ -3,6 +3,7 @@
   margin: 0 auto 1.5rem;
   min-height: max-content;
 
+  background-color: var(--component-background);
   border-radius: var(--border-radius);
   -webkit-box-shadow: 0px 3px 15px 3px var(--box-shadow);
   box-shadow: var(--box-shadow);

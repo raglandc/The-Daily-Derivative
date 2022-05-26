@@ -18,7 +18,8 @@ a {
 
 /* light and dark mode settings */
 body.light-mode {
-  --background: #fff;
+  --background: #f9fafb;
+  --component-background: #fff;
   --text-primary: #111;
   --text-secondary: #1f2937;
   --modal-overlay: #0000005d;
@@ -48,6 +49,7 @@ body.light-mode {
 
 body.dark-mode {
   --background: #171717;
+  --component-background: #262626;
   --text-primary: #f9fafb;
   --text-secondary: #e5e7eb;
   --modal-overlay: #fafafa75;
@@ -66,7 +68,7 @@ body.dark-mode {
   --button-hollow-hover-text: #111111;
 
   /* box-shadow */
-  --box-shadow: 0px 0px 10px 1px rgba(224, 224, 224, 0.13);
+  --box-shadow: 0px 0px 10px 1px rgba(224, 224, 224, 0.048);
 
   /* svg button */
   --svg-button-hover: #d4d4d479;

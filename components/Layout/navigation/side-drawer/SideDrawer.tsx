@@ -6,7 +6,7 @@ import {
 import Link from "next/link";
 //styles
 import styles from "./SideDrawer.module.css";
-import { faGoogle, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";

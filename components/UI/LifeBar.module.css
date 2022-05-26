@@ -1,6 +1,8 @@
 .container {
   width: 95%;
   height: 2rem;
+
+  margin: 1rem auto;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
 

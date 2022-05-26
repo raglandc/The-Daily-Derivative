@@ -10,6 +10,7 @@ import { InlineMath } from "react-katex";
 import Modal from "../ui/Modal";
 import Button from "../ui/Button";
 import SolutionModal from "../math-problem/SolutionModal";
+import DifficultyScale from "../ui/DifficultyScale";
 
 interface MathProblemProps {
   date: string;
@@ -34,7 +35,7 @@ const MathProblem = (props: MathProblemProps) => {
     <div className={styles.container}>
       <div className={styles.problemInfo}>
         <div>{props.date}</div>
-        <div>{props.difficulty}</div>
+        <DifficultyScale rating={props.difficulty} />
         <div>Problem #{props.problemNumber}</div>
       </div>
       <div className={styles.problem}>

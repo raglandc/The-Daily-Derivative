@@ -9,24 +9,24 @@ interface SolutionModalProps {
 }
 
 const stringToArrayHandler = (solution: string) => {
-  const solutionLinesArray = solution.replaceAll(" ", " \\space ").split("!.!");
+  const solutionLinesArray = solution.replaceAll(" ", " \\space ").split(" . ");
   return solutionLinesArray;
 };
 
 const SolutionModal = ({ solution }: SolutionModalProps) => {
   const arrayOfInlineStrings = stringToArrayHandler(solution);
 
+  console.log(arrayOfInlineStrings);
+
   return (
     <div className={styles.container}>
-      {arrayOfInlineStrings.map((value, index) => (
-        <div className={styles.mathLineDiv} key={index}>
-          <InlineMath
-            className={styles.mathLine}
-            key={index}
-            math={`${value}`}
-          />
-        </div>
-      ))}
+      {arrayOfInlineStrings.map((value, index) => {
+        return (
+          <div key={index} className={styles.mathLine}>
+            <InlineMath key={index} math={`${value}`} />
+          </div>
+        );
+      })}
     </div>
   );
 };

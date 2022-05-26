@@ -1,0 +1,41 @@
+.ratingStyles {
+  padding: 0.62rem 1.5rem;
+  max-width: 9rem;
+
+  border-radius: var(--border-radius);
+}
+
+.ratingStyles:hover {
+  cursor: pointer;
+}
+
+.easy {
+  border: 2px solid var(--success);
+}
+
+.medium {
+  border: 2px solid var(--warning);
+}
+
+.hard {
+  border: 2px solid var(--error);
+}
+
+/* Description tooltip modal window */
+
+.descriptionContainer {
+  font-size: 1.2rem;
+  margin: 0 auto;
+  max-width: 90%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 1fr);
+}
+
+.description {
+  margin: 0 auto;
+  padding: 1rem 1.62rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

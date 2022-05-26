@@ -13,12 +13,12 @@
 
 .container {
   z-index: 5;
-  min-width: 50%;
+  min-width: 60%;
   max-width: 90%;
   height: max-content;
 
   color: var(--text-primary);
-  background-color: var(--background);
+  background-color: var(--component-background);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
 
@@ -43,7 +43,7 @@
   padding: 0.62rem;
   border: none;
   color: var(--text-primary);
-  background-color: var(--background);
+  background-color: var(--component-background);
   border-radius: var(--border-radius);
 }
 
@@ -54,7 +54,6 @@
 
 .body {
   margin: 1rem auto;
-  padding: 3rem;
   width: 100%;
   text-align: center;
   overflow-y: auto;

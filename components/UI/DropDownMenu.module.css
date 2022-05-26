@@ -1,0 +1,50 @@
+.dropDownContainer {
+  position: relative;
+  padding: 0.62rem;
+
+  border-radius: var(--border-radius);
+}
+
+.dropDownContainer:hover {
+  cursor: pointer;
+  color: var(--background);
+  background-color: var(--text-primary);
+}
+
+.listContainer {
+  display: none;
+  list-style: none;
+  position: absolute;
+
+  width: 13rem;
+
+  height: max-content;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #111;
+  background-color: #e5e7eb;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.link {
+  width: 90%;
+  margin: 1rem auto;
+  padding: 1rem 1.62rem;
+  border-radius: var(--border-radius);
+}
+
+.link:hover {
+  cursor: pointer;
+  color: #fff;
+  background-color: var(--button-filled);
+}
+
+.dropDownContainer:hover > .listContainer {
+  display: block;
+}
+
+.listContainer:hover {
+  display: block;
+}
