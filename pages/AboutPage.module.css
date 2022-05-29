@@ -1,0 +1,23 @@
+.pageHeader {
+  font-size: 4rem;
+  width: 80%;
+  margin: 3rem auto;
+}
+
+.itemContainer {
+  width: 80%;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.itemHeader {
+  text-align: center;
+
+  margin: 0;
+  padding: 1rem;
+
+  color: #fff;
+  border-top-right-radius: var(--border-radius);
+  border-top-left-radius: var(--border-radius);
+  background-color: var(--button-filled);
+}

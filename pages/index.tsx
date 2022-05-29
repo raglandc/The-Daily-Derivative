@@ -4,34 +4,25 @@ import { InferGetStaticPropsType } from "next";
 import MathProblem from "../components/math-problem/MathProblem";
 import MathKeyboard from "../components/math-problem/calculator/MathKeyboard";
 
-import { connectToDatabase } from "../lib/mongodb";
+//database imports
+import connectMongo from "../lib/mongodb";
+import Math from "../models/mathModel";
+
 import Modal from "../components/ui/Modal";
 import Summary from "../components/ui/Summary";
+import LifeBar from "../components/ui/LifeBar";
 
 //fetching data from database of math problems to display
 export async function getStaticProps() {
-  const { db } = await connectToDatabase();
+  await connectMongo();
 
-  const data = await db!.collection("math").find().sort({ _id: 1 }).toArray();
-
-  const problems = data.map((problem) => {
-    return {
-      date: problem.date,
-      problemNumber: problem.problemNumber,
-      description: problem.description,
-      problem: problem.problem,
-      difficulty: problem.difficulty,
-      solution: problem.solution,
-      answer: problem.answer,
-      hint: problem.hint,
-    };
-  });
-
-  //returns the first element in the problems (math) collection
-  const problem = problems[1];
+  //finds the newest element in the array
+  const problem = await Math.findOne().sort({ _id: -1 }).lean();
 
   return {
-    props: { problem },
+    props: {
+      problem: JSON.parse(JSON.stringify(problem)),
+    },
   };
 }
 
@@ -40,7 +31,7 @@ const Home = ({ problem }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [lifeBar, setLifeBar] = useState(3);
   //handle if show solution is clicked
   const [showSolution, setShowSolution] = useState(false);
-  //handle if the correct answer or life bars run out
+  //handle if the correct answer is submitted or life bars run out
   const [summary, setSummary] = useState(false);
 
   //handle user submission
@@ -101,6 +92,7 @@ const Home = ({ problem }: InferGetStaticPropsType<typeof getStaticProps>) => {
           <Summary lifeBarCount={lifeBar} />
         </Modal>
       ) : null}
+      <LifeBar lifeBarCount={lifeBar} />
       <MathKeyboard
         showSolution={showSolution}
         lifeBar={lifeBar}

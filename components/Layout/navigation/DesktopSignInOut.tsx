@@ -1,21 +1,23 @@
-import styles from "./DesktopNavigation.module.css";
+import styles from "./DesktopSignInOut.module.css";
 import Button from "../../ui/Button";
-import DropDownMenu from "../../ui/DropDownMenu";
-import { useSession, signOut } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
 
-const DesktopNavigation = () => {
+const DesktopSignInOut = () => {
   const { data: session } = useSession();
   if (!session) {
     return (
       <div className={styles.container}>
-        <DropDownMenu />
-        <Button style="filled" title="Sign in" link="/sign-in" />
+        <Button
+          style="filled"
+          title="Sign in"
+          link="/"
+          action={() => signIn()}
+        />
       </div>
     );
   } else {
     return (
       <div className={styles.container}>
-        <DropDownMenu />
         <Button
           style="hollow"
           title="Sign out"
@@ -27,4 +29,4 @@ const DesktopNavigation = () => {
   }
 };
 
-export default DesktopNavigation;
+export default DesktopSignInOut;

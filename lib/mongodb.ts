@@ -37,3 +37,20 @@ export async function connectToDatabase(): Promise<{
 
   return { client, db };
 }
+
+//connection with mongoose
+import mongoose from "mongoose";
+
+const connectMongo = async () => {
+  //try and connect to the database
+  try {
+    await mongoose.connect(uri);
+    console.log("You are connected to the database");
+
+    //otherwise throw an error
+  } catch (error) {
+    console.log("You are not connected: ", error);
+  }
+};
+
+export default connectMongo;

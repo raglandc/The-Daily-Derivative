@@ -1,0 +1,7 @@
+.logo {
+  font-size: 1.6rem;
+}
+
+.logo:hover {
+  cursor: pointer;
+}

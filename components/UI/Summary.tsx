@@ -10,18 +10,17 @@ const Summary = ({ lifeBarCount }: SummaryProps) => {
     <div className={styles.container}>
       {lifeBarCount === 0 ? (
         <>
-          <h3 className={styles.header}>
+          <h2 className={styles.header}>
             You lost all of your tries, Theres always tomorrow
-          </h3>
-          <LifeBar lifeBarCount={lifeBarCount} />
+          </h2>
         </>
       ) : (
         <>
-          <h3 className={styles.header}>Nice! You solved the problem </h3>
+          <h2 className={styles.header}>Nice! You solved the problem </h2>
           <p>
-            with {lifeBarCount} {lifeBarCount > 1 ? "tries" : "try"} remaining
+            With {lifeBarCount} {lifeBarCount > 1 ? "attempts " : "attempt "}
+            remaining
           </p>
-          <LifeBar lifeBarCount={lifeBarCount} />
         </>
       )}
     </div>

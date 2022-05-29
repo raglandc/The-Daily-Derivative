@@ -1,21 +1,14 @@
-.container {
-  margin: 1rem auto;
-  padding: 3rem 1rem;
-  width: 100%;
-
-  background-color: var(--component-background);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-
 .problemInfo {
   width: 100%;
-  height: 5vh;
+  height: 20%;
+  margin-bottom: 2rem;
+  padding: 2rem;
+
+  color: #fff;
+  background-color: var(--button-filled);
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
@@ -24,6 +17,7 @@
 
 .problem {
   width: 100%;
+  min-height: 15vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -39,7 +33,7 @@
 }
 
 .buttonContainer {
-  margin: 0 auto;
+  margin: 1rem auto;
   display: flex;
   justify-content: space-around;
 }

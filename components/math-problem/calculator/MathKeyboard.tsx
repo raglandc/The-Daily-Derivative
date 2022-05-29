@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 //@ts-ignore
 import { InlineMath } from "react-katex";
 import LifeBar from "../../ui/LifeBar";
+import Container from "../../ui/Container";
 
 interface MathKeyboardProps {
   showSolution: boolean;
@@ -52,20 +53,9 @@ const MathKeyboard = ({ action, lifeBar, showSolution }: MathKeyboardProps) => {
     setUserInput([...userInput, value]);
   };
 
-  //remove before deployment
-  useEffect(() => {
-    console.log(userInput);
-  }, [userInput]);
-
   return status ? null : (
-    <div className={styles.container}>
+    <Container>
       <div className={styles.answer}>
-        <div className={styles.lifeBarContainer}>
-          <p>
-            You have {lifeBar} {lifeBar > 1 ? "tries" : "try"} left
-          </p>
-          <LifeBar lifeBarCount={lifeBar} />
-        </div>
         <div className={styles.mathDisplay}>
           {userInput === []
             ? null
@@ -405,7 +395,7 @@ const MathKeyboard = ({ action, lifeBar, showSolution }: MathKeyboardProps) => {
           </button>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

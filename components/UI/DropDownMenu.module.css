@@ -1,14 +1,15 @@
 .dropDownContainer {
   position: relative;
   padding: 0.62rem;
+  margin: 0 0.5rem;
 
   border-radius: var(--border-radius);
 }
 
 .dropDownContainer:hover {
   cursor: pointer;
-  color: var(--background);
-  background-color: var(--text-primary);
+  color: var(--text-primary);
+  background-color: var(--answer-background);
 }
 
 .listContainer {
@@ -22,8 +23,8 @@
   margin: 0;
   padding: 0;
   text-align: center;
-  color: #111;
-  background-color: #e5e7eb;
+  color: var(--text-primary);
+  background-color: var(--component-background);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
 }
@@ -47,4 +48,10 @@
 
 .listContainer:hover {
   display: block;
+}
+
+@media only screen and (max-width: 799px) {
+  .dropDownContainer {
+    display: none;
+  }
 }

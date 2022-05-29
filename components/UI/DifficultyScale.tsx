@@ -53,22 +53,26 @@ const DifficultyScaleDescription = ({
         <div className={styles.description}>
           <DifficultyScale rating="Easy" />
           <p>
-            Easy problems, are problems that most calculus students can solve in
-            their head without paper or a calculator.
+            Easy problems can most likely be solved in your head without paper
+            or a calculator.
           </p>
         </div>
         <div className={styles.description}>
           <DifficultyScale rating="Medium" />
           <p>
-            Medium problems may require some paper. These are to really help
-            students recall important material.
+            Medium problems may be easier to solve with paper or a calculator
           </p>
+          <p> These are to really help students recall important material.</p>
         </div>
         <div className={styles.description}>
           <DifficultyScale rating="Hard" />
           <p>
-            Hard problems may require some paper, or even a calculator. These
-            problems hardly make an appearance so do not fret.
+            Hard problems most likely will be easier to solve with paper or a
+            calculator.
+          </p>
+          <p>
+            These problems <strong>hardly</strong> make an appearance so do not
+            fret.
           </p>
         </div>
       </div>

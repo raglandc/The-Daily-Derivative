@@ -11,6 +11,7 @@ import Modal from "../ui/Modal";
 import Button from "../ui/Button";
 import SolutionModal from "../math-problem/SolutionModal";
 import DifficultyScale from "../ui/DifficultyScale";
+import Container from "../ui/Container";
 
 interface MathProblemProps {
   date: string;
@@ -32,7 +33,7 @@ const MathProblem = (props: MathProblemProps) => {
   //mobile navigation status
   const status = useAppSelector(selectStatus);
   return (
-    <div className={styles.container}>
+    <Container>
       <div className={styles.problemInfo}>
         <div>{props.date}</div>
         <DifficultyScale rating={props.difficulty} />
@@ -41,7 +42,6 @@ const MathProblem = (props: MathProblemProps) => {
       <div className={styles.problem}>
         <p className={styles.description}>{props.description}</p>
         <span className={styles.math}>
-          {/* have to hide math when side drawer is active other wise math bleeds through */}
           {status ? null : <InlineMath math={props.problem} />}
         </span>
       </div>
@@ -73,7 +73,7 @@ const MathProblem = (props: MathProblemProps) => {
           </>
         )}
       </div>
-    </div>
+    </Container>
   );
 };
 
