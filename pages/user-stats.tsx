@@ -3,38 +3,18 @@ import { useSession, getSession } from "next-auth/react";
 import Container from "../components/ui/Container";
 import styles from "./UserStats.module.css";
 
-//database imports
-import connectMongo from "../lib/mongodb";
-import User from "../models/userModel";
+//controller imports
+import { findUserCreateUserHandler } from "../controllers/userController";
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   try {
-    //connect to the database
-    await connectMongo();
     //get session to find logged in or create new user
     const session = await getSession(context);
 
-    //check if there is a logged in session
+    //if logged in find user or create one
+    let user: any;
     if (session) {
-      //find the current user
-      const user = await User.findOne({ email: session.user?.email });
-
-      console.log("User: ", user);
-
-      //if they cannot be found, create a document to record their
-      //calculus stats and return them as props
-      if (user === null || undefined) {
-        const newUser = await User.create({
-          email: session.user?.email,
-        });
-
-        //return the new user as props
-        return {
-          props: {
-            user: JSON.parse(JSON.stringify(newUser)),
-          },
-        };
-      }
+      user = await findUserCreateUserHandler(session);
 
       //return the current user if they exist
       return {
@@ -42,9 +22,10 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
           user: JSON.parse(JSON.stringify(user)),
         },
       };
-      //other wise the user is not signed in
-    } else {
-      //return an nothing
+    }
+    //other wise there is no user signed in
+    else {
+      //return nothing
       return {
         props: {
           user: null,
@@ -61,16 +42,16 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   }
 };
 
-const UserStatsPage = (
-  props: InferGetServerSidePropsType<typeof getServerSideProps>
-) => {
+const UserStatsPage = ({
+  user,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { data: session } = useSession();
 
   if (session) {
     return (
       <>
         <Container>
-          <h1 className={styles.header}>Hello, {props.user.name}</h1>
+          <h1 className={styles.header}>Hello, {user.name}</h1>
         </Container>
         <Container>
           <h2 className={styles.yourNumbers}>Your numbers</h2>
@@ -78,19 +59,19 @@ const UserStatsPage = (
             <div>
               <h3>Problems Attempted</h3>
               <p className={styles.statNumber}>
-                {props.user.userStatistics.problemsAttempted}
+                {user.userStatistics.problemsAttempted}
               </p>
             </div>
             <div>
               <h3>Problems Solved</h3>
               <p className={styles.statNumber}>
-                {props.user.userStatistics.problemsSolved}
+                {user.userStatistics.problemsSolved}
               </p>
             </div>
             <div>
               <h3>Current Win Streak</h3>
               <p className={styles.statNumber}>
-                {props.user.userStatistics.currentWinningStreak}
+                {user.userStatistics.currentWinningStreak}
               </p>
             </div>
           </div>

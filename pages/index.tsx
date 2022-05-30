@@ -1,32 +1,45 @@
 import Head from "next/head";
 import { useState } from "react";
-import { InferGetStaticPropsType } from "next";
+import { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import MathProblem from "../components/math-problem/MathProblem";
 import MathKeyboard from "../components/math-problem/calculator/MathKeyboard";
 
-//database imports
-import connectMongo from "../lib/mongodb";
-import Math from "../models/mathModel";
+import { getSession } from "next-auth/react";
+
+//controllers
+import { getDailyProblem } from "../controllers/mathController";
 
 import Modal from "../components/ui/Modal";
 import Summary from "../components/ui/Summary";
 import LifeBar from "../components/ui/LifeBar";
 
 //fetching data from database of math problems to display
-export async function getStaticProps() {
-  await connectMongo();
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  try {
+    //retrieve the problem for the day
+    const problem = await getDailyProblem();
 
-  //finds the newest element in the array
-  const problem = await Math.findOne().sort({ _id: -1 }).lean();
+    const session = await getSession(context);
+    console.log("context: ", context);
+    console.log("\nSession: ", session);
 
-  return {
-    props: {
-      problem: JSON.parse(JSON.stringify(problem)),
-    },
-  };
-}
+    return {
+      props: {
+        problem: JSON.parse(JSON.stringify(problem)),
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        notFound: true,
+      },
+    };
+  }
+};
 
-const Home = ({ problem }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Home = ({
+  problem,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   //handling life bar status
   const [lifeBar, setLifeBar] = useState(3);
   //handle if show solution is clicked

@@ -35,4 +35,15 @@ export default NextAuth({
       clientSecret: process.env.LINKEDIN_CLIENT_SECRET as string,
     }),
   ],
+  useSecureCookies: process.env.NODE_ENV === "development" ? false : true,
+  callbacks: {
+    async session({ session, token, user }) {
+      //send properties to the client, like an access_token from a provider
+      console.log("Session: ", session.accessToken);
+      console.log("\nToken: ", token);
+      console.log("\nUser: ", user);
+      session.accessToken = token.accessToken;
+      return session;
+    },
+  },
 });
