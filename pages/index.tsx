@@ -39,7 +39,6 @@ const Home = ({ problem }: InferGetStaticPropsType<typeof getStaticProps>) => {
     //convert answer to string
     const inputString = userInputArray.join("");
 
-    console.log(inputString);
     //handle empty input
     if (inputString.length === 0) {
       console.log("You left the answer blank bro");

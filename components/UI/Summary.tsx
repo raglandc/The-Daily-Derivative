@@ -1,5 +1,4 @@
 import styles from "./Summary.module.css";
-import LifeBar from "./LifeBar";
 
 interface SummaryProps {
   lifeBarCount: number;

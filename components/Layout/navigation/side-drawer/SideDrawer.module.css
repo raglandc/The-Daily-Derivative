@@ -33,8 +33,10 @@
 }
 
 .linkContainer {
-  margin: 2rem auto;
   width: 80%;
+  margin: 2rem auto;
+  padding: 0;
+  list-style: none;
 }
 
 .buttonContainer {

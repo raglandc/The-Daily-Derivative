@@ -41,23 +41,23 @@ const SideDrawer = () => {
             close (x)
           </div>
         </div>
-        <div className={styles.linkContainer}>
-          <div className={styles.link} onClick={toggleStatus}>
+        <ul className={styles.linkContainer}>
+          <li className={styles.link} onClick={toggleStatus}>
             <Link href="/">Home</Link>
-          </div>
-          <div className={styles.link} onClick={toggleStatus}>
-            <Link href="/about">About</Link>
-          </div>
-          <div className={styles.link} onClick={toggleStatus}>
+          </li>
+          <li className={styles.link} onClick={toggleStatus}>
+            <Link href="/how-to-play">How-to-play</Link>
+          </li>
+          <li className={styles.link} onClick={toggleStatus}>
             <Link href="/user-stats">Stats</Link>
-          </div>
-          <div className={styles.link} onClick={toggleStatus}>
+          </li>
+          <li className={styles.link} onClick={toggleStatus}>
+            <Link href="/about">About</Link>
+          </li>
+          <li className={styles.link} onClick={toggleStatus}>
             <Link href="/frequently-asked-questions">FAQ</Link>
-          </div>
-          <div className={styles.link} onClick={toggleStatus}>
-            <Link href="/contact">Contact</Link>
-          </div>
-        </div>
+          </li>
+        </ul>
 
         {session ? (
           <div className={styles.buttonContainer}>
