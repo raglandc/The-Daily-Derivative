@@ -19,10 +19,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     //retrieve the problem for the day
     const problem = await getDailyProblem();
 
-    const session = await getSession(context);
-    console.log("context: ", context);
-    console.log("\nSession: ", session);
-
     return {
       props: {
         problem: JSON.parse(JSON.stringify(problem)),

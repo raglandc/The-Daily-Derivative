@@ -13,9 +13,9 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 //since its being imported above
 config.autoAddCss = false;
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
-    <SessionProvider session={pageProps.session}>
+    <SessionProvider session={session}>
       <Provider store={store}>
         <Layout>
           <Component {...pageProps} />

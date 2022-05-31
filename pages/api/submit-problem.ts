@@ -1,7 +1,6 @@
 //import request and response types
 import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
-
+import connectMongo from "../../lib/mongodb";
 //controller imports
 import {
   findUserCreateUserHandler,
@@ -13,25 +12,14 @@ const handler = async (
   res: NextApiResponse
 ): Promise<void> => {
   try {
-    const session = await getSession({ req });
+    //user logged in
+    //find logged in user
+    //   const user = await findUserCreateUserHandler();
+    //update the users stats
+    //   await updateUserStatsHandler(user, 1);
 
-    // console.log("session: ", session);
-
-    if (session) {
-      //user logged in
-      //find logged in user
-      //   const user = await findUserCreateUserHandler();
-      //update the users stats
-      //   await updateUserStatsHandler(user, 1);
-
-      //set response code, send status message
-      res.status(200).json({ message: "user profile has been updated" });
-    } else {
-      //no user logged in
-      res.status(200).json({
-        message: "success, but you are not logged in to save anything",
-      });
-    }
+    //set response code, send status message
+    res.status(200).json({ message: "user profile has been updated" });
   } catch (error) {
     console.log(error);
     res.status(500).json("something went wrong");

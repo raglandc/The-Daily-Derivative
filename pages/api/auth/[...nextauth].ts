@@ -36,4 +36,9 @@ export default NextAuth({
     }),
   ],
   useSecureCookies: process.env.NODE_ENV === "development" ? false : true,
+  callbacks: {
+    async session({ session, user }) {
+      return Promise.resolve(session);
+    },
+  },
 });
