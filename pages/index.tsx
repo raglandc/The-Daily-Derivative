@@ -22,6 +22,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         problem: JSON.parse(JSON.stringify(problem)),
+        session: await getSession(context),
       },
     };
   } catch (error) {
@@ -35,6 +36,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const Home = ({
   problem,
+  session,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   //handling life bar status
   const [lifeBar, setLifeBar] = useState(3);
@@ -44,7 +46,7 @@ const Home = ({
   const [summary, setSummary] = useState(false);
 
   //handle user submission
-  function submitAnswerHandler(userInputArray: string[]) {
+  async function submitAnswerHandler(userInputArray: string[]) {
     //convert answer to string
     const inputString = userInputArray.join("");
 

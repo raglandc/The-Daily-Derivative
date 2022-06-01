@@ -1,6 +1,6 @@
 //import request and response types
 import { NextApiRequest, NextApiResponse } from "next";
-import connectMongo from "../../lib/mongodb";
+import { getSession } from "next-auth/react";
 //controller imports
 import {
   findUserCreateUserHandler,
@@ -12,6 +12,9 @@ const handler = async (
   res: NextApiResponse
 ): Promise<void> => {
   try {
+    const session = await getSession({ req });
+    console.log(`session: `, session);
+
     //user logged in
     //find logged in user
     //   const user = await findUserCreateUserHandler();

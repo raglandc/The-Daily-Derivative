@@ -11,11 +11,11 @@ async function databaseCaller() {
 
   return client;
 }
-
 export default NextAuth({
   adapter: MongoDBAdapter(databaseCaller()),
   //Configure one or more authentication providers
-  //add providers at the end of app
+  //add providers at the end of
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID as string,
@@ -35,10 +35,15 @@ export default NextAuth({
       clientSecret: process.env.LINKEDIN_CLIENT_SECRET as string,
     }),
   ],
-  useSecureCookies: process.env.NODE_ENV === "development" ? false : true,
+  session: {
+    strategy: "database",
+    maxAge: 30 * 24 * 60 * 60, // 30 days,
+  },
+  useSecureCookies: false,
   callbacks: {
-    async session({ session, user }) {
-      return Promise.resolve(session);
+    async jwt({ token }) {
+      token.userRole = "admin";
+      return token;
     },
   },
 });
