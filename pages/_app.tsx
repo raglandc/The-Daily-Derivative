@@ -5,6 +5,7 @@ import { SessionProvider } from "next-auth/react";
 ////////////////////////////////////////////////
 import { store } from "../app/store";
 import { Provider } from "react-redux";
+import NextNProgress from "nextjs-progressbar";
 import Layout from "../components/layout/Layout";
 //font awesome icons//
 import "@fortawesome/fontawesome-svg-core/styles.css"; // import Font Awesome CSS
@@ -18,6 +19,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     <SessionProvider session={session}>
       <Provider store={store}>
         <Layout>
+          <NextNProgress color="#2563eb" />
           <Component {...pageProps} />
         </Layout>
       </Provider>
