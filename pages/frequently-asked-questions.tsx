@@ -1,4 +1,4 @@
-import styles from "./FAQPage.module.css";
+import styles from "./page-styling/FAQPage.module.css";
 import Container from "../components/ui/Container";
 const FAQPage = () => {
   return (

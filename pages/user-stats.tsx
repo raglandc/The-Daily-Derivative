@@ -1,7 +1,7 @@
 import { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import { useSession, getSession } from "next-auth/react";
 import Container from "../components/ui/Container";
-import styles from "./UserStats.module.css";
+import styles from "./page-styling/UserStats.module.css";
 
 //controller imports
 import { findUserCreateUserHandler } from "../controllers/userController";

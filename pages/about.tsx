@@ -1,5 +1,5 @@
 import Container from "../components/ui/Container";
-import styles from "./AboutPage.module.css";
+import styles from "./page-styling/AboutPage.module.css";
 
 const AboutPage = () => {
   return (

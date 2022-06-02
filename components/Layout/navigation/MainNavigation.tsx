@@ -3,7 +3,7 @@ import SVGIcon from "../../ui/SVGIcon";
 import DesktopSignInOut from "./DesktopSignInOut";
 import useDarkMode from "use-dark-mode";
 import styles from "./MainNavigation.module.css";
-import DropDownMenu from "../../ui/DropDownMenu";
+import DropDownMenu from "../../DropDownMenu";
 import Logo from "../../ui/Logo";
 
 //svg for dark/light mode
