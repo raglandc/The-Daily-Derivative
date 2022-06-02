@@ -10,7 +10,7 @@ import { InlineMath } from "react-katex";
 import Modal from "../ui/Modal";
 import Button from "../ui/Button";
 import SolutionModal from "../math-problem/SolutionModal";
-import DifficultyScale from "../ui/DifficultyScale";
+import DifficultyScale from "../DifficultyScale";
 import Container from "../ui/Container";
 
 interface MathProblemProps {

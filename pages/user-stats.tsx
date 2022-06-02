@@ -12,9 +12,8 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     const session = await getSession(context);
 
     //if logged in find user or create one
-    let user: any;
     if (session) {
-      user = await findUserCreateUserHandler(session);
+      const user = await findUserCreateUserHandler(session);
 
       //return the current user if they exist
       return {

@@ -3,20 +3,17 @@ import { useAppSelector } from "../../../app/hooks";
 import { selectStatus } from "../../../app/features/menuStatusSlice";
 
 //handlers
-import {
-  expressionBuilderHandler,
-  determineTypeHandler,
-} from "../../../lib/CalculatorFunctions";
+import { updateInputHandler } from "../../../controllers/calculatorController";
 
 import styles from "./MathKeyboard.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 //@ts-ignore
 import { InlineMath } from "react-katex";
-import LifeBar from "../../ui/LifeBar";
 import Container from "../../ui/Container";
 
 interface MathKeyboardProps {
   showSolution: boolean;
+  problem: any;
   lifeBar: number;
   action: (userInputArray: string[]) => void;
 }
@@ -29,28 +26,7 @@ const MathKeyboard = ({ action, lifeBar, showSolution }: MathKeyboardProps) => {
   const [showSecondKeyboard, setShowSecondKeyBoard] = useState(false);
 
   const updateInput = (value: string) => {
-    //handles deleting elements from array
-    if (value === "\\leftarrow") {
-      return setUserInput(userInput.splice(0, userInput.length - 1));
-    }
-
-    //handle special expressions
-    if (value === ")") {
-      const type = determineTypeHandler(userInput);
-
-      if (type === "error") {
-        return setUserInput([...userInput, ")"]);
-      }
-      const newExpression = expressionBuilderHandler(type, userInput);
-
-      console.log(type, newExpression);
-
-      return setUserInput([...newExpression]);
-    }
-
-    //if no special functions are called, just add the pressed value to the
-    //answer array
-    setUserInput([...userInput, value]);
+    updateInputHandler(value, userInput, setUserInput);
   };
 
   return status ? null : (

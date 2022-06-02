@@ -31,7 +31,6 @@ export const updateUserStatsHandler = async (
 ) => {
   //connect to database
   await connectMongo();
-
   //variables to update user document
   let currentWinningStreak = currentUser.userStatistics.currentWinningStreak;
   let problemsAttempted = currentUser.userStatistics.problemsAttempted;

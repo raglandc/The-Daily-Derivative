@@ -3,19 +3,23 @@ import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 import LinkedInProvider from "next-auth/providers/linkedin";
 import TwitterProvider from "next-auth/providers/twitter";
+//database imports
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import { connectToDatabase } from "../../../lib/mongodb";
 
+//a call to receive MongoDb client promise
 async function databaseCaller() {
   const { client } = await connectToDatabase();
 
   return client;
 }
+
+//NEXT AUTH begin
 export default NextAuth({
   adapter: MongoDBAdapter(databaseCaller()),
+  secret: process.env.NEXTAUTH_SECRET,
   //Configure one or more authentication providers
   //add providers at the end of
-  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID as string,
@@ -37,7 +41,6 @@ export default NextAuth({
   ],
   session: {
     strategy: "database",
-    maxAge: 30 * 24 * 60 * 60, // 30 days,
   },
-  useSecureCookies: false,
+  useSecureCookies: process.env.NODE_ENV === "development" ? false : true,
 });

@@ -1,3 +1,14 @@
+/*
+
+This controller file is used to handle and build "advanced" latex expressions
+
+with the values passed in such as: exponents,
+
+square-roots, integrals, fractions, ext.
+
+These expressions are then displayed for the user.
+
+*/
 export function expressionBuilderHandler(
   type: string,
   elementArray: string[]
@@ -29,7 +40,7 @@ export function expressionBuilderHandler(
     const startIndex = inputArray.lastIndexOf("(");
 
     //filter out the values from special start to end of array
-    returnArray = inputArray.filter((value, index) => index < startIndex);
+    returnArray = inputArray.filter((_, index) => index < startIndex);
 
     returnArray = [...returnArray, fractionString];
 
@@ -118,7 +129,7 @@ export function expressionBuilderHandler(
   //if nothing is triggered return last array
   return inputArray;
 }
-
+/////////////////////////////////////////////////////////////////////////////////////
 //determines type of expression to be built
 export function determineTypeHandler(currentArray: string[]): string {
   let returnString: string = "error";
@@ -149,10 +160,38 @@ export function determineTypeHandler(currentArray: string[]): string {
 
   return returnString;
 }
-
+//////////////////////////////////////////////////////////////////////////////
 //helper functions
+//update the input array that is displayed on the calculator
+export function updateInputHandler(
+  value: string,
+  userInput: string[],
+  setUserInput: any
+) {
+  //handle if backspace (delete) key is pressed
+  if (value === "\\leftarrow") {
+    return setUserInput(userInput.splice(0, userInput.length - 1));
+  }
 
-//clear old input array
+  //handle building special expressions with calculator
+  if (value === ")") {
+    const type = determineTypeHandler(userInput);
+
+    if (type === "error") {
+      return setUserInput([...userInput, ")"]);
+    }
+
+    const newExpression = expressionBuilderHandler(type, userInput);
+
+    return setUserInput([...newExpression]);
+  }
+
+  //if no special functions are called, just add the pressed key (value) to the
+  //answer array
+  setUserInput([...userInput, value]);
+}
+///////////////////////////////////////////////////////////////////////////////
+//clear old input array after a special function (input) is created
 function clearOldArrayHandler(array: string[]) {
   //start at special symbol
   const startIndex = array.lastIndexOf("(");
@@ -162,3 +201,4 @@ function clearOldArrayHandler(array: string[]) {
 
   return newArray;
 }
+/////////////////////////////////////////////////////////////////////////////

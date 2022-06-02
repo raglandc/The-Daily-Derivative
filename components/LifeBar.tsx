@@ -1,4 +1,4 @@
-import Container from "./Container";
+import Container from "./ui/Container";
 import styles from "./LifeBar.module.css";
 
 interface LifeBarProps {

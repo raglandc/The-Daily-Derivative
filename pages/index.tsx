@@ -6,24 +6,26 @@ import MathProblem from "../components/math-problem/MathProblem";
 import MathKeyboard from "../components/math-problem/calculator/MathKeyboard";
 
 //controllers
-import { getDailyProblem } from "../controllers/mathController";
+import { getDailyProblemHandler } from "../controllers/mathController";
 
 import Modal from "../components/ui/Modal";
-import Summary from "../components/ui/Summary";
-import LifeBar from "../components/ui/LifeBar";
+import Summary from "../components/Summary";
+import LifeBar from "../components/LifeBar";
 
 //fetching data from database of math problems to display
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     //retrieve the problem for the day
-    const problem = await getDailyProblem();
+    const problem = await getDailyProblemHandler();
 
+    //return the properties of the problem to be used as props
     return {
       props: {
         problem: JSON.parse(JSON.stringify(problem)),
       },
     };
   } catch (error) {
+    //if no math problem cannot be found catch the error and return not found
     return {
       props: {
         notFound: true,
@@ -61,7 +63,6 @@ const Home = ({
   function submitAnswerHandler(userInputArray: string[]) {
     //convert answer to string
     const inputString = userInputArray.join("");
-
     //handle empty input
     if (inputString.length === 0) {
       console.log("You left the answer blank bro");
@@ -76,7 +77,6 @@ const Home = ({
       ) {
         setLifeBar(lifeBar - 1);
         console.log("your answer does not match ours", lifeBar);
-
         //handle no life bars left
         if (lifeBar === 1) {
           setLifeBar(lifeBar - 1);
@@ -117,6 +117,7 @@ const Home = ({
       <LifeBar lifeBarCount={lifeBar} />
       <MathKeyboard
         showSolution={showSolution}
+        problem={problem}
         lifeBar={lifeBar}
         action={submitAnswerHandler}
       />
