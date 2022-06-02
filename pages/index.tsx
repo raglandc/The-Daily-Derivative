@@ -1,3 +1,5 @@
+////////////////////////////////////////////////////////////////////////////////
+//imports
 import Head from "next/head";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
@@ -11,6 +13,7 @@ import { getDailyProblemHandler } from "../controllers/mathController";
 import Modal from "../components/ui/Modal";
 import Summary from "../components/Summary";
 import LifeBar from "../components/LifeBar";
+///////////////////////////////////////////////////////////////////////////////
 
 //fetching data from database of math problems to display
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -46,6 +49,8 @@ const Home = ({
   //handle if the correct answer is submitted or life bars run out
   const [summary, setSummary] = useState(false);
 
+  //if there is a session and the game is complete
+  //update users stats in database
   if (session && summary) {
     fetch("http://localhost:3000/api/submit-problem", {
       method: "POST",

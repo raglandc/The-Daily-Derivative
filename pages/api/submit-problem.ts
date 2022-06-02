@@ -1,18 +1,18 @@
-//import request and response types
+////////////////////////////////////////////////////////////////////
+//imports
 import { NextApiRequest, NextApiResponse } from "next";
-import connectMongo from "../../lib/mongodb";
-//controller imports
 import {
   findUserCreateUserHandler,
   updateUserStatsHandler,
 } from "../../controllers/userController";
+//////////////////////////////////////////////////////////////////////
 
 const handler = async (
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void> => {
   try {
-    //pull the needed information from the request body
+    //pull the important information from the request body
     const { session, attemptsRemaining } = req.body;
 
     //find logged in user
@@ -24,6 +24,7 @@ const handler = async (
     res.status(200).json({ message: "user profile has been updated" });
   } catch (error) {
     //if there was a problem log it to the console.
+
     console.log(error);
     res.status(500).json("something went wrong");
   }

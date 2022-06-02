@@ -1,3 +1,14 @@
+/* 
+
+-This file is for all work with the database and user data.
+-This functions are called in the API routes where necessary
+
+-Potentially, functions may be moved in (written in) API folders in the future
+as of right now, trying to keep API files clean and lean
+
+*/
+////////////////////////////////////////////////////////////////////
+//imports
 import connectMongo from "../lib/mongodb";
 import User from "../models/userModel";
 
@@ -25,6 +36,7 @@ export const findUserCreateUserHandler = async (session: any) => {
 };
 
 /////////////////////////////////////////////////////////////////////
+//update user statistics
 export const updateUserStatsHandler = async (
   currentUser: any,
   lifeBarCount: any
