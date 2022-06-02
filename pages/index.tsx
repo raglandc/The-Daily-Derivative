@@ -51,6 +51,7 @@ const Home = ({
 
   //if there is a session and the game is complete
   //update users stats in database
+  console.log(`session user`, session?.user);
   if (session && summary) {
     fetch("http://localhost:3000/api/submit-problem", {
       method: "POST",
@@ -58,7 +59,7 @@ const Home = ({
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        session,
+        userObject: session.user,
         attemptsRemaining: lifeBar,
       }),
     });

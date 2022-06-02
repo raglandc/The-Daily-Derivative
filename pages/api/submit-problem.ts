@@ -13,10 +13,10 @@ const handler = async (
 ): Promise<void> => {
   try {
     //pull the important information from the request body
-    const { session, attemptsRemaining } = req.body;
+    const { userObject, attemptsRemaining } = req.body;
 
     //find logged in user
-    const user = await findUserCreateUserHandler(session);
+    const user = await findUserCreateUserHandler(userObject);
     //update the users stats
     await updateUserStatsHandler(user, attemptsRemaining);
 

@@ -13,19 +13,29 @@ import connectMongo from "../lib/mongodb";
 import User from "../models/userModel";
 
 ///////////////////////////////////////////////////////////////////
+//user object interface
+type userObjectType =
+  | {
+      name?: string | null | undefined;
+      email?: string | null | undefined;
+      image?: string | null | undefined;
+    }
+  | undefined;
 //find the logged in user
+
 //if they cannot be found create user
-export const findUserCreateUserHandler = async (session: any) => {
+export const findUserCreateUserHandler = async (userObject: userObjectType) => {
+  if (!userObject) return;
   //connect to database
   await connectMongo();
   //check if the email already exists in the database
-  const user = await User.findOne({ email: session.user?.email });
+  const user = await User.findOne({ email: userObject.email });
 
   //if they cannot be found, create a document to record their
   // calculus stats and return them as props
   if (user === null || undefined) {
     const newUser = await user.create({
-      email: session.user?.email,
+      email: userObject.email,
     });
 
     return newUser;

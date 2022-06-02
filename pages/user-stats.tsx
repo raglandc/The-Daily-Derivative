@@ -6,16 +6,16 @@ import styles from "./page-styling/UserStats.module.css";
 //controller imports
 import { findUserCreateUserHandler } from "../controllers/userController";
 
-export const getServerSideProps: GetServerSideProps = async (context: any) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     //get session to find logged in or create new user
     const session = await getSession(context);
 
     //if logged in find user or create one
     if (session) {
-      const user = await findUserCreateUserHandler(session);
+      const user = await findUserCreateUserHandler(session.user);
 
-      //return the current user if they exist
+      //return the current user if they exist or the newly created one
       return {
         props: {
           user: JSON.parse(JSON.stringify(user)),
