@@ -12,14 +12,14 @@ const handler = async (
   res: NextApiResponse
 ): Promise<void> => {
   try {
-    const session = await getSession({ req });
-    console.log(`session: `, session);
+    console.log(`request body`, req.body);
 
-    //user logged in
+    const { session, attemptsRemaining } = req.body;
+
     //find logged in user
-    //   const user = await findUserCreateUserHandler();
+    const user = await findUserCreateUserHandler(session);
     //update the users stats
-    //   await updateUserStatsHandler(user, 1);
+    await updateUserStatsHandler(user, attemptsRemaining);
 
     //set response code, send status message
     res.status(200).json({ message: "user profile has been updated" });

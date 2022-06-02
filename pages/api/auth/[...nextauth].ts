@@ -40,10 +40,4 @@ export default NextAuth({
     maxAge: 30 * 24 * 60 * 60, // 30 days,
   },
   useSecureCookies: false,
-  callbacks: {
-    async jwt({ token }) {
-      token.userRole = "admin";
-      return token;
-    },
-  },
 });

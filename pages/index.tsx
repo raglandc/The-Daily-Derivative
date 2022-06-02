@@ -1,10 +1,9 @@
 import Head from "next/head";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 import { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import MathProblem from "../components/math-problem/MathProblem";
 import MathKeyboard from "../components/math-problem/calculator/MathKeyboard";
-
-import { getSession } from "next-auth/react";
 
 //controllers
 import { getDailyProblem } from "../controllers/mathController";
@@ -22,7 +21,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         problem: JSON.parse(JSON.stringify(problem)),
-        session: await getSession(context),
       },
     };
   } catch (error) {
@@ -36,8 +34,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const Home = ({
   problem,
-  session,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  //get user session if logged in
+  const { data: session } = useSession();
   //handling life bar status
   const [lifeBar, setLifeBar] = useState(3);
   //handle if show solution is clicked
@@ -45,8 +44,21 @@ const Home = ({
   //handle if the correct answer is submitted or life bars run out
   const [summary, setSummary] = useState(false);
 
+  if (session && summary) {
+    fetch("http://localhost:3000/api/submit-problem", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        session,
+        attemptsRemaining: lifeBar,
+      }),
+    });
+  }
+
   //handle user submission
-  async function submitAnswerHandler(userInputArray: string[]) {
+  function submitAnswerHandler(userInputArray: string[]) {
     //convert answer to string
     const inputString = userInputArray.join("");
 
