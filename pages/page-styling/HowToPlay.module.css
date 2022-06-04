@@ -1,0 +1,47 @@
+.pageContainer {
+  font-size: 1.4rem;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.pageHeader {
+  margin: 2rem auto;
+  width: max-content;
+}
+
+.warning {
+  width: 100%;
+  margin: 0;
+  padding: 1.5rem;
+  color: #fff;
+  background-color: var(--error);
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+}
+
+.warningText {
+  width: 90%;
+  margin: 1.5rem auto;
+}
+
+.mathContainer {
+  font-size: larger;
+  margin: 1.5rem auto;
+}
+
+.listItem {
+  margin: 1.5rem auto;
+}
+
+@media only screen and (min-width: 799px) {
+  .pageContainer {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .pageContainer {
+    font-size: 1.2rem;
+    overflow-x: scroll;
+  }
+}
