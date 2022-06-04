@@ -1,5 +1,6 @@
 .pageContainer {
   font-size: 1.4rem;
+  line-height: 1.5;
   margin: 0 auto;
   width: 90%;
 }
@@ -12,23 +13,28 @@
 
 .itemContainer {
   margin: 0 auto;
-  min-width: 80%;
+  max-width: 95%;
 }
 
 .itemHeader {
   width: max-content;
+  margin: 0;
   padding: 0.62rem 0;
   border-bottom: 3px solid var(--button-filled);
 }
 
 .textContainer {
-  width: 80%;
-  margin: 0 auto;
+  max-width: max-content;
+  margin: 0;
   padding: 2rem 0;
 }
 
 @media only screen and (min-width: 799px) {
   .pageContainer {
     width: 65%;
+  }
+
+  .itemContainer {
+    max-width: 80%;
   }
 }
