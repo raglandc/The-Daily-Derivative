@@ -5,6 +5,7 @@ import styles from "./page-styling/UserStats.module.css";
 
 //controller imports
 import { findUserCreateUserHandler } from "../controllers/userController";
+import StatsCard from "../components/StatsCard";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
@@ -52,6 +53,10 @@ const UserStatsPage = ({
         <Container>
           <h1 className={styles.header}>Hello, {user.name}</h1>
         </Container>
+        <StatsCard
+          title="Problems Attempted"
+          numberToAnimate={user.userStatistics.problemsAttempted}
+        />
         <Container>
           <h2 className={styles.yourNumbers}>Your numbers</h2>
           <div className={styles.statsContainer}>

@@ -14,7 +14,7 @@ const AboutPage = () => {
             The Daily Derivative is a daily-calculus-problem-with-solution game.
           </p>
           <p>
-            Behind the scenes, users are entering latex code through the
+            Behind the scenes, users are entering Katex code through the
             on-screen keyboard. The user&apos;s input is stored into a string,
             then compared to the answers that have been assigned to the given
             problem.

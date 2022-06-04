@@ -55,7 +55,7 @@
 }
 
 .katexLink {
-  background-color: #fef08a;
+  background-color: #facc15;
 }
 .katexLink:hover {
   border-bottom: 2px solid var(--button-filled);
