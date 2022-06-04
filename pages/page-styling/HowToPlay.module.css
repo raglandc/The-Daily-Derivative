@@ -5,8 +5,19 @@
 }
 
 .pageHeader {
+  font-size: 4rem;
   margin: 2rem auto;
   width: max-content;
+}
+
+.sectionHeader {
+  width: max-content;
+  padding: 0.62rem 0;
+  border-bottom: 3px solid var(--button-filled);
+}
+
+.specialExpressionContainer {
+  margin: 4rem auto;
 }
 
 .warning {
@@ -25,8 +36,18 @@
 }
 
 .mathContainer {
+  text-align: center;
   font-size: larger;
   margin: 1.5rem auto;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  background-color: var(--answer-background);
+}
+
+.sectionList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .listItem {
@@ -35,7 +56,7 @@
 
 @media only screen and (min-width: 799px) {
   .pageContainer {
-    width: 70%;
+    width: 65%;
   }
 }
 

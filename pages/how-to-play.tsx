@@ -12,7 +12,7 @@ const HowToPlayPage = () => {
       <h1 className={styles.pageHeader}>How To Play</h1>
       <div>
         <h2 className={styles.sectionHeader}>Rules</h2>
-        <ul className={styles.sectionList}>
+        <ul>
           <li className={styles.listItem}>
             Solve the given problem within three attempts
           </li>
@@ -114,9 +114,9 @@ const HowToPlayPage = () => {
         </Container>
       </div>
       <div>
-        <h2>Combining Special Expressions</h2>
+        <h2 className={styles.sectionHeader}>Combining Special Expressions</h2>
         <p>
-          Users can also combine special expressions to create special special
+          Users can combine special expressions to create special special
           expressions
         </p>
         <ul className={styles.sectionList}>
