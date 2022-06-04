@@ -21,7 +21,7 @@ const HowToPlayPage = () => {
           </li>
         </ul>
         <Container>
-          <h4 className={styles.warning}>warning</h4>
+          <h4 className={styles.warning}>Important</h4>
           <p className={styles.warningText}>
             We understand sometimes there are multiple answers to calculus
             problems.
@@ -42,8 +42,17 @@ const HowToPlayPage = () => {
         </p>
         <Container>
           <p className={styles.warningText}>
-            Katex (KaTeX) is a library of functions that displays mathematical
-            notation with in the web browser (Chrome, FireFox, Ext.,)
+            Katex{" "}
+            <a
+              rel="noopener noreferrer"
+              target="_blank"
+              className={styles.katexLink}
+              href="https://katex.org"
+            >
+              (KaTeX)
+            </a>{" "}
+            is a library of functions that displays mathematical notation within
+            the web browser (Chrome, FireFox, Ext.,)
           </p>
         </Container>
         <p className={styles.sectionText}>
@@ -60,7 +69,7 @@ const HowToPlayPage = () => {
         <p>
           Special expressions are created with math operators such as{" "}
           <InlineMath math=" \div , \wedge , \sqrt{}" />, an opening
-          &quot;(&quot; and a closing &quot;)&quot;
+          &quot;(&quot; and a closing &quot;)&quot;.
         </p>
         <div className={styles.specialExpressionContainer}>
           <h3>
@@ -116,8 +125,8 @@ const HowToPlayPage = () => {
       <div>
         <h2 className={styles.sectionHeader}>Combining Special Expressions</h2>
         <p>
-          Users can combine special expressions to create special special
-          expressions
+          Users can combine special expressions to create <em>special</em>{" "}
+          special expressions.
         </p>
         <ul className={styles.sectionList}>
           <li className={styles.mathContainer}>
@@ -126,20 +135,20 @@ const HowToPlayPage = () => {
         </ul>
       </div>
       <Container>
-        <h4 className={styles.warning}>warning</h4>
+        <h4 className={styles.warning}>Important</h4>
         <p className={styles.warningText}>
           The key is to start special expressions with the special character and
-          the opening &quot;(&quot; and the closing &quot;)&quot;
+          the opening &quot;(&quot; and the closing &quot;)&quot;.
         </p>
         <p className={styles.warningText}>
           Forgetting or not inserting the required parenthesis will result in a
-          failed special expression and not be graded appropriately
+          failed special expression and not be graded appropriately.
         </p>
         <p className={styles.warningText}>
           All special expressions will start with its special character,{" "}
           <strong>EXCEPT FOR DIVISION (FRACTIONS)</strong>. The division
           operator goes between what the user wants as a numerator and
-          denominator
+          denominator.
         </p>
         <p className={styles.mathContainer}>
           <InlineMath math="( numerator \div denominator ) " />

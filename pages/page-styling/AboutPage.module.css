@@ -29,6 +29,13 @@
   padding: 2rem 0;
 }
 
+.nameLink {
+  border-bottom: 2px solid var(--button-filled);
+}
+
+.nameLink:hover {
+  border-bottom: none;
+}
 @media only screen and (min-width: 799px) {
   .pageContainer {
     width: 65%;
