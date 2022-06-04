@@ -3,7 +3,7 @@
 import Head from "next/head";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { InferGetServerSidePropsType, GetServerSideProps } from "next";
+import { InferGetStaticPropsType, GetStaticProps } from "next";
 import MathProblem from "../components/math-problem/MathProblem";
 import MathKeyboard from "../components/math-problem/calculator/MathKeyboard";
 
@@ -16,7 +16,7 @@ import LifeBar from "../components/LifeBar";
 ///////////////////////////////////////////////////////////////////////////////
 
 //fetching data from database of math problems to display
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getStaticProps: GetStaticProps = async () => {
   try {
     //retrieve the problem for the day
     const problem = await getDailyProblemHandler();
@@ -37,9 +37,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 };
 
-const Home = ({
-  problem,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const Home = ({ problem }: InferGetStaticPropsType<typeof getStaticProps>) => {
   //get user session if logged in
   const { data: session } = useSession();
   //handling life bar status
