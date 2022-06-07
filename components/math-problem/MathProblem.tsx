@@ -1,7 +1,5 @@
-import styles from "./MathProblem.module.css";
-import { useAppSelector } from "../../app/hooks";
-import { selectStatus } from "../../app/features/menuStatusSlice";
 import { useState } from "react";
+import styles from "./MathProblem.module.css";
 
 //Katex (math styling)
 import "katex/dist/katex.min.css";
@@ -31,7 +29,6 @@ const MathProblem = (props: MathProblemProps) => {
   const [showSolution, setShowSolution] = useState(false);
 
   //mobile navigation status
-  const status = useAppSelector(selectStatus);
   return (
     <Container>
       <div className={styles.problemInfo}>
@@ -42,7 +39,7 @@ const MathProblem = (props: MathProblemProps) => {
       <div className={styles.problem}>
         <p className={styles.description}>{props.description}</p>
         <span className={styles.math}>
-          {status ? null : <InlineMath math={props.problem} />}
+          <InlineMath math={props.problem} />
         </span>
       </div>
       <div className={styles.buttonContainer}>

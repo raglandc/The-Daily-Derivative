@@ -15,7 +15,6 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@next-auth/mongodb-adapter": "^1.0.3",
-    "@reduxjs/toolkit": "^1.8.1",
     "animated-number-react": "^0.1.2",
     "mongodb": "^4.6.0",
     "mongoose": "^6.3.4",
@@ -25,7 +24,6 @@
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-katex": "^2.0.2",
-    "react-redux": "^8.0.1",
     "react-string-replace": "^1.1.0",
     "use-dark-mode": "^2.3.1"
   },

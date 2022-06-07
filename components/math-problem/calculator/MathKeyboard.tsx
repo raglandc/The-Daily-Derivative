@@ -1,7 +1,3 @@
-//hiding when side drawer is present
-import { useAppSelector } from "../../../app/hooks";
-import { selectStatus } from "../../../app/features/menuStatusSlice";
-
 //handlers
 import { updateInputHandler } from "../../../controllers/calculatorController";
 
@@ -19,8 +15,6 @@ interface MathKeyboardProps {
 }
 
 const MathKeyboard = ({ action, lifeBar, showSolution }: MathKeyboardProps) => {
-  //mobile menu status
-  const status = useAppSelector(selectStatus);
   //logic for tracking keypress
   const [userInput, setUserInput] = useState<string[]>([]);
   const [showSecondKeyboard, setShowSecondKeyBoard] = useState(false);
@@ -29,7 +23,7 @@ const MathKeyboard = ({ action, lifeBar, showSolution }: MathKeyboardProps) => {
     updateInputHandler(value, userInput, setUserInput);
   };
 
-  return status ? null : (
+  return (
     <Container>
       <div className={styles.answer}>
         <div className={styles.mathDisplay}>
