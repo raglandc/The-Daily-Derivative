@@ -27,3 +27,20 @@
   border-radius: var(--border-radius);
   text-align: center;
 }
+.pleaseSignInContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pleaseSignInMessage {
+  font-size: 1.6rem;
+  text-align: center;
+  margin: 2rem;
+}
+
+.loginImage {
+  margin: 1rem auto;
+}
