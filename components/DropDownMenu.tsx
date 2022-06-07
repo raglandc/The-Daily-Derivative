@@ -1,8 +1,5 @@
 import Link from "next/link";
 import styles from "./DropDownMenu.module.css";
-import { useState } from "react";
-import SVGIcon from "./ui/SVGIcon";
-import { faSquareCaretDown } from "@fortawesome/free-regular-svg-icons";
 
 const DropDownMenu = () => {
   return (

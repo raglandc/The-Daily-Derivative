@@ -57,29 +57,14 @@ const UserStatsPage = ({
           title="Problems Attempted"
           numberToAnimate={user.userStatistics.problemsAttempted}
         />
-        <Container>
-          <h2 className={styles.yourNumbers}>Your numbers</h2>
-          <div className={styles.statsContainer}>
-            <div>
-              <h3>Problems Attempted</h3>
-              <p className={styles.statNumber}>
-                {user.userStatistics.problemsAttempted}
-              </p>
-            </div>
-            <div>
-              <h3>Problems Solved</h3>
-              <p className={styles.statNumber}>
-                {user.userStatistics.problemsSolved}
-              </p>
-            </div>
-            <div>
-              <h3>Current Win Streak</h3>
-              <p className={styles.statNumber}>
-                {user.userStatistics.currentWinningStreak}
-              </p>
-            </div>
-          </div>
-        </Container>
+        <StatsCard
+          title="Problems Solved"
+          numberToAnimate={user.userStatistics.problemsSolved}
+        />
+        <StatsCard
+          title="Current Winning Streak"
+          numberToAnimate={user.userStatistics.currentWinningStreak}
+        />
       </>
     );
   } else {

@@ -15,7 +15,7 @@ const StatsCard = (props: StatsCardProps) => {
   return (
     <Container>
       <h2 className={styles.cardHeader}>{props.title}</h2>
-      <div>
+      <div className={styles.numberContainer}>
         <AnimatedNumber
           delay={200}
           formatValue={formatValue}

@@ -1,0 +1,16 @@
+.faqContainer {
+  padding: 0.5rem 1.5rem;
+}
+.faqContainer:hover {
+  cursor: pointer;
+}
+.question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.answerContainer {
+  padding: 0 1rem 1rem;
+  line-height: 1.5;
+}

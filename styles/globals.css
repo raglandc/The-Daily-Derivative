@@ -49,10 +49,10 @@ body.light-mode {
 
 body.dark-mode {
   --background: #171717;
-  --component-background: #262626;
+  --component-background: #525252;
   --text-primary: #f9fafb;
   --text-secondary: #e5e7eb;
-  --modal-overlay: #fafafa75;
+  --modal-overlay: #0000005d;
   --error: #f87171;
   --success: #4ade80;
   --warning: #fde047;
