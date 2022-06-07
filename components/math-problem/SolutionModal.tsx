@@ -9,21 +9,36 @@ interface SolutionModalProps {
 }
 
 const stringToArrayHandler = (solution: string) => {
-  const solutionLinesArray = solution.replaceAll(" ", " \\space ").split(" . ");
+  //split our solution string into an array at every " . "
+  const solutionLinesArray = solution.split(" . ");
   return solutionLinesArray;
 };
 
 const SolutionModal = ({ solution }: SolutionModalProps) => {
   const arrayOfInlineStrings = stringToArrayHandler(solution);
 
+  console.log(`arrayOfInlineString`, arrayOfInlineStrings);
+
   return (
     <div className={styles.container}>
       {arrayOfInlineStrings.map((value, index) => {
-        return (
-          <div key={index} className={styles.mathLine}>
-            <InlineMath key={index} math={`${value}`} />
-          </div>
-        );
+        //our math lines will start with "!"
+        if (value.startsWith("!")) {
+          //remove the \\space !
+          value.replaceAll(" ", " \\space ");
+          value = value.substring(1);
+          return (
+            <div key={index} className={styles.mathLine}>
+              <InlineMath key={index} math={`${value}`} />
+            </div>
+          );
+        } else {
+          return (
+            <p key={index} className={styles.mathLine}>
+              {value}
+            </p>
+          );
+        }
       })}
     </div>
   );
