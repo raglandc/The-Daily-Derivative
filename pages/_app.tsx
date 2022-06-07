@@ -3,8 +3,6 @@ import type { AppProps } from "next/app";
 ////////////////////////////////////////////////
 import { SessionProvider } from "next-auth/react";
 ////////////////////////////////////////////////
-import { store } from "../app/store";
-import { Provider } from "react-redux";
 import NextNProgress from "nextjs-progressbar";
 import Layout from "../components/layout/Layout";
 //font awesome icons//
@@ -17,12 +15,10 @@ config.autoAddCss = false;
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <SessionProvider session={session}>
-      <Provider store={store}>
-        <Layout>
-          <NextNProgress color="#2563eb" />
-          <Component {...pageProps} />
-        </Layout>
-      </Provider>
+      <Layout>
+        <NextNProgress color="#2563eb" />
+        <Component {...pageProps} />
+      </Layout>
     </SessionProvider>
   );
 }

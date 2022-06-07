@@ -12,11 +12,9 @@ interface LayoutProps {
 const Layout: FC<LayoutProps> = (props) => {
   return (
     <div className={styles.layout}>
-      <div className={styles.container}>
-        <MainNavigation />
-        <main className={styles.main}>{props.children}</main>
-        <Footer />
-      </div>
+      <MainNavigation />
+      <main className={styles.main}>{props.children}</main>
+      <Footer />
     </div>
   );
 };

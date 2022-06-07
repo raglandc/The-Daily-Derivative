@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
 import Link from "next/link";
 //styles
 import styles from "./SideDrawer.module.css";
@@ -9,11 +11,10 @@ import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 
 //components
 import SignInButton from "../../../ui/SignInButton";
+import Logo from "../../../ui/Logo";
 
 //user session imports
 import { signIn, signOut, useSession } from "next-auth/react";
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
 ////////////////////////////////////////////////////
 
 interface SideDrawerProps {
@@ -117,6 +118,9 @@ const SideDrawer = ({ show, onClose }: SideDrawerProps): JSX.Element | null => {
           />
         </div>
       )}
+      <div className={styles.logoContainer}>
+        <Logo />
+      </div>
     </div>
   ) : null;
 
