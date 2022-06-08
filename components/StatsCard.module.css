@@ -16,5 +16,6 @@
   align-items: center;
 }
 .number {
+  margin: 0 auto;
   font-size: 8rem;
 }
