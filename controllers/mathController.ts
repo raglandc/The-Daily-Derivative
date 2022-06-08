@@ -16,8 +16,19 @@ import Math from "../models/mathModel";
 export const getDailyProblemHandler = async () => {
   //connect to database
   await connectMongo();
-  //find the newest problem
-  const newestProblem = await Math.findOne().sort({ _Date: -1 });
 
-  return newestProblem;
+  //find the problem for the day
+  //create a ISO string from todays current date
+  const todayISO = new Date(Date.now()).toISOString();
+  //remove the time, should return YYYY-MM-DD
+  const today = todayISO.substring(0, 10);
+  //concat today with a time of midnight
+  const queryDate = `${today}T00:00:00.000Z`;
+
+  //find the problem assigned to queryDate
+  const todaysProblem = await Math.findOne({
+    showDate: new Date(queryDate).toISOString(),
+  });
+
+  return todaysProblem;
 };

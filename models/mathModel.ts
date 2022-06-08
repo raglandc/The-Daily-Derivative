@@ -1,7 +1,7 @@
 import { Schema, model, models } from "mongoose";
 
 const mathSchema = new Schema({
-  date: Date,
+  showDate: Date,
   problemNumber: String,
   description: String,
   problem: String,

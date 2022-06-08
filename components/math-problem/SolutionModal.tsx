@@ -17,8 +17,6 @@ const stringToArrayHandler = (solution: string) => {
 const SolutionModal = ({ solution }: SolutionModalProps) => {
   const arrayOfInlineStrings = stringToArrayHandler(solution);
 
-  console.log(`arrayOfInlineString`, arrayOfInlineStrings);
-
   return (
     <div className={styles.container}>
       {arrayOfInlineStrings.map((value, index) => {

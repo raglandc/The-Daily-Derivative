@@ -36,7 +36,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
     //if something goes wrong catch the error and log it to the console
   } catch (error) {
-    console.log(error);
+    console.error(error);
     //return that the user was not found
     return {
       notFound: true,

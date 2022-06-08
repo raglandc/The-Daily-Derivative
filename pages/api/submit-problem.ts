@@ -25,7 +25,7 @@ const handler = async (
   } catch (error) {
     //if there was a problem log it to the console.
 
-    console.log(error);
+    console.error(error);
     res.status(500).json("something went wrong");
   }
 };

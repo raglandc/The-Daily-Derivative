@@ -99,7 +99,8 @@ const Home = ({ problem }: InferGetStaticPropsType<typeof getStaticProps>) => {
   }
 
   //create date to display
-  const date = new Date(problem.date);
+  //we use UTC String because it recognizes 00:00:00:0000 as the next day (start of day)
+  const date = new Date(problem.showDate).toUTCString().substring(0, 17);
 
   return (
     <div className={styles.pageContainer}>
@@ -107,7 +108,7 @@ const Home = ({ problem }: InferGetStaticPropsType<typeof getStaticProps>) => {
         <title>The Daily Derivative</title>
       </Head>
       <MathProblem
-        date={date.toDateString()}
+        date={date}
         problemNumber={problem.problemNumber}
         problem={problem.problem}
         description={problem.description}
@@ -122,6 +123,7 @@ const Home = ({ problem }: InferGetStaticPropsType<typeof getStaticProps>) => {
         </Modal>
       ) : null}
       <LifeBar lifeBarCount={lifeBar} />
+      {/* css animation on wrong input */}
       <MathKeyboard
         showSolution={showSolution}
         problem={problem}

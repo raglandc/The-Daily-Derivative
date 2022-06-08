@@ -18,6 +18,10 @@ const FAQPage = () => {
         question="Which levels of calculus does TDD cover?"
         answer="As of right now The Daily Derivative only covers basic derivatives and integrals. In the future we plan on adding concepts from calculus two and three."
       />
+      <FAQCard
+        question="When does the problem change?"
+        answer="The problem changes at midnight (Eastern-Standard-Time)."
+      />
     </div>
   );
 };
