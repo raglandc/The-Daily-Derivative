@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import { InferGetStaticPropsType, GetStaticProps } from "next";
 import MathProblem from "../components/math-problem/MathProblem";
 import MathKeyboard from "../components/math-problem/calculator/MathKeyboard";
+import styles from "./page-styling/HomePage.module.css";
 
 //controllers
 import { getDailyProblemHandler } from "../controllers/mathController";
@@ -49,7 +50,6 @@ const Home = ({ problem }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   //if there is a session and the game is complete
   //update users stats in database
-  console.log(`session user`, session?.user);
   if (session && summary) {
     fetch("http://localhost:3000/api/submit-problem", {
       method: "POST",
@@ -99,7 +99,7 @@ const Home = ({ problem }: InferGetStaticPropsType<typeof getStaticProps>) => {
   }
 
   return (
-    <>
+    <div className={styles.pageContainer}>
       <Head>
         <title>The Daily Derivative</title>
       </Head>
@@ -125,7 +125,7 @@ const Home = ({ problem }: InferGetStaticPropsType<typeof getStaticProps>) => {
         lifeBar={lifeBar}
         action={submitAnswerHandler}
       />
-    </>
+    </div>
   );
 };
 

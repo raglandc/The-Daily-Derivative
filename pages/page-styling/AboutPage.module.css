@@ -3,6 +3,7 @@
   line-height: 1.5;
   margin: 0 auto;
   width: 90%;
+  min-height: 100vh;
 }
 
 .pageHeader {

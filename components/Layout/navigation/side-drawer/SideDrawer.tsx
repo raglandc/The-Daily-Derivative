@@ -118,9 +118,6 @@ const SideDrawer = ({ show, onClose }: SideDrawerProps): JSX.Element | null => {
           />
         </div>
       )}
-      <div className={styles.logoContainer}>
-        <Logo />
-      </div>
     </div>
   ) : null;
 

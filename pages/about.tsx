@@ -1,5 +1,3 @@
-import Link from "next/link";
-import Container from "../components/ui/Container";
 import styles from "./page-styling/AboutPage.module.css";
 
 const AboutPage = () => {
