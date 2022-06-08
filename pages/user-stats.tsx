@@ -49,45 +49,45 @@ const UserStatsPage = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { data: session } = useSession();
 
-  if (session) {
-    return (
-      <>
-        <Container>
-          <h1 className={styles.header}>Hello, {user.name}</h1>
-        </Container>
-        <StatsCard
-          title="Problems Attempted"
-          numberToAnimate={user.userStatistics.problemsAttempted}
-        />
-        <StatsCard
-          title="Problems Solved"
-          numberToAnimate={user.userStatistics.problemsSolved}
-        />
-        <StatsCard
-          title="Current Winning Streak"
-          numberToAnimate={user.userStatistics.currentWinningStreak}
-        />
-      </>
-    );
-  } else {
-    return (
-      <div className={styles.pleaseSignInContainer}>
-        <Container>
-          <p className={styles.pleaseSignInMessage}>
-            Please sign in to see scores. We do not keep track of your math
-            skills before you create an account.
-          </p>
-          <div className={styles.loginImage}>
-            <Image
-              width={200}
-              height={324}
-              src={svg}
-              alt="sign in cartoon man in front of large touch screen phone with a log in screen displayed"
-            />
-          </div>
-        </Container>
-      </div>
-    );
-  }
+  return (
+    <div className={styles.pageContainer}>
+      {session ? (
+        <>
+          <Container>
+            <h1 className={styles.header}>Hello, {user.name}</h1>
+          </Container>
+          <StatsCard
+            title="Problems Attempted"
+            numberToAnimate={user.userStatistics.problemsAttempted}
+          />
+          <StatsCard
+            title="Problems Solved"
+            numberToAnimate={user.userStatistics.problemsSolved}
+          />
+          <StatsCard
+            title="Current Winning Streak"
+            numberToAnimate={user.userStatistics.currentWinningStreak}
+          />
+        </>
+      ) : (
+        <div className={styles.pleaseSignInContainer}>
+          <Container>
+            <p className={styles.pleaseSignInMessage}>
+              Please sign in to see scores. We do not keep track of your math
+              skills before you create an account.
+            </p>
+            <div className={styles.loginImage}>
+              <Image
+                width={200}
+                height={324}
+                src={svg}
+                alt="sign in cartoon man in front of large touch screen phone with a log in screen displayed"
+              />
+            </div>
+          </Container>
+        </div>
+      )}
+    </div>
+  );
 };
 export default UserStatsPage;

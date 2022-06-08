@@ -98,13 +98,16 @@ const Home = ({ problem }: InferGetStaticPropsType<typeof getStaticProps>) => {
     }
   }
 
+  //create date to display
+  const date = new Date(problem.date);
+
   return (
     <div className={styles.pageContainer}>
       <Head>
         <title>The Daily Derivative</title>
       </Head>
       <MathProblem
-        date={problem.date}
+        date={date.toDateString()}
         problemNumber={problem.problemNumber}
         problem={problem.problem}
         description={problem.description}
