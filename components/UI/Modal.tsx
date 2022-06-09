@@ -1,6 +1,7 @@
 import React, { useState, useEffect, ReactNode } from "react";
 import ReactDOM from "react-dom";
 import styles from "./Modal.module.css";
+import { motion } from "framer-motion";
 
 interface ModalProps {
   show: any;
@@ -22,7 +23,11 @@ const Modal = ({ show, onClose, children, title }: ModalProps) => {
 
   const modalContent = show ? (
     <div onClick={closeHandler} className={styles.overlay}>
-      <div className={styles.container}>
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        className={styles.container}
+      >
         <div className={styles.header}>
           <h3>{title}</h3>
           <button onClick={closeHandler} className={styles.button}>
@@ -30,7 +35,7 @@ const Modal = ({ show, onClose, children, title }: ModalProps) => {
           </button>
         </div>
         <div className={styles.body}>{children}</div>
-      </div>
+      </motion.div>
     </div>
   ) : null;
 
