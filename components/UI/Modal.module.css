@@ -13,8 +13,8 @@
 
 .container {
   z-index: 5;
-  min-width: 50%;
-  max-width: 90%;
+  min-width: 70%;
+  max-width: 95%;
   height: max-content;
 
   color: var(--text-primary);

@@ -44,30 +44,49 @@
 .keyboardContainer {
   width: 95%;
   margin: 2rem auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-rows: repeat(5, max-content);
 }
 
-.row {
-  width: 100%;
-  display: flex;
+.row1 {
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+}
+.row2 {
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+}
+.row3 {
+  grid-row: 3;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+}
+
+.row3Second {
+  grid-row: 3;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.row4 {
+  grid-row: 4;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
   justify-content: center;
 }
 
 .lastRow {
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
+  grid-row: 5;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .key {
   font-size: 1.3rem;
-  margin: 0.5rem 0.1rem;
+  margin: 0.4rem 0.1rem;
   padding: 0.8rem;
-
   color: var(--text-primary);
-
   border: none;
   background-color: var(--answer-background);
   border-radius: var(--border-radius);
@@ -78,10 +97,4 @@
   color: #fff;
   background-color: var(--button-filled);
   box-shadow: var(--box-shadow);
-}
-
-@media only screen and (min-width: 700px) {
-  .key {
-    padding: 1.62rem;
-  }
 }

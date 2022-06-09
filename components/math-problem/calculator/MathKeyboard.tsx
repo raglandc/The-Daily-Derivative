@@ -43,7 +43,7 @@ const MathKeyboard = ({ action, lifeBar, showSolution }: MathKeyboardProps) => {
         )}
       </div>
       <div className={styles.keyboardContainer}>
-        <div className={styles.row}>
+        <div className={styles.row1}>
           <button onClick={() => updateInput("1")} className={styles.key}>
             <InlineMath math="1" />
           </button>
@@ -77,7 +77,7 @@ const MathKeyboard = ({ action, lifeBar, showSolution }: MathKeyboardProps) => {
         </div>
         {!showSecondKeyboard ? (
           <>
-            <div className={styles.row}>
+            <div className={styles.row2}>
               <button onClick={() => updateInput("+")} className={styles.key}>
                 <InlineMath math="+" />
               </button>
@@ -130,7 +130,7 @@ const MathKeyboard = ({ action, lifeBar, showSolution }: MathKeyboardProps) => {
                 <InlineMath math="\ge" />
               </button>
             </div>
-            <div className={styles.row}>
+            <div className={styles.row3}>
               <button
                 onClick={() => updateInput("\\lt")}
                 className={styles.key}
@@ -171,7 +171,7 @@ const MathKeyboard = ({ action, lifeBar, showSolution }: MathKeyboardProps) => {
                 <InlineMath math="\infty" />
               </button>
             </div>
-            <div className={styles.row}>
+            <div className={styles.row4}>
               <button
                 onClick={() => updateInput("\\wedge")}
                 className={styles.key}
@@ -213,7 +213,7 @@ const MathKeyboard = ({ action, lifeBar, showSolution }: MathKeyboardProps) => {
         ) : (
           <>
             {/* second keyboard begins here */}
-            <div className={styles.row}>
+            <div className={styles.row2}>
               <button onClick={() => updateInput("+")} className={styles.key}>
                 <InlineMath math="+" />
               </button>
@@ -267,7 +267,7 @@ const MathKeyboard = ({ action, lifeBar, showSolution }: MathKeyboardProps) => {
                 <InlineMath math="\leftthreetimes" />
               </button>
             </div>
-            <div className={styles.row}>
+            <div className={styles.row3Second}>
               <button
                 onClick={() => updateInput("\\arccos")}
                 className={styles.key}
@@ -305,7 +305,7 @@ const MathKeyboard = ({ action, lifeBar, showSolution }: MathKeyboardProps) => {
                 <InlineMath math="\theta" />
               </button>
             </div>
-            <div className={styles.row}>
+            <div className={styles.row4}>
               <button
                 onClick={() => updateInput("\\lor")}
                 className={styles.key}

@@ -1,28 +1,36 @@
+.container {
+  position: relative;
+  margin: 2rem auto;
+  width: 90%;
+
+  background-color: var(--component-background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (min-width: 1000px) {
+  .container {
+    width: 45%;
+  }
+}
+
 .lifeBarContainer {
   text-align: center;
   width: 100%;
-  height: 100%;
+  height: 2rem;
   border-radius: var(--border-radius);
   display: flex;
   overflow: hidden;
 }
 .lifeBar {
   width: 100%;
+  height: 100%;
   border-radius: var(--border-radius);
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.barGoodStandingBorder {
-  border: 2px solid var(--success);
-}
-
-.barWarningBorder {
-  border: 2px solid var(--warning);
-}
-
-.barDeadBorder {
-  border: 2px solid var(--error);
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .bar {
@@ -31,8 +39,17 @@
   background-color: var(--success);
 }
 
-.barDead {
-  width: 100%;
-  height: 100%;
-  background-color: var(--component-background);
+.lifeFraction {
+  position: absolute;
+  height: 4rem;
+  width: 4.854rem;
+
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: var(--button-filled);
+  border: 1px solid #fff;
+  border-radius: 50% 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
