@@ -21,16 +21,24 @@ const StatsCard = (props: StatsCardProps) => {
   );
 };
 
+interface AnimatedNumberProps {
+  from: number;
+  to: number;
+}
+
 //animated number using framer motion
-function AnimateNumber({ from, to }: any) {
+function AnimateNumber({ from, to }: AnimatedNumberProps) {
   //using useRef so it does not rerender each time a number changes
+  //I am using type any to keep TS quite, the type is "Node" that
+  //contains a textContent property
   const nodeRef = useRef<any>();
 
   useEffect(() => {
     const node = nodeRef.current;
 
     const controls = animate(from, to, {
-      duration: 3,
+      delay: 0.5,
+      duration: 2,
       onUpdate(value) {
         node.textContent = value.toFixed(0);
       },

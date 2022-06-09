@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import Link from "next/link";
+import { motion } from "framer-motion";
 //styles
 import styles from "./SideDrawer.module.css";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
@@ -11,7 +12,6 @@ import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 
 //components
 import SignInButton from "../../../ui/SignInButton";
-import Logo from "../../../ui/Logo";
 
 //user session imports
 import { signIn, signOut, useSession } from "next-auth/react";
@@ -31,13 +31,16 @@ const SideDrawer = ({ show, onClose }: SideDrawerProps): JSX.Element | null => {
 
   const closeHandler = () => {
     onClose();
-    // dispatch(setMenuStatus());
   };
 
   const { data: session } = useSession();
 
   const SideDrawerContent = show ? (
-    <div className={styles.container}>
+    <motion.div
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      className={styles.container}
+    >
       <div className={styles.titleContainer}>
         <div>
           <h4 className={styles.titleWord}>The</h4>
@@ -118,7 +121,7 @@ const SideDrawer = ({ show, onClose }: SideDrawerProps): JSX.Element | null => {
           />
         </div>
       )}
-    </div>
+    </motion.div>
   ) : null;
 
   if (isBrowser) {
