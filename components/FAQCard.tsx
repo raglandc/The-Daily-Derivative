@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import styles from "./FAQCard.module.css";
 import Container from "./ui/Container";
 import SVGIcon from "./ui/SVGIcon";
@@ -24,9 +25,20 @@ const FAQCard = (props: FAQCardProps) => {
           <SVGIcon icon={showAnswer ? faCaretUp : faCaretDown} />
         </div>
         {showAnswer ? (
-          <div className={styles.answerContainer}>
-            <p>{props.answer}</p>
-          </div>
+          <motion.div
+            initial={{ height: "0" }}
+            animate={{ height: "max-content" }}
+            transition={{ ease: "easeOut" }}
+            className={styles.answerContainer}
+          >
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ ease: "easeIn" }}
+            >
+              {props.answer}
+            </motion.p>
+          </motion.div>
         ) : null}
       </div>
     </Container>
