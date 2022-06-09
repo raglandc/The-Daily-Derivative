@@ -47,9 +47,10 @@ export const findUserCreateUserHandler = async (userObject: userObjectType) => {
 
 /////////////////////////////////////////////////////////////////////
 //update user statistics
-export const updateUserStatsHandler = async (
+export const updateUserHandler = async (
   currentUser: any,
-  lifeBarCount: any
+  lifeBarCount: any,
+  problemNumber: any
 ) => {
   //connect to database
   await connectMongo();
@@ -80,6 +81,7 @@ export const updateUserStatsHandler = async (
       problemsAttempted: problemsAttempted,
       problemsSolved: problemsSolved,
     },
+    $push: { problemsCompleted: problemNumber },
   });
 };
 

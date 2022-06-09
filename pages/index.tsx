@@ -2,8 +2,8 @@
 //imports
 import Head from "next/head";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
-import { InferGetStaticPropsType, GetStaticProps } from "next";
+import { getSession, useSession } from "next-auth/react";
+import { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import MathProblem from "../components/math-problem/MathProblem";
 import MathKeyboard from "../components/math-problem/calculator/MathKeyboard";
 import styles from "./page-styling/HomePage.module.css";
@@ -14,11 +14,16 @@ import { getDailyProblemHandler } from "../controllers/mathController";
 import Modal from "../components/ui/Modal";
 import Summary from "../components/Summary";
 import LifeBar from "../components/LifeBar";
+import { findUserCreateUserHandler } from "../controllers/userController";
 ///////////////////////////////////////////////////////////////////////////////
 
 //fetching data from database of math problems to display
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
+    //get user session
+    const session = await getSession(ctx);
+    //retrieve the user information
+    const user = await findUserCreateUserHandler(session!.user);
     //retrieve the problem for the day
     const problem = await getDailyProblemHandler();
 
@@ -26,6 +31,7 @@ export const getStaticProps: GetStaticProps = async () => {
     return {
       props: {
         problem: JSON.parse(JSON.stringify(problem)),
+        user: JSON.parse(JSON.stringify(user)),
       },
     };
   } catch (error) {
@@ -38,7 +44,10 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 };
 
-const Home = ({ problem }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Home = ({
+  problem,
+  user,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   //get user session if logged in
   const { data: session } = useSession();
   //handling life bar status
@@ -47,10 +56,12 @@ const Home = ({ problem }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [showSolution, setShowSolution] = useState(false);
   //handle if the correct answer is submitted or life bars run out
   const [summary, setSummary] = useState(false);
+  //disable problem if already answered
+  const [alreadyAnswered, setAlreadyAnswered] = useState(false);
 
   //if there is a session and the game is complete
-  //update users stats in database
-  if (session && summary) {
+  //update users stats in database if they have not answered it already
+  if (session && summary && !alreadyAnswered) {
     fetch("http://localhost:3000/api/submit-problem", {
       method: "POST",
       headers: {
@@ -59,17 +70,20 @@ const Home = ({ problem }: InferGetStaticPropsType<typeof getStaticProps>) => {
       body: JSON.stringify({
         userObject: session.user,
         attemptsRemaining: lifeBar,
+        problemNumber: problem.problemNumber,
       }),
     });
   }
 
   //handle user submission
   function submitAnswerHandler(userInputArray: string[]) {
+    if (user.problemsCompleted.includes(problem.problemNumber)) {
+      setAlreadyAnswered(true);
+    }
     //convert answer to string
     const inputString = userInputArray.join("");
     //handle empty input
     if (inputString.length === 0) {
-      console.log("You left the answer blank bro");
       return;
     }
     //loop through the string and compare each input value
@@ -80,11 +94,9 @@ const Home = ({ problem }: InferGetStaticPropsType<typeof getStaticProps>) => {
         inputString.length !== problem.answer.length
       ) {
         setLifeBar(lifeBar - 1);
-        console.log("your answer does not match ours", lifeBar);
         //handle no life bars left
         if (lifeBar === 1) {
           setLifeBar(lifeBar - 1);
-          console.log("No more submissions left");
           setShowSolution(true);
           setSummary(true);
           return;
@@ -93,7 +105,6 @@ const Home = ({ problem }: InferGetStaticPropsType<typeof getStaticProps>) => {
       }
       setShowSolution(true);
       setSummary(true);
-      console.log("Nice work!");
       return;
     }
   }
@@ -123,7 +134,6 @@ const Home = ({ problem }: InferGetStaticPropsType<typeof getStaticProps>) => {
         </Modal>
       ) : null}
       <LifeBar lifeBarCount={lifeBar} />
-      {/* css animation on wrong input */}
       <MathKeyboard
         showSolution={showSolution}
         problem={problem}

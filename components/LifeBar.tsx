@@ -1,6 +1,9 @@
 import styles from "./LifeBar.module.css";
 import { motion } from "framer-motion";
-
+//@ts-ignore
+import { InlineMath } from "react-katex";
+//Katex (math styling)
+import "katex/dist/katex.min.css";
 interface LifeBarProps {
   lifeBarCount: number;
 }
@@ -110,7 +113,7 @@ const LifeBar = ({ lifeBarCount }: LifeBarProps) => {
         transition={{ ease: "easeOut" }}
         className={styles.lifeFraction}
       >
-        {lifeBarCount} : 3
+        <InlineMath math={`${lifeBarCount}:3`} />
       </motion.div>
     </div>
   );

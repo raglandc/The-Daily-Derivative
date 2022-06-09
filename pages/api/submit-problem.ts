@@ -3,7 +3,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import {
   findUserCreateUserHandler,
-  updateUserStatsHandler,
+  updateUserHandler,
 } from "../../controllers/userController";
 //////////////////////////////////////////////////////////////////////
 
@@ -13,12 +13,12 @@ const handler = async (
 ): Promise<void> => {
   try {
     //pull the important information from the request body
-    const { userObject, attemptsRemaining } = req.body;
+    const { userObject, attemptsRemaining, problemNumber } = req.body;
 
     //find logged in user
     const user = await findUserCreateUserHandler(userObject);
     //update the users stats
-    await updateUserStatsHandler(user, attemptsRemaining);
+    await updateUserHandler(user, attemptsRemaining, problemNumber);
 
     //set response code, send status message
     res.status(200).json({ message: "user profile has been updated" });

@@ -5,6 +5,8 @@ import styles from "./MathKeyboard.module.css";
 import { useState } from "react";
 //@ts-ignore
 import { InlineMath } from "react-katex";
+//Katex (math styling)
+import "katex/dist/katex.min.css";
 import Container from "../../ui/Container";
 
 interface MathKeyboardProps {

@@ -20,7 +20,7 @@ const FAQPage = () => {
       />
       <FAQCard
         question="When does the problem change?"
-        answer="The problem changes at midnight (Eastern-Standard-Time)."
+        answer="The problem changes at midnight (Eastern Standard Time)."
       />
     </div>
   );

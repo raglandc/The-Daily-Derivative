@@ -41,14 +41,14 @@
 
 .lifeFraction {
   position: absolute;
-  height: 4rem;
-  width: 4.854rem;
+  height: 3rem;
+  width: 7.854rem;
 
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: #fff;
   background-color: var(--button-filled);
-  border: 1px solid #fff;
-  border-radius: 50% 50%;
+  /* border: 1px solid #fff; */
+  border-radius: var(--border-radius);
   display: flex;
   align-items: center;
   justify-content: center;
