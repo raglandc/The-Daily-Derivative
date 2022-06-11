@@ -1,6 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 //imports
 import Head from "next/head";
+import Image from "next/image";
 import { useState } from "react";
 import { getSession, useSession } from "next-auth/react";
 import { InferGetServerSidePropsType, GetServerSideProps } from "next";
@@ -16,6 +17,7 @@ import Summary from "../components/Summary";
 import LifeBar from "../components/LifeBar";
 import { findUserCreateUserHandler } from "../controllers/userController";
 import Container from "../components/ui/Container";
+import svg from "../public/images/undraw_time.svg";
 ///////////////////////////////////////////////////////////////////////////////
 
 //fetching data from database of math problems to display
@@ -23,6 +25,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
     //retrieve the problem for the day
     const problem = await getDailyProblemHandler();
+
+    //if no new problem
+    let noNewProblem = false;
+    if (!problem) noNewProblem = true;
 
     //find out if there is a user with a session currently
     const session = await getSession(ctx);
@@ -76,6 +82,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 const Home = ({
   problem,
   booleanProblemAlreadyCompleted,
+  noNewProblem,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   //get user session if logged in
   const { data: session } = useSession();
@@ -87,6 +94,7 @@ const Home = ({
   );
   //handle if the correct answer is submitted or life bars run out
   const [summary, setSummary] = useState(false);
+  const [noProblem, setNoProblem] = useState(noNewProblem);
 
   console.log(`alreadySolved: `, booleanProblemAlreadyCompleted, showSolution);
   //if there is a session and the game is complete
@@ -140,7 +148,7 @@ const Home = ({
   //we use UTC String because it recognizes 00:00:00:0000 as the next day (start of day)
   const date = new Date(problem.showDate).toUTCString().substring(0, 17);
 
-  return (
+  return !noNewProblem ? (
     <div className={styles.pageContainer}>
       <Head>
         <title>The Daily Derivative</title>
@@ -175,6 +183,22 @@ const Home = ({
         lifeBar={lifeBar}
         action={submitAnswerHandler}
       />
+    </div>
+  ) : (
+    <div className={styles.pageContainer}>
+      <Container>
+        <h1 style={{ textAlign: "center" }}>
+          Sorry, no new daily problem. Check back tomorrow
+        </h1>
+        <div style={{ margin: "0 auto" }}>
+          <Image
+            width={200}
+            height={324}
+            src={svg}
+            alt="sign in cartoon man in front of large touch screen phone with a log in screen displayed"
+          />
+        </div>
+      </Container>
     </div>
   );
 };
