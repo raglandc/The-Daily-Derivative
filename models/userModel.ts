@@ -9,7 +9,7 @@ interface User {
     problemsSolved: number;
   };
   // problemsCompleted: [{ [problem: string]: boolean }];
-  problemsCompletedData: [
+  problemsCompleted: [
     {
       problemNumber: string;
       remainingAttempts: number;
@@ -29,7 +29,7 @@ const userSchema = new Schema<User>({
     problemsAttempted: { type: Number, default: 0 },
     problemsSolved: { type: Number, default: 0 },
   },
-  problemsCompletedData: {
+  problemsCompleted: {
     type: [{}],
   },
 });

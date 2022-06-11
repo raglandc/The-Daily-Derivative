@@ -15,23 +15,44 @@ import Modal from "../components/ui/Modal";
 import Summary from "../components/Summary";
 import LifeBar from "../components/LifeBar";
 import { findUserCreateUserHandler } from "../controllers/userController";
+import Container from "../components/ui/Container";
 ///////////////////////////////////////////////////////////////////////////////
 
 //fetching data from database of math problems to display
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
-    //get user session
-    const session = await getSession(ctx);
-    //retrieve the user information
-    const user = await findUserCreateUserHandler(session!.user);
     //retrieve the problem for the day
     const problem = await getDailyProblemHandler();
 
-    //test if the user has already solved this problem
+    //find out if there is a user with a session currently
+    const session = await getSession(ctx);
+    //if there is indeed a session
+    //retrieve the user information
+
+    let user = null;
     let booleanProblemAlreadyCompleted = false;
-    for (let i = 0; i < user.problemsCompleted.length; i++) {
-      if (user.problemsCompleted[i].problemNumber === problem.problemNumber) {
-        booleanProblemAlreadyCompleted = true;
+    if (session) {
+      user = await findUserCreateUserHandler(session!.user);
+      //test if the user has already solved this problem
+
+      //if there is a user test to see if they have already answered todays problem
+      if (user) {
+        const problemsCompletedData = user.problemsCompleted;
+        //we start from the end of the array because the newest problem is
+        //at the end of this array
+        //this optimizes searching for best case
+        //otherwise speed is O(n) where n is the size of the array
+        for (let i = problemsCompletedData.length - 1; i >= 0; i--) {
+          //if the user's completed problems object contains todays problem number
+          //assign the boolean to return to the homepage as props
+          if (
+            problemsCompletedData[i].problemNumber === problem.problemNumber
+          ) {
+            booleanProblemAlreadyCompleted = true;
+            //break from the loop. There is no reason to go forward
+            break;
+          }
+        }
       }
     }
 
@@ -61,7 +82,9 @@ const Home = ({
   //handling life bar status
   const [lifeBar, setLifeBar] = useState(3);
   //handle if show solution is clicked
-  const [showSolution, setShowSolution] = useState(false);
+  const [showSolution, setShowSolution] = useState(
+    booleanProblemAlreadyCompleted
+  );
   //handle if the correct answer is submitted or life bars run out
   const [summary, setSummary] = useState(false);
 
@@ -85,7 +108,6 @@ const Home = ({
   function submitAnswerHandler(userInputArray: string[]) {
     //convert answer to string
     const inputString = userInputArray.join("");
-    console.log(`inputString`, inputString);
     //handle empty input
     if (inputString.length === 0) {
       return;
@@ -137,7 +159,15 @@ const Home = ({
           <Summary lifeBarCount={lifeBar} />
         </Modal>
       ) : null}
-      <LifeBar lifeBarCount={lifeBar} />
+      {booleanProblemAlreadyCompleted ? (
+        <Container>
+          <p style={{ textAlign: "center" }}>
+            You have already solved this problem
+          </p>
+        </Container>
+      ) : (
+        <LifeBar lifeBarCount={lifeBar} />
+      )}
       <MathKeyboard
         showSolution={showSolution}
         problem={problem}
