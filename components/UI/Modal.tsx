@@ -25,7 +25,7 @@ const Modal = ({ show, onClose, children, title }: ModalProps) => {
     <div onClick={closeHandler} className={styles.overlay}>
       <motion.div
         initial={{ scale: 0 }}
-        animate={{ scale: 1, y: "-15%" }}
+        animate={{ scale: 1 }}
         className={styles.container}
       >
         <div className={styles.header}>
