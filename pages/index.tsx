@@ -49,9 +49,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
             problemsCompletedData[i].problemNumber === problem.problemNumber
           ) {
             booleanProblemAlreadyCompleted = true;
-            //break from the loop. There is no reason to go forward
-            break;
           }
+          //break from the loop. There is no reason to go forward
+          break;
         }
       }
     }
@@ -88,6 +88,7 @@ const Home = ({
   //handle if the correct answer is submitted or life bars run out
   const [summary, setSummary] = useState(false);
 
+  console.log(`alreadySolved: `, booleanProblemAlreadyCompleted, showSolution);
   //if there is a session and the game is complete
   //update users stats in database if they have not answered it already
   if (session && summary && !booleanProblemAlreadyCompleted) {
