@@ -27,11 +27,19 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     //retrieve the problem for the day
     const problem = await getDailyProblemHandler();
 
+    //test if the user has already solved this problem
+    let booleanProblemAlreadyCompleted = false;
+    for (let i = 0; i < user.problemsCompleted.length; i++) {
+      if (user.problemsCompleted[i].problemNumber === problem.problemNumber) {
+        booleanProblemAlreadyCompleted = true;
+      }
+    }
+
     //return the properties of the problem to be used as props
     return {
       props: {
         problem: JSON.parse(JSON.stringify(problem)),
-        user: JSON.parse(JSON.stringify(user)),
+        booleanProblemAlreadyCompleted: booleanProblemAlreadyCompleted,
       },
     };
   } catch (error) {
@@ -46,7 +54,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
 const Home = ({
   problem,
-  user,
+  booleanProblemAlreadyCompleted,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   //get user session if logged in
   const { data: session } = useSession();
@@ -56,12 +64,10 @@ const Home = ({
   const [showSolution, setShowSolution] = useState(false);
   //handle if the correct answer is submitted or life bars run out
   const [summary, setSummary] = useState(false);
-  //disable problem if already answered
-  const [alreadyAnswered, setAlreadyAnswered] = useState(false);
 
   //if there is a session and the game is complete
   //update users stats in database if they have not answered it already
-  if (session && summary && !alreadyAnswered) {
+  if (session && summary && !booleanProblemAlreadyCompleted) {
     fetch("http://localhost:3000/api/submit-problem", {
       method: "POST",
       headers: {
@@ -77,11 +83,9 @@ const Home = ({
 
   //handle user submission
   function submitAnswerHandler(userInputArray: string[]) {
-    if (user.problemsCompleted.includes(problem.problemNumber)) {
-      setAlreadyAnswered(true);
-    }
     //convert answer to string
     const inputString = userInputArray.join("");
+    console.log(`inputString`, inputString);
     //handle empty input
     if (inputString.length === 0) {
       return;
