@@ -67,6 +67,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       props: {
         problem: JSON.parse(JSON.stringify(problem)),
         booleanProblemAlreadyCompleted: booleanProblemAlreadyCompleted,
+        noNewProblem: noNewProblem,
       },
     };
   } catch (error) {
@@ -94,7 +95,6 @@ const Home = ({
   );
   //handle if the correct answer is submitted or life bars run out
   const [summary, setSummary] = useState(false);
-  const [noProblem, setNoProblem] = useState(noNewProblem);
 
   console.log(`alreadySolved: `, booleanProblemAlreadyCompleted, showSolution);
   //if there is a session and the game is complete
@@ -146,12 +146,15 @@ const Home = ({
 
   //create date to display
   //we use UTC String because it recognizes 00:00:00:0000 as the next day (start of day)
-  const date = new Date(problem.showDate).toUTCString().substring(0, 17);
+  let date: string = "";
+  if (!noNewProblem) {
+    date = new Date(problem.showDate).toUTCString().substring(0, 17);
+  }
 
   return !noNewProblem ? (
     <div className={styles.pageContainer}>
       <Head>
-        <title>The Daily Derivative</title>
+        <title> {problem.problemNumber} The Daily Derivative</title>
       </Head>
       <MathProblem
         date={date}
@@ -185,21 +188,26 @@ const Home = ({
       />
     </div>
   ) : (
-    <div className={styles.pageContainer}>
-      <Container>
-        <h1 style={{ textAlign: "center" }}>
-          Sorry, no new daily problem. Check back tomorrow
-        </h1>
-        <div style={{ margin: "0 auto" }}>
-          <Image
-            width={200}
-            height={324}
-            src={svg}
-            alt="sign in cartoon man in front of large touch screen phone with a log in screen displayed"
-          />
-        </div>
-      </Container>
-    </div>
+    <>
+      <Head>
+        <title>No Problem Found - The Daily Derivative</title>
+      </Head>
+      <div className={styles.pageContainer}>
+        <Container>
+          <h1 style={{ textAlign: "center" }}>
+            Sorry, no new daily problem. Check back tomorrow
+          </h1>
+          <div style={{ margin: "0 auto" }}>
+            <Image
+              width={200}
+              height={324}
+              src={svg}
+              alt="sign in cartoon man in front of large touch screen phone with a log in screen displayed"
+            />
+          </div>
+        </Container>
+      </div>
+    </>
   );
 };
 

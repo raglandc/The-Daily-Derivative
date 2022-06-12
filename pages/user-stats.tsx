@@ -8,6 +8,7 @@ import { findUserCreateUserHandler } from "../controllers/userController";
 import StatsCard from "../components/StatsCard";
 import svg from "../public/images/undraw_sign-in.svg";
 import Image from "next/image";
+import Head from "next/head";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
@@ -53,6 +54,9 @@ const UserStatsPage = ({
     <div className={styles.pageContainer}>
       {session ? (
         <>
+          <Head>
+            <title> {session?.user?.name} - The Daily Derivative</title>
+          </Head>
           <Container>
             <h1 className={styles.header}>Hello, {user.name}</h1>
           </Container>
@@ -70,22 +74,27 @@ const UserStatsPage = ({
           />
         </>
       ) : (
-        <div className={styles.pleaseSignInContainer}>
-          <Container>
-            <p className={styles.pleaseSignInMessage}>
-              Please sign in to see scores. We do not keep track of your math
-              skills before you create an account.
-            </p>
-            <div className={styles.loginImage}>
-              <Image
-                width={200}
-                height={324}
-                src={svg}
-                alt="sign in cartoon man in front of large touch screen phone with a log in screen displayed"
-              />
-            </div>
-          </Container>
-        </div>
+        <>
+          <Head>
+            <title>No User Detected - The Daily Derivative</title>
+          </Head>
+          <div className={styles.pleaseSignInContainer}>
+            <Container>
+              <p className={styles.pleaseSignInMessage}>
+                Please sign in to see scores. We do not keep track of your math
+                skills before you create an account.
+              </p>
+              <div className={styles.loginImage}>
+                <Image
+                  width={200}
+                  height={324}
+                  src={svg}
+                  alt="sign in cartoon man in front of large touch screen phone with a log in screen displayed"
+                />
+              </div>
+            </Container>
+          </div>
+        </>
       )}
     </div>
   );

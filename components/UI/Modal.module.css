@@ -13,10 +13,8 @@
 
 .container {
   z-index: 5;
-  min-width: 70%;
   max-width: 95%;
   height: max-content;
-  transform: translate(50%, -50%);
 
   color: var(--text-primary);
   background-color: var(--component-background);
@@ -58,4 +56,10 @@
   width: 100%;
   text-align: center;
   overflow-y: auto;
+}
+
+@media only screen and (min-width: 1000px) {
+  .container {
+    width: 50%;
+  }
 }
