@@ -1,3 +1,4 @@
+import { FC } from "react";
 import React, { useState, useEffect, ReactNode } from "react";
 import ReactDOM from "react-dom";
 import styles from "./Modal.module.css";
@@ -21,7 +22,7 @@ const Modal = ({ show, onClose, children, title }: ModalProps) => {
     onClose();
   };
 
-  const modalContent = show ? (
+  const modalContent = show && (
     <div onClick={closeHandler} className={styles.overlay}>
       <motion.div
         initial={{ scale: 0 }}
@@ -37,7 +38,7 @@ const Modal = ({ show, onClose, children, title }: ModalProps) => {
         <div className={styles.body}>{children}</div>
       </motion.div>
     </div>
-  ) : null;
+  );
 
   if (isBrowser) {
     return ReactDOM.createPortal(
