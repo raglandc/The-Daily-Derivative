@@ -58,7 +58,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
           //if the user's completed problems object contains todays problem number
           //assign the boolean to return to the homepage as props
           if (
-            problemsCompletedData[i].problemNumber === problem.problemNumber
+            problemsCompletedData[i].problemDate ===
+            problem.showDate.toISOString()
           ) {
             booleanProblemAlreadyCompleted = true;
           }
@@ -114,10 +115,12 @@ const Home = ({
       body: JSON.stringify({
         userObject: session.user,
         attemptsRemaining: lifeBar,
-        problemNumber: problem.problemNumber,
+        problemDate: problem.showDate,
       }),
     });
   }
+
+  console.log(``);
 
   //handle user submission
   function submitAnswerHandler(userInputArray: string[]) {

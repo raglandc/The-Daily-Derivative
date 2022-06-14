@@ -11,7 +11,7 @@ interface User {
   // problemsCompleted: [{ [problem: string]: boolean }];
   problemsCompleted: [
     {
-      problemNumber: string;
+      problemDate: string;
       remainingAttempts: number;
     }
   ];

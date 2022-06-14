@@ -50,7 +50,7 @@ export const findUserCreateUserHandler = async (userObject: userObjectType) => {
 export const updateUserHandler = async (
   currentUser: any,
   lifeBarCount: any,
-  problemNumber: string
+  problemDate: string
 ) => {
   //connect to database
   await connectMongo();
@@ -81,7 +81,7 @@ export const updateUserHandler = async (
       problemsAttempted: problemsAttempted,
       problemsSolved: problemsSolved,
     },
-    $addToSet: { problemsCompleted: { problemNumber, lifeBarCount } },
+    $addToSet: { problemsCompleted: { problemDate, lifeBarCount } },
   });
 };
 

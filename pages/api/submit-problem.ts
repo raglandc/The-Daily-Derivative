@@ -13,12 +13,12 @@ const handler = async (
 ): Promise<void> => {
   try {
     //pull the important information from the request body
-    const { userObject, attemptsRemaining, problemNumber } = req.body;
+    const { userObject, attemptsRemaining, problemDate } = req.body;
 
     //find logged in user
     const user = await findUserCreateUserHandler(userObject);
     //update the users stats
-    await updateUserHandler(user, attemptsRemaining, problemNumber);
+    await updateUserHandler(user, attemptsRemaining, problemDate);
 
     //set response code, send status message
     res.status(200).json({ message: "user profile has been updated" });
