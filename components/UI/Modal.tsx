@@ -1,4 +1,3 @@
-import { FC } from "react";
 import React, { useState, useEffect, ReactNode } from "react";
 import ReactDOM from "react-dom";
 import styles from "./Modal.module.css";
@@ -11,7 +10,7 @@ interface ModalProps {
   title: string;
 }
 
-const Modal = ({ show, onClose, children, title }: ModalProps) => {
+export default function Modal({ show, onClose, children, title }: ModalProps) {
   const [isBrowser, setIsBrowser] = useState(false);
 
   useEffect(() => {
@@ -48,6 +47,4 @@ const Modal = ({ show, onClose, children, title }: ModalProps) => {
   } else {
     return null;
   }
-};
-
-export default Modal;
+}
