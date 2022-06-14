@@ -7,7 +7,7 @@ import "katex/dist/katex.min.css";
 import { InlineMath } from "react-katex";
 import Modal from "../UI/Modal";
 import Button from "../UI/Button";
-import SolutionModal from "../math-problem/SolutionModal";
+import SolutionModal from "./SolutionModal";
 import DifficultyScale from "../DifficultyScale";
 import Container from "../UI/Container";
 
