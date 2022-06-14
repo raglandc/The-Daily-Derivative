@@ -5,9 +5,6 @@ import { motion } from "framer-motion";
 //styles
 import styles from "./SideDrawer.module.css";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 ////////////////////////////////////////////////////////////////
 
 //components
@@ -91,33 +88,6 @@ const SideDrawer = ({ show, onClose }: SideDrawerProps): JSX.Element | null => {
               signIn("google", { callbackUrl: "/" });
             }}
             icon={faGoogle}
-          />
-          <SignInButton
-            title="Twitter"
-            link="/"
-            action={() => {
-              closeHandler;
-              signIn("twitter", { callbackUrl: "/" });
-            }}
-            icon={faTwitter}
-          />
-          <SignInButton
-            title="LinkedIn"
-            link="/"
-            action={() => {
-              closeHandler;
-              signIn("linkedin", { callbackUrl: "/" });
-            }}
-            icon={faLinkedin}
-          />
-          <SignInButton
-            title="Facebook"
-            link="/"
-            action={() => {
-              closeHandler;
-              signIn("linkedin", { callbackUrl: "/" });
-            }}
-            icon={faFacebook}
           />
         </div>
       )}
