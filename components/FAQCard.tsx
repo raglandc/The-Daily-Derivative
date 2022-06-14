@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import styles from "./FAQCard.module.css";
-import Container from "./ui/Container";
-import SVGIcon from "./ui/SVGIcon";
+import Container from "./UI/Container";
+import SVGIcon from "./UI/SVGIcon";
 //svg for dark/light mode
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 

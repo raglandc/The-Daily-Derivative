@@ -1,5 +1,5 @@
 import styles from "./StatsCard.module.css";
-import Container from "./ui/Container";
+import Container from "./UI/Container";
 //@ts-ignore
 import { animate } from "framer-motion";
 import { useEffect, useRef } from "react";

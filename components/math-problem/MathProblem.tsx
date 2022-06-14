@@ -5,11 +5,11 @@ import styles from "./MathProblem.module.css";
 import "katex/dist/katex.min.css";
 // @ts-ignore
 import { InlineMath } from "react-katex";
-import Modal from "../ui/Modal";
-import Button from "../ui/Button";
+import Modal from "../UI/Modal";
+import Button from "../UI/Button";
 import SolutionModal from "../math-problem/SolutionModal";
 import DifficultyScale from "../DifficultyScale";
-import Container from "../ui/Container";
+import Container from "../UI/Container";
 
 interface MathProblemProps {
   date: string;

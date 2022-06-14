@@ -1,6 +1,6 @@
 import styles from "./DifficultyScale.module.css";
 import { useState } from "react";
-import Modal from "./ui/Modal";
+import Modal from "./UI/Modal";
 
 interface DifficultyScaleProps {
   rating: string;

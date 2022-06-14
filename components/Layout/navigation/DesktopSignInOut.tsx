@@ -1,5 +1,5 @@
 import styles from "./DesktopSignInOut.module.css";
-import Button from "../../ui/Button";
+import Button from "../../UI/Button";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 const DesktopSignInOut = () => {

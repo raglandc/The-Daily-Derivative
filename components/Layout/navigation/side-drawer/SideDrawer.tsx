@@ -8,7 +8,7 @@ import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 ////////////////////////////////////////////////////////////////
 
 //components
-import SignInButton from "../../../ui/SignInButton";
+import SignInButton from "../../../UI/SignInButton";
 
 //user session imports
 import { signIn, signOut, useSession } from "next-auth/react";

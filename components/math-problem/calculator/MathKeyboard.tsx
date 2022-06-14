@@ -7,7 +7,7 @@ import { useState } from "react";
 import { InlineMath } from "react-katex";
 //Katex (math styling)
 import "katex/dist/katex.min.css";
-import Container from "../../ui/Container";
+import Container from "../../UI/Container";
 
 interface MathKeyboardProps {
   showSolution: boolean;

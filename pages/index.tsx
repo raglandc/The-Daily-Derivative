@@ -15,11 +15,11 @@ import {
   restartDailyProblemList,
 } from "../controllers/mathController";
 
-import Modal from "../components/ui/Modal";
+import Modal from "../components/UI/Modal";
 import Summary from "../components/Summary";
 import LifeBar from "../components/LifeBar";
 import { findUserCreateUserHandler } from "../controllers/userController";
-import Container from "../components/ui/Container";
+import Container from "../components/UI/Container";
 import svg from "../public/images/undraw_time.svg";
 ///////////////////////////////////////////////////////////////////////////////
 
