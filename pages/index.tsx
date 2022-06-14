@@ -10,7 +10,10 @@ import MathKeyboard from "../components/math-problem/calculator/MathKeyboard";
 import styles from "./page-styling/HomePage.module.css";
 
 //controllers
-import { getDailyProblemHandler } from "../controllers/mathController";
+import {
+  getDailyProblemHandler,
+  restartDailyProblemList,
+} from "../controllers/mathController";
 
 import Modal from "../components/ui/Modal";
 import Summary from "../components/Summary";
@@ -24,11 +27,14 @@ import svg from "../public/images/undraw_time.svg";
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
     //retrieve the problem for the day
-    const problem = await getDailyProblemHandler();
+    let problem = await getDailyProblemHandler();
 
     //if no new problem
     let noNewProblem = false;
-    if (!problem) noNewProblem = true;
+    if (problem === undefined || problem === null) {
+      noNewProblem = true;
+      problem = await restartDailyProblemList();
+    }
 
     //find out if there is a user with a session currently
     const session = await getSession(ctx);
@@ -154,7 +160,7 @@ const Home = ({
   return !noNewProblem ? (
     <div className={styles.pageContainer}>
       <Head>
-        <title> {problem.problemNumber} The Daily Derivative</title>
+        <title>The Daily Derivative - Daily Calculus Problems</title>
       </Head>
       <MathProblem
         date={date}
@@ -195,7 +201,7 @@ const Home = ({
       <div className={styles.pageContainer}>
         <Container>
           <h1 style={{ textAlign: "center" }}>
-            Sorry, no new daily problem. Check back tomorrow
+            Sorry, no new problem found. Try refreshing the page.
           </h1>
           <div style={{ margin: "0 auto" }}>
             <Image
