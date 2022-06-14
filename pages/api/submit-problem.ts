@@ -1,5 +1,6 @@
 ////////////////////////////////////////////////////////////////////
 //imports
+import connectMongo from "../../lib/mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import {
   findUserCreateUserHandler,
@@ -12,6 +13,8 @@ const handler = async (
   res: NextApiResponse
 ): Promise<void> => {
   try {
+    //connect to database
+    await connectMongo();
     //pull the important information from the request body
     const { userObject, attemptsRemaining, problemDate } = req.body;
 

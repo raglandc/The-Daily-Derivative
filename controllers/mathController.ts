@@ -33,9 +33,6 @@ const convertInputDateTimeToISOStringMidnight = (date: Date): string => {
 
 /////////////////////////////////////////////////////////////////////////////
 export const getDailyProblemHandler = async () => {
-  //connect to database
-  await connectMongo();
-
   const queryDate = getTodaysDateToISOString();
 
   //find the problem assigned to queryDate
@@ -47,9 +44,6 @@ export const getDailyProblemHandler = async () => {
 };
 
 export const restartDailyProblemList = async () => {
-  //connect to the database
-  await connectMongo();
-
   //get todays ISO string for midnight
   const todayISOString = getTodaysDateToISOString();
 

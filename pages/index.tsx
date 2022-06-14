@@ -21,11 +21,14 @@ import LifeBar from "../components/LifeBar";
 import { findUserCreateUserHandler } from "../controllers/userController";
 import Container from "../components/UI/Container";
 import svg from "../public/images/undraw_time.svg";
+import connectMongo from "../lib/mongodb";
 ///////////////////////////////////////////////////////////////////////////////
 
 //fetching data from database of math problems to display
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
+    //connect to database
+    await connectMongo();
     //retrieve the problem for the day
     let problem = await getDailyProblemHandler();
 
