@@ -41,16 +41,27 @@ export async function connectToDatabase(): Promise<{
 //connection with mongoose
 import mongoose from "mongoose";
 
-const connectMongo = async () => {
-  //try and connect to the database
-  try {
-    await mongoose.connect(uri);
-    console.log("You are connected to the database");
+//@ts-expect-error
+let cached = global.mongoose;
 
-    //otherwise throw an error
-  } catch (error) {
-    console.log("You are not connected: ", error);
+if (!cached) {
+  //@ts-expect-error
+  cached = global.mongoose = { conn: null, promise: null };
+}
+
+const connectMongo = async () => {
+  //check if the connection to the database is cached
+  if (cached.conn) {
+    return cached.conn;
   }
+  //try and connect to the database
+  if (!cached.promise) {
+    cached.promise = mongoose.connect(uri).then((mongoose) => {
+      return mongoose;
+    });
+  }
+  cached.conn = await cached.promise;
+  return cached.conn;
 };
 
 export default connectMongo;

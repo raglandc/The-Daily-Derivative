@@ -35,7 +35,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   //find out if there is a user with a session currently
   const session = await getSession(ctx);
   //connect to database
-  await connectMongo();
+  // await connectMongo();
 
   const queryDate = getTodaysDateToISOString();
 
