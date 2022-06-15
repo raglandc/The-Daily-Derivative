@@ -3,8 +3,10 @@ import { MongoClient, Db } from "mongodb";
 let uri = process.env.MONGODB_URI as string;
 let dbName = process.env.DB_NAME as string;
 
-let cachedClient: MongoClient;
-let cachedDb: Db;
+//@ts-expect-error
+let cachedClient: MongoClient = global.MongoClient;
+//@ts-expect-error
+let cachedDb: Db = global.Db;
 
 if (!uri) {
   throw new Error(

@@ -26,16 +26,16 @@ import Math from "../models/mathModel";
 ///////////////////////////////////////////////////////////////////////////////
 
 //fetching data from database of math problems to display
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   //cache all available problem data
-  ctx.res.setHeader(
+  res.setHeader(
     "Cache-Control",
     "public, s-maxage=3600, stale-while-revalidate=59"
   );
   //find out if there is a user with a session currently
-  const session = await getSession(ctx);
+  const session = await getSession({ req });
   //connect to database
-  // await connectMongo();
+  await connectMongo();
 
   const queryDate = getTodaysDateToISOString();
 
