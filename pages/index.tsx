@@ -27,6 +27,10 @@ import Math from "../models/mathModel";
 
 //fetching data from database of math problems to display
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  ctx.res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=3600, stale-while-revalidate=59"
+  );
   //connect to database
   await connectMongo();
 
