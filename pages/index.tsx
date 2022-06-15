@@ -27,28 +27,30 @@ import Math from "../models/mathModel";
 
 //fetching data from database of math problems to display
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  //cache all available problem data
   ctx.res.setHeader(
     "Cache-Control",
     "public, s-maxage=3600, stale-while-revalidate=59"
   );
+  //find out if there is a user with a session currently
+  const session = await getSession(ctx);
   //connect to database
   await connectMongo();
 
   const queryDate = getTodaysDateToISOString();
 
-  let problem = await Math.findOne({
+  const problem = await Math.findOne({
     showDate: new Date(queryDate).toISOString(),
   });
 
-  //if no new problem
   let noNewProblem = false;
+  //if no new problem
   if (!problem) {
     noNewProblem = true;
-    problem = await restartDailyProblemList();
+    return {
+      notFound: true,
+    };
   }
-
-  //find out if there is a user with a session currently
-  const session = await getSession(ctx);
 
   //if there is indeed a session
   //retrieve the user information
