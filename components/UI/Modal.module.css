@@ -13,7 +13,8 @@
 
 .container {
   z-index: 5;
-  max-width: 95%;
+  min-width: 75%;
+  max-width: 94%;
   height: max-content;
 
   color: var(--text-primary);
@@ -60,6 +61,6 @@
 
 @media only screen and (min-width: 1000px) {
   .container {
-    width: 50%;
+    width: 70%;
   }
 }
