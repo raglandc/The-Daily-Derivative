@@ -27,69 +27,78 @@ import Math from "../models/mathModel";
 
 //fetching data from database of math problems to display
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  //cache all available problem data
-  res.setHeader(
-    "Cache-Control",
-    "public, s-maxage=3600, stale-while-revalidate=59"
-  );
-  //find out if there is a user with a session currently
-  const session = await getSession({ req });
-  //connect to database
-  await connectMongo();
+  try {
+    //cache all available problem data
+    res.setHeader(
+      "Cache-Control",
+      "public, s-maxage=3600, stale-while-revalidate=59"
+    );
+    //find out if there is a user with a session currently
+    const session = await getSession({ req });
+    //connect to database
+    await connectMongo();
 
-  const queryDate = getTodaysDateToISOString();
+    const queryDate = getTodaysDateToISOString();
 
-  const problem = await Math.findOne({
-    showDate: new Date(queryDate).toISOString(),
-  });
+    let problem = await Math.findOne({
+      showDate: new Date(queryDate).toISOString(),
+    });
 
-  let noNewProblem = false;
-  //if no new problem
-  if (!problem) {
-    noNewProblem = true;
-    return {
-      notFound: true,
-    };
-  }
+    let noNewProblem = false;
+    //if no new problem
+    if (!problem) {
+      noNewProblem = true;
+      problem = restartDailyProblemList();
+    }
 
-  //if there is indeed a session
-  //retrieve the user information
-  let user = null;
-  let booleanProblemAlreadyCompleted = false;
-  if (session) {
-    user = await findUserCreateUserHandler(session!.user);
-    //test if the user has already solved this problem
+    //if there is a session
+    //retrieve the user information
+    let user = null;
+    let booleanProblemAlreadyCompleted = false;
+    if (session) {
+      //test if the user has already solved this problem
+      //find user
+      user = await findUserCreateUserHandler(session!.user);
 
-    //if there is a user test to see if they have already answered todays problem
-    if (user) {
-      const problemsCompletedData = user.problemsCompleted;
-      //we start from the end of the array because the newest problem is
-      //at the end of this array
-      //this optimizes searching for best case
-      //otherwise speed is O(n) where n is the size of the array
-      for (let i = problemsCompletedData.length - 1; i >= 0; i--) {
-        //if the user's completed problems object contains todays problem number
-        //assign the boolean to return to the homepage as props
-        if (
-          problemsCompletedData[i].problemDate ===
-          problem.showDate.toISOString()
-        ) {
-          booleanProblemAlreadyCompleted = true;
+      //if there is a user test to see if they have already answered todays problem
+      if (user) {
+        const problemsCompletedData = user.problemsCompleted;
+        //we start from the end of the array because the newest problem is
+        //at the end of this array
+        //this optimizes searching for best case
+        //otherwise speed is O(n) where n is the size of the array
+        for (let i = problemsCompletedData.length - 1; i >= 0; i--) {
+          //if the user's completed problems object contains todays problem number
+          //assign the boolean to return to the homepage as props
+          if (
+            problemsCompletedData[i].problemDate ===
+            problem.showDate.toISOString()
+          ) {
+            booleanProblemAlreadyCompleted = true;
+          }
+          //break from the loop. There is no reason to go forward
+          break;
         }
-        //break from the loop. There is no reason to go forward
-        break;
       }
     }
-  }
 
-  //return the properties of the problem to be used as props
-  return {
-    props: {
-      problem: JSON.parse(JSON.stringify(problem)),
-      booleanProblemAlreadyCompleted: booleanProblemAlreadyCompleted,
-      noNewProblem: noNewProblem,
-    },
-  };
+    //return the properties of the problem to be used as props
+    return {
+      props: {
+        problem: JSON.parse(JSON.stringify(problem)),
+        booleanProblemAlreadyCompleted: booleanProblemAlreadyCompleted,
+        noNewProblem: noNewProblem,
+      },
+    };
+  } catch (error) {
+    console.log(`error:`, error);
+
+    return {
+      props: {
+        notFound: true,
+      },
+    };
+  }
 };
 
 const Home = ({
