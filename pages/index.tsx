@@ -11,7 +11,7 @@ import styles from "./page-styling/HomePage.module.css";
 
 //controllers
 import {
-  getDailyProblemHandler,
+  getTodaysDateToISOString,
   restartDailyProblemList,
 } from "../controllers/mathController";
 
@@ -22,6 +22,7 @@ import { findUserCreateUserHandler } from "../controllers/userController";
 import Container from "../components/UI/Container";
 import svg from "../public/images/undraw_time.svg";
 import connectMongo from "../lib/mongodb";
+import Math from "../models/mathModel";
 ///////////////////////////////////////////////////////////////////////////////
 
 //fetching data from database of math problems to display
@@ -29,8 +30,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
     //connect to database
     await connectMongo();
-    //retrieve the problem for the day
-    let problem = await getDailyProblemHandler();
+
+    const queryDate = getTodaysDateToISOString();
+
+    let problem = await Math.findOne({
+      showDate: new Date(queryDate).toISOString(),
+    });
 
     //if no new problem
     let noNewProblem = false;
@@ -41,9 +46,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
     //find out if there is a user with a session currently
     const session = await getSession(ctx);
+
     //if there is indeed a session
     //retrieve the user information
-
     let user = null;
     let booleanProblemAlreadyCompleted = false;
     if (session) {
@@ -121,8 +126,6 @@ const Home = ({
       }),
     });
   }
-
-  console.log(``);
 
   //handle user submission
   function submitAnswerHandler(userInputArray: string[]) {

@@ -9,11 +9,10 @@ as of right now, trying to keep API files clean and lean
 */
 ////////////////////////////////////////////////////////////////////
 //imports
-import connectMongo from "../lib/mongodb";
 import Math from "../models/mathModel";
 ////////////////////////////////////////////////////////////////////
 //helper function
-const getTodaysDateToISOString = (): string => {
+export const getTodaysDateToISOString = (): string => {
   //find the problem for the day
   //create a ISO string from todays current date
   const todayISO = new Date(Date.now()).toISOString();
