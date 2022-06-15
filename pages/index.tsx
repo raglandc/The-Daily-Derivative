@@ -49,33 +49,33 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
     //if there is indeed a session
     //retrieve the user information
-    // let user = null;
+    let user = null;
     let booleanProblemAlreadyCompleted = false;
-    // if (session) {
-    //   user = await findUserCreateUserHandler(session!.user);
-    //   //test if the user has already solved this problem
+    if (session) {
+      user = await findUserCreateUserHandler(session!.user);
+      //test if the user has already solved this problem
 
-    //   //if there is a user test to see if they have already answered todays problem
-    //   if (user) {
-    //     const problemsCompletedData = user.problemsCompleted;
-    //     //we start from the end of the array because the newest problem is
-    //     //at the end of this array
-    //     //this optimizes searching for best case
-    //     //otherwise speed is O(n) where n is the size of the array
-    //     for (let i = problemsCompletedData.length - 1; i >= 0; i--) {
-    //       //if the user's completed problems object contains todays problem number
-    //       //assign the boolean to return to the homepage as props
-    //       if (
-    //         problemsCompletedData[i].problemDate ===
-    //         problem.showDate.toISOString()
-    //       ) {
-    //         booleanProblemAlreadyCompleted = true;
-    //       }
-    //       //break from the loop. There is no reason to go forward
-    //       break;
-    //     }
-    //   }
-    // }
+      //if there is a user test to see if they have already answered todays problem
+      if (user) {
+        const problemsCompletedData = user.problemsCompleted;
+        //we start from the end of the array because the newest problem is
+        //at the end of this array
+        //this optimizes searching for best case
+        //otherwise speed is O(n) where n is the size of the array
+        for (let i = problemsCompletedData.length - 1; i >= 0; i--) {
+          //if the user's completed problems object contains todays problem number
+          //assign the boolean to return to the homepage as props
+          if (
+            problemsCompletedData[i].problemDate ===
+            problem.showDate.toISOString()
+          ) {
+            booleanProblemAlreadyCompleted = true;
+          }
+          //break from the loop. There is no reason to go forward
+          break;
+        }
+      }
+    }
 
     //return the properties of the problem to be used as props
     return {
