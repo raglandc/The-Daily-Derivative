@@ -14,11 +14,11 @@ import {
   getTodaysDateToISOString,
   restartDailyProblemList,
 } from "../controllers/mathController";
+import { findUserCreateUserHandler } from "../controllers/userController";
 
 import Modal from "../components/UI/Modal";
 import Summary from "../components/Summary";
 import LifeBar from "../components/LifeBar";
-import { findUserCreateUserHandler } from "../controllers/userController";
 import Container from "../components/UI/Container";
 import svg from "../public/images/undraw_time.svg";
 import connectMongo from "../lib/mongodb";
@@ -39,7 +39,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
     //if no new problem
     let noNewProblem = false;
-    if (problem === undefined || problem === null) {
+    if (!problem) {
       noNewProblem = true;
       problem = await restartDailyProblemList();
     }
