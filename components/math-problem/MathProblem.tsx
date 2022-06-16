@@ -33,7 +33,7 @@ const MathProblem = (props: MathProblemProps) => {
     <Container>
       <div className={styles.problemInfo}>
         <div>{props.date}</div>
-        <div>
+        <div style={{ position: "relative" }}>
           <DifficultyScale rating={props.difficulty} />
         </div>
         <div>Problem #{props.problemNumber}</div>

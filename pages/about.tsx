@@ -25,7 +25,7 @@ const AboutPage = () => {
             </p>
             <p>
               Users can sign-in and keep track of stats that include: current
-              winning steak, the amount of problems attempted and the amount of
+              winning streak, the amount of problems attempted and the amount of
               problems that have been answered correctly.
             </p>
           </div>
