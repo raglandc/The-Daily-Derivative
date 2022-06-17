@@ -30,7 +30,7 @@ export const findUserCreateUserHandler = async (userObject: userObjectType) => {
 
   //if they cannot be found, create a document to record their
   // calculus stats and return them as props
-  if (user === null || undefined) {
+  if (user === null || user === undefined) {
     //possible error when user is created default values are not fired on null
     const newUser = await User.create({
       email: userObject.email,
@@ -38,6 +38,7 @@ export const findUserCreateUserHandler = async (userObject: userObjectType) => {
 
     console.log(`userController newUser: `, newUser, "\n");
 
+    //return the newly created user
     return newUser;
   }
 
