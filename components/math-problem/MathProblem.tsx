@@ -32,9 +32,13 @@ const MathProblem = (props: MathProblemProps) => {
   return (
     <Container>
       <div className={styles.problemInfo}>
-        <div>{props.date}</div>
-        <DifficultyScale rating={props.difficulty} />
-        <div>Problem #{props.problemNumber}</div>
+        <div className={styles.problemInfoDate}>{props.date}</div>
+        <div className={styles.problemInfoDifficulty}>
+          <DifficultyScale rating={props.difficulty} />
+        </div>
+        <div className={styles.problemInfoNumber}>
+          Problem #{props.problemNumber}
+        </div>
       </div>
       <div className={styles.problem}>
         <p className={styles.description}>{props.description}</p>
