@@ -21,12 +21,8 @@ const handler = async (
     //find logged in user
     const user = await findUserCreateUserHandler(userObject);
 
-    console.log(`submit problem user fUCUH: `, user, "\n");
-
     //update the users stats
     await updateUserHandler(user, attemptsRemaining, problemDate);
-
-    console.log(`submit problem user after UUH`, user, "\n");
 
     //set response code, send status message
     res.status(200).json({ message: "user profile has been updated" });

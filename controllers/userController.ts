@@ -52,8 +52,6 @@ export const updateUserHandler = async (
   lifeBarCount: any,
   problemDate: string
 ) => {
-  console.log(`currentUser in updateUserHandler`, currentUser, "\n");
-
   //variables to update user document
   let currentWinningStreak = currentUser.userStatistics.currentWinningStreak;
   let problemsAttempted = currentUser.userStatistics.problemsAttempted;
@@ -84,7 +82,6 @@ export const updateUserHandler = async (
     $addToSet: { problemsCompleted: { problemDate, lifeBarCount } },
   });
 
-  console.log(`currentUser after update final step: `, currentUser, "\n");
   return;
 };
 
