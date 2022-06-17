@@ -9,7 +9,7 @@
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
 
-  display: grid;
+  display: inline-grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   align-items: center;
