@@ -9,20 +9,22 @@
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
 
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-items: center;
+  display: flex;
   align-items: center;
 }
 
 .problemInfoDate {
-  grid-column: 0 / 1 / span 1;
+  width: 33.3333%;
+  text-align: center;
 }
 .problemInfoDifficulty {
-  grid-column: 1 / 2 / span 1;
+  width: 33.3333%;
+  display: flex;
+  justify-content: center;
 }
 .problemInfoNumber {
-  grid-column: 2 / 3 / span 1;
+  width: 33.333%;
+  text-align: center;
 }
 
 .problem {
