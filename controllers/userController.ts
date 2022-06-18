@@ -87,8 +87,6 @@ export const updateUserHandler = async (
     },
     $addToSet: { problemsCompleted: { problemDate, lifeBarCount } },
   });
-
-  return;
 };
 
 /////////////////////////////////////////////////////////////////////

@@ -86,7 +86,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     return {
       props: {
         problem: JSON.parse(JSON.stringify(problem)),
-        user: session?.user,
         booleanProblemAlreadyCompleted: booleanProblemAlreadyCompleted,
         noNewProblem: noNewProblem,
       },
