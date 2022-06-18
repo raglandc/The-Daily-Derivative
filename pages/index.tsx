@@ -56,7 +56,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     if (session) {
       //test if the user has already solved this problem
       //find user
-      user = await findUserCreateUserHandler(session!.user);
+      user = await findUserCreateUserHandler(session?.user);
 
       //if there is a user test to see if they have already answered todays problem
       if (user) {
@@ -104,7 +104,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
 const Home = ({
   problem,
-  user,
   booleanProblemAlreadyCompleted,
   noNewProblem,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
@@ -118,14 +117,6 @@ const Home = ({
   );
   //handle if the correct answer is submitted or life bars run out
   const [summary, setSummary] = useState(false);
-
-  console.log(
-    `The user from props and from session hook: `,
-    user,
-    session?.user,
-    "\n\n"
-  );
-
   //if there is a session and the game is complete
   //update users stats in database if they have not answered it already
   if (session && summary && !booleanProblemAlreadyCompleted) {
@@ -135,7 +126,7 @@ const Home = ({
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userObject: user,
+        userObject: session?.user,
         attemptsRemaining: lifeBar,
         problemDate: problem.showDate,
       }),
