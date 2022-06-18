@@ -26,13 +26,15 @@ import Math from "../models/mathModel";
 ///////////////////////////////////////////////////////////////////////////////
 
 //fetching data from database of math problems to display
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
     //connect to database
     await connectMongo();
 
     //find out if there is a user with a session currently
-    const session = await getSession({ req });
+    const session = await getSession(ctx);
+
+    console.log(`First Session Call Index Page: `, session, "\n\n");
 
     const queryDate = getTodaysDateToISOString();
 
@@ -78,6 +80,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
       }
     }
 
+    console.log(`The User before we return it as props: `, user, "\n\n");
+
     //return the properties of the problem to be used as props
     return {
       props: {
@@ -114,6 +118,13 @@ const Home = ({
   );
   //handle if the correct answer is submitted or life bars run out
   const [summary, setSummary] = useState(false);
+
+  console.log(
+    `The user from props and from session hook: `,
+    user,
+    session?.user,
+    "\n\n"
+  );
 
   //if there is a session and the game is complete
   //update users stats in database if they have not answered it already
