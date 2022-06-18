@@ -9,6 +9,7 @@ as of right now, trying to keep API files clean and lean
 */
 ////////////////////////////////////////////////////////////////////
 //imports
+import connectMongo from "../lib/mongodb";
 import User from "../models/userModel";
 
 ///////////////////////////////////////////////////////////////////
@@ -24,6 +25,8 @@ type userObjectType =
 
 //if they cannot be found create user
 export const findUserCreateUserHandler = async (userObject: userObjectType) => {
+  //connect to database
+  await connectMongo();
   if (!userObject) return;
   //check if the email already exists in the database
   const user = await User.findOne({ email: userObject.email });
@@ -35,8 +38,6 @@ export const findUserCreateUserHandler = async (userObject: userObjectType) => {
     const newUser = await User.create({
       email: userObject.email,
     });
-
-    console.log(`userController newUser: `, newUser, "\n");
 
     //return the newly created user
     return newUser;
@@ -53,6 +54,9 @@ export const updateUserHandler = async (
   lifeBarCount: any,
   problemDate: string
 ) => {
+  //connect to database
+  await connectMongo();
+  console.log(`updateUser: `, currentUser, "\n\n");
   //variables to update user document
   let currentWinningStreak = currentUser.userStatistics.currentWinningStreak;
   let problemsAttempted = currentUser.userStatistics.problemsAttempted;
