@@ -119,7 +119,7 @@ const Home = ({
   //if there is a session and the game is complete
   //update users stats in database if they have not answered it already
   if (session && summary && !booleanProblemAlreadyCompleted) {
-    fetch("http://localhost:3000/api/submit-problem", {
+    fetch("https://the-daily-derivative.vercel.app/api/submit-problem", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
