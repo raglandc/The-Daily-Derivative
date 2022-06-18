@@ -21,24 +21,8 @@ const handler = async (
     //find logged in user
     const user = await findUserCreateUserHandler(userObject);
 
-    console.log(`submit problem : user`, user, "\n\n");
-    console.log(
-      `submit problem : lifeCount, problemDate`,
-      attemptsRemaining,
-      problemDate,
-      "\n\n"
-    );
-
     //update the users stats
-    const updated = await updateUserHandler(
-      user,
-      attemptsRemaining,
-      problemDate
-    );
-
-    console.log(`submit problem updated: `, updated, "\n\n");
-
-    //running promises in parallel
+    await updateUserHandler(user, attemptsRemaining, problemDate);
 
     //set response code, send status message
     res.status(200).json({ message: "user profile has been updated" });

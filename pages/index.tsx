@@ -34,8 +34,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     //find out if there is a user with a session currently
     const session = await getSession(ctx);
 
-    console.log(`First Session Call Index Page: `, session, "\n\n");
-
     const queryDate = getTodaysDateToISOString();
 
     let problem = await Math.findOne({
@@ -79,8 +77,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         }
       }
     }
-
-    console.log(`The User before we return it as props: `, user, "\n\n");
 
     //return the properties of the problem to be used as props
     return {

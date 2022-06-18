@@ -3,8 +3,6 @@ import { Schema, model, models } from "mongoose";
 export interface UserType {
   name: string;
   email: string;
-  image: string;
-  emailVerified: boolean | null;
   userStatistics: {
     currentWinningStreak: number;
     problemsAttempted: number;
@@ -26,8 +24,6 @@ const userSchema = new Schema<UserType>({
     required: true,
     unique: true,
   },
-  image: String,
-  emailVerified: Boolean || null,
   userStatistics: {
     currentWinningStreak: { type: Number, default: 0 },
     problemsAttempted: { type: Number, default: 0 },

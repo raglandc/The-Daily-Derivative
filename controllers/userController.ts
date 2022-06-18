@@ -28,12 +28,6 @@ export const findUserCreateUserHandler = async (userObject: userObjectType) => {
   //check if the email already exists in the database
   const user = await User.findOne({ email: userObject.email });
 
-  console.log(
-    `The user object inside of findUser...Handler: `,
-    userObject,
-    "\n\n"
-  );
-
   //if they cannot be found, create a document to record their
   // calculus stats and return them as props
   if (user === null || user === undefined) {
@@ -57,7 +51,6 @@ export const updateUserHandler = async (
   lifeBarCount: any,
   problemDate: string
 ) => {
-  console.log(`updateUserHandler currentUser: `, currentUser, "\n\n");
   //variables to update user document
   let currentWinningStreak = currentUser.userStatistics.currentWinningStreak;
   let problemsAttempted = currentUser.userStatistics.problemsAttempted;
