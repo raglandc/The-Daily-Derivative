@@ -28,10 +28,11 @@ import Math from "../models/mathModel";
 //fetching data from database of math problems to display
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   try {
-    //find out if there is a user with a session currently
-    const session = await getSession({ req });
     //connect to database
     await connectMongo();
+
+    //find out if there is a user with a session currently
+    const session = await getSession({ req });
 
     const queryDate = getTodaysDateToISOString();
 
@@ -81,6 +82,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     return {
       props: {
         problem: JSON.parse(JSON.stringify(problem)),
+        user: session?.user,
         booleanProblemAlreadyCompleted: booleanProblemAlreadyCompleted,
         noNewProblem: noNewProblem,
       },
@@ -98,6 +100,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 
 const Home = ({
   problem,
+  user,
   booleanProblemAlreadyCompleted,
   noNewProblem,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
@@ -121,7 +124,7 @@ const Home = ({
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userObject: session.user,
+        userObject: user,
         attemptsRemaining: lifeBar,
         problemDate: problem.showDate,
       }),
