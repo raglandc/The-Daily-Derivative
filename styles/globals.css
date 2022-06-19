@@ -1,5 +1,6 @@
 html,
 body {
+  background: var(--background);
   position: relative;
   font-size: 62.5%;
   padding: 0;
